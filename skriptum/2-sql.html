@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kapitel 2: Datenbanken und SQL · Skriptum</title>
+  <meta name="description" content="Skriptum zur Lehrveranstaltung Datengewinnung &amp; -aufbereitung, FH Wien der WKW: Kapitel 2, Datenbanken und SQL.">
+  <link rel="icon" type="image/png" href="../slides/assets/0-logo-fh.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="skriptum.css">
+</head>
+
+<body>
+  <div class="page">
+  <main>
+    <a class="back" href="../index.html">← Zur Kursseite</a>
+
+    <p class="eyebrow">Skriptum · Datengewinnung &amp; -aufbereitung · WS 2026/27</p>
+    <h1>Kapitel 2: Datenbanken und SQL</h1>
+
+    <div class="box lead">
+      <p>Die meisten Daten, mit denen im Marketing und Vertrieb gearbeitet wird, liegen nicht in Excel-Dateien, sondern in Datenbanken: im Onlineshop, im CRM-System, im Newsletter-Tool oder in der Warenwirtschaft. Dieses Kapitel erklärt, wie solche Datenbanken aufgebaut sind und wie man mit der Abfragesprache SQL selbst Antworten aus ihnen holt.</p>
+    </div>
+
+
+    <nav class="toc" aria-label="Inhalt">
+      <h2>Inhalt</h2>
+      <ol>
+        <li><a href="#wozu">Wozu Datenbanken?</a></li>
+        <li><a href="#tabellen">Tabellen, Zeilen, Spalten</a></li>
+        <li><a href="#beziehungen">Schlüssel und Beziehungen</a></li>
+        <li><a href="#sql">SQL: die Sprache der Datenbanken</a></li>
+        <li><a href="#werkzeuge">Werkzeuge im Kurs</a></li>
+        <li><a href="#select">Spalten auswählen: SELECT</a></li>
+        <li><a href="#where">Zeilen filtern: WHERE</a></li>
+        <li><a href="#order-by">Sortieren und begrenzen</a></li>
+        <li><a href="#distinct">Doppelte entfernen: DISTINCT</a></li>
+        <li><a href="#group-by">Zusammenfassen: GROUP BY</a></li>
+        <li><a href="#kampagnen">Praxisbeispiel: Kampagnen vergleichen</a></li>
+        <li><a href="#join">Tabellen verknüpfen: JOIN</a></li>
+        <li><a href="#reihenfolge">Aufbau einer Abfrage</a></li>
+        <li><a href="#fehler">Typische Fehler</a></li>
+        <li><a href="#ausprobieren">Zum Ausprobieren</a></li>
+        <li><a href="#begriffe">Begriffe</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 -->
+    <h2 id="wozu">1. Wozu Datenbanken?</h2>
+
+    <p>Wer in einem Onlineshop bestellt, sieht nur die Oberfläche: eine Webseite oder eine App. Dahinter arbeiten typischerweise drei Schichten zusammen:</p>
+    <ul>
+      <li>Das <strong>Frontend</strong> ist das, was Kundinnen und Kunden sehen: der Browser oder die App.</li>
+      <li>Das <strong>Backend</strong> ist ein Server, der die Geschäftslogik enthält, also etwa Preise berechnet oder prüft, ob ein Produkt lieferbar ist.</li>
+      <li>Die <strong>Datenbank</strong> speichert alle Informationen dauerhaft: Kunden, Produkte, Bestellungen.</li>
+    </ul>
+
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-1-1-architecture.png" alt="Frontend, Backend und Datenbank einer Webapplikation"></div>
+      <figcaption>Abbildung 1: Architektur einer Webapplikation. Jede Aktion im Frontend landet am Ende als Eintrag in der Datenbank.</figcaption>
+    </figure>
+
+    <p>Jede Bestellung, jede Newsletter-Anmeldung und jeder Klick, der gespeichert wird, wird zu einer Zeile in einer Datenbanktabelle. Wer diese Daten direkt abfragen kann, ist nicht auf vorgefertigte Berichte oder Excel-Exporte angewiesen, sondern kann eigene Fragen stellen.</p>
+
+    <h3>1.1. Der Begriff „Datenbank“</h3>
+    <p>Umgangssprachlich meint „Datenbank“ zwei Dinge:</p>
+    <ol>
+      <li>eine <strong>strukturierte Sammlung von Daten</strong>, also die Tabellen mit ihren Inhalten und die Regeln, wie sie aufgebaut sind (das <em>Schema</em>), und</li>
+      <li>die <strong>Software</strong>, die diese Daten verwaltet, ein sogenanntes Datenbankmanagementsystem (DBMS). Verbreitete Systeme sind Microsoft SQL Server, MySQL, PostgreSQL, Oracle und SQLite.</li>
+    </ol>
+    <p>In diesem Kapitel geht es um <strong>relationale Datenbanken</strong>. Sie speichern Daten in Tabellen, die über Schlüssel miteinander verbunden sind. Diese Art von Datenbank ist seit Jahrzehnten der Standard in Unternehmen.</p>
+
+    <!-- 2 -->
+    <h2 id="tabellen">2. Tabellen, Zeilen, Spalten</h2>
+
+    <p>Eine Datenbanktabelle sieht aus wie eine Tabelle in Excel. Sie folgt aber strengeren Regeln:</p>
+    <ul>
+      <li>Jede <strong>Zeile</strong> ist ein Datensatz, also eine Beobachtung: ein Produkt, ein Kunde, eine Bestellung.</li>
+      <li>Jede <strong>Spalte</strong> ist ein Merkmal (Attribut) dieser Datensätze, etwa Name oder Preis.</li>
+      <li>Jede Spalte hat einen festen <strong>Datentyp</strong>: Zahl, Text oder Datum. In eine Preisspalte passt kein Text.</li>
+    </ul>
+    <p>Das entspricht dem Grundsatz aus Kapitel 1: eine Zeile pro Beobachtung, eine Spalte pro Merkmal.</p>
+
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-1-3-products.png" alt="Ausschnitt aus der Tabelle Products"></div>
+      <figcaption>Abbildung 2: Die ersten Zeilen der Tabelle <code>Products</code>. Jede Zeile ist ein Produkt, jede Spalte ein Merkmal.</figcaption>
+    </figure>
+
+    <h3>2.1. Die Beispieldatenbank</h3>
+    <p>Im Kurs arbeiten wir mit der Beispieldatenbank von W3Schools. Sie bildet einen fiktiven Feinkosthändler ab, der Kunden auf der ganzen Welt beliefert. Sie besteht aus acht Tabellen:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tabelle</th><th>Inhalt</th><th class="num">Zeilen</th></tr></thead>
+        <tbody>
+          <tr><td><code>Customers</code></td><td>Kunden mit Adresse und Land</td><td class="num">91</td></tr>
+          <tr><td><code>Orders</code></td><td>Bestellungen (Juli 1996 bis Februar 1997)</td><td class="num">196</td></tr>
+          <tr><td><code>OrderDetails</code></td><td>Bestellpositionen: welches Produkt in welcher Menge</td><td class="num">518</td></tr>
+          <tr><td><code>Products</code></td><td>Produkte mit Preis</td><td class="num">77</td></tr>
+          <tr><td><code>Categories</code></td><td>Produktkategorien</td><td class="num">8</td></tr>
+          <tr><td><code>Suppliers</code></td><td>Lieferanten</td><td class="num">29</td></tr>
+          <tr><td><code>Employees</code></td><td>Mitarbeiterinnen und Mitarbeiter</td><td class="num">10</td></tr>
+          <tr><td><code>Shippers</code></td><td>Versanddienstleister</td><td class="num">3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3 -->
+    <h2 id="beziehungen">3. Schlüssel und Beziehungen</h2>
+
+    <p>Die Stärke relationaler Datenbanken liegt darin, dass Tabellen miteinander verbunden sind. Dafür gibt es zwei Arten von Schlüsseln:</p>
+    <ul>
+      <li>Ein <strong>Primärschlüssel</strong> (englisch <em>Primary Key</em>, PK) identifiziert jede Zeile einer Tabelle eindeutig. In <code>Products</code> ist das die Spalte <code>ProductID</code>: Kein Produkt hat dieselbe Nummer wie ein anderes.</li>
+      <li>Ein <strong>Fremdschlüssel</strong> (englisch <em>Foreign Key</em>, FK) verweist auf den Primärschlüssel einer anderen Tabelle. Die Spalte <code>Products.CategoryID</code> enthält zum Beispiel die Nummer der Kategorie, zu der ein Produkt gehört. Den Namen der Kategorie findet man in <code>Categories.CategoryID</code>.</li>
+    </ul>
+
+    <h3>3.1. Warum Daten auf mehrere Tabellen verteilt werden</h3>
+    <p>Man könnte den Kategorienamen auch direkt in jede Produktzeile schreiben. Dann stünde „Beverages“ zwölfmal in der Tabelle, nämlich bei jedem Getränk. Das hat Nachteile:</p>
+    <ul>
+      <li>Soll die Kategorie umbenannt werden, müssen zwölf Zeilen geändert werden.</li>
+      <li>Vergisst man eine davon oder vertippt sich, sind die Daten widersprüchlich.</li>
+      <li>Wiederholte Informationen verbrauchen unnötig Speicher.</li>
+    </ul>
+    <p>Deshalb wird jede Information nur an <strong>einer</strong> Stelle gespeichert, und Tabellen werden über Schlüssel verknüpft. Dieses Vorgehen heißt <strong>Normalisierung</strong>. Der Preis dafür: Für viele Fragen müssen Tabellen beim Abfragen wieder zusammengeführt werden. Wie das geht, zeigt Abschnitt <a href="#join">12</a>.</p>
+
+    <h3>3.2. Das Entity-Relationship-Diagramm</h3>
+    <p>Wie die Tabellen einer Datenbank zusammenhängen, zeigt ein <strong>Entity-Relationship-Diagramm</strong> (ER-Diagramm). Jeder Kasten ist eine Tabelle mit ihren Spalten, jede Linie eine Beziehung von einem Primärschlüssel zu einem Fremdschlüssel.</p>
+
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-1-4-er.svg" alt="ER-Diagramm der Beispieldatenbank mit acht Tabellen"></div>
+      <figcaption>Abbildung 3: ER-Diagramm der Beispieldatenbank. PK markiert Primärschlüssel, FK Fremdschlüssel.</figcaption>
+    </figure>
+
+    <p>Die Linienenden zeigen, wie viele Datensätze miteinander verbunden sein können (Crow's-Foot-Notation):</p>
+    <ul>
+      <li>Zwei Striche bedeuten <strong>genau ein</strong>.</li>
+      <li>Kreis und „Krähenfuß“ bedeuten <strong>kein, ein oder viele</strong>.</li>
+    </ul>
+    <p>Gelesen wird zum Beispiel: Jede Bestellung gehört zu genau einem Kunden. Ein Kunde kann keine, eine oder viele Bestellungen haben. Tatsächlich haben 17 der 91 Kunden noch nie bestellt.</p>
+    <p>Eine Besonderheit ist die Tabelle <code>OrderDetails</code>. Eine Bestellung kann viele Produkte enthalten, und ein Produkt kann in vielen Bestellungen vorkommen. Diese Viele-zu-viele-Beziehung wird über eine eigene Tabelle aufgelöst: Jede Zeile in <code>OrderDetails</code> ist eine Bestellposition mit Bestellnummer, Produktnummer und Menge.</p>
+
+    <!-- 4 -->
+    <h2 id="sql">4. SQL: die Sprache der Datenbanken</h2>
+
+    <p><strong>SQL</strong> steht für <em>Structured Query Language</em>. Die Sprache wurde 1974 bei IBM entwickelt und ist seit 1986 ein ANSI-Standard, seit 1987 auch ein ISO-Standard. Praktisch alle relationalen Datenbanken verstehen SQL.</p>
+    <p>SQL kennt vier grundlegende Operationen, oft mit dem Kürzel CRUD zusammengefasst:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Operation</th><th>Bedeutung</th><th>Schlüsselwort</th></tr></thead>
+        <tbody>
+          <tr><td>Create</td><td>Datensätze anlegen</td><td><code>INSERT</code></td></tr>
+          <tr><td><strong>Retrieve</strong> (auch Read)</td><td><strong>Daten abfragen</strong></td><td><code>SELECT</code></td></tr>
+          <tr><td>Update</td><td>Datensätze ändern</td><td><code>UPDATE</code></td></tr>
+          <tr><td>Delete</td><td>Datensätze löschen</td><td><code>DELETE</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>In diesem Kurs geht es ausschließlich um das <strong>Abfragen</strong> mit <code>SELECT</code>. Eine Abfrage liest nur und verändert keine Daten. Beim Ausprobieren kann also nichts kaputtgehen.</p>
+
+    <h3>4.1. Beschreiben, nicht programmieren</h3>
+    <p>SQL ist eine <strong>deklarative</strong> Sprache: Eine Abfrage beschreibt, <em>welches</em> Ergebnis gewünscht ist, nicht <em>wie</em> die Datenbank es berechnen soll. Die Abfrage „alle Kunden aus Österreich“ lautet fast wörtlich so:</p>
+<pre><code class="language-sql">SELECT *
+FROM Customers
+WHERE Country = 'Austria'</code></pre>
+    <p>Die Datenbank nimmt die Abfrage entgegen (<em>Request</em>) und liefert ein Ergebnis zurück (<em>Response</em>). Wichtig: <strong>Das Ergebnis einer Abfrage ist immer wieder eine Tabelle</strong>, auch wenn sie nur eine Zeile oder eine Zahl enthält.</p>
+
+    <h3>4.2. Dialekte</h3>
+    <p>Jedes Datenbanksystem spricht seinen eigenen <strong>Dialekt</strong> von SQL. Die Grundlagen sind überall gleich, in Details gibt es Unterschiede. Im Kurs begegnen uns zwei Systeme:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>W3Schools-Editor<br>(Microsoft SQL Server)</th><th>Google Colab<br>(SQLite)</th></tr></thead>
+        <tbody>
+          <tr><td>Anzahl der Ergebniszeilen begrenzen</td><td><code>SELECT TOP 5 …</code></td><td><code>… LIMIT 5</code> am Ende</td></tr>
+          <tr><td>Groß- und Kleinschreibung bei <code>=</code></td><td>wird ignoriert</td><td>wird beachtet</td></tr>
+          <tr><td>Tabelle der Bestellpositionen</td><td><code>OrderDetails</code></td><td><code>order_details</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5 -->
+    <h2 id="werkzeuge">5. Werkzeuge im Kurs</h2>
+
+    <h3>5.1. W3Schools SQL Editor</h3>
+    <p>Für den Einstieg reicht ein Browser. Der <a href="https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all" target="_blank" rel="noopener">SQL Editor von W3Schools</a> enthält die Beispieldatenbank bereits. Die Abfrage wird in das Textfeld geschrieben und mit „Run SQL“ ausgeführt. Rechts listet der Editor alle Tabellen auf; ein Klick auf einen Tabellennamen zeigt ihren Inhalt.</p>
+
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-3-w3schools-editor.png" alt="Der W3Schools SQL Editor mit Abfrage, Ergebnis und Tabellenliste"></div>
+      <figcaption>Abbildung 4: Der W3Schools SQL Editor. Oben die Abfrage, darunter das Ergebnis, rechts die Tabellen der Datenbank.</figcaption>
+    </figure>
+
+    <h3>5.2. Google Colab</h3>
+    <p>Im Notebook zu diesem Kapitel wird dieselbe Datenbank geladen. Abfragen werden dort als Text in einer Variablen gespeichert und mit der Bibliothek pandas ausgeführt. Das Ergebnis erscheint als Tabelle unter der Zelle:</p>
+<pre><code class="language-python">SQL = """
+SELECT CustomerName
+FROM Customers
+"""
+
+pd.read_sql_query(SQL, db)</code></pre>
+    <p>Alle Abfragen in diesem Skriptum funktionieren in beiden Werkzeugen, sofern nicht ausdrücklich auf einen Unterschied hingewiesen wird.</p>
+
+    <!-- 6 -->
+    <h2 id="select">6. Spalten auswählen: SELECT</h2>
+
+    <p>Jede Abfrage beginnt mit zwei Bausteinen:</p>
+<pre><code class="language-sql">SELECT spalte1, spalte2, ...
+FROM tabellenname</code></pre>
+    <p>Nach <code>SELECT</code> steht, <strong>welche Spalten</strong> im Ergebnis erscheinen sollen, nach <code>FROM</code>, <strong>aus welcher Tabelle</strong> die Daten stammen.</p>
+
+    <p>Die Ansprechpersonen aller Kunden:</p>
+<pre><code class="language-sql">SELECT ContactName
+FROM Customers</code></pre>
+    <p class="result-caption">Ergebnis (91 Zeilen, hier die ersten drei):</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>ContactName</th></tr></thead>
+        <tbody><tr><td>Maria Anders</td></tr><tr><td>Ana Trujillo</td></tr><tr><td>Antonio Moreno</td></tr></tbody>
+      </table>
+    </div>
+
+    <p>Mehrere Spalten werden mit Komma getrennt, ein Stern <code>*</code> wählt alle Spalten aus:</p>
+<pre><code class="language-sql">SELECT PostalCode, City
+FROM Customers
+
+SELECT *
+FROM Customers</code></pre>
+
+    <div class="box">
+      <span class="box-title">Schreibweise</span>
+      <ul>
+        <li>Schlüsselwörter wie <code>SELECT</code> und <code>FROM</code> werden üblicherweise großgeschrieben. Die Datenbank versteht sie auch klein, die Großschreibung macht Abfragen aber lesbarer.</li>
+        <li>Spalten- und Tabellennamen müssen genau so geschrieben werden, wie sie in der Datenbank heißen: <code>PostalCode</code>, nicht <code>Postleitzahl</code>.</li>
+        <li>Zeilenumbrüche und Einrückungen spielen keine Rolle. Eine Klausel pro Zeile hat sich als übersichtlich bewährt.</li>
+        <li><code>SELECT *</code> ist praktisch, um eine Tabelle kennenzulernen. Bei großen Tabellen sollten nur die benötigten Spalten abgefragt werden.</li>
+      </ul>
+    </div>
+
+    <!-- 7 -->
+    <h2 id="where">7. Zeilen filtern: WHERE</h2>
+
+    <p>Bisher liefert jede Abfrage <em>alle</em> Zeilen einer Tabelle. Mit <code>WHERE</code> werden nur die Zeilen ausgewählt, die eine Bedingung erfüllen. <code>WHERE</code> steht immer nach <code>FROM</code>:</p>
+<pre><code class="language-sql">SELECT spalte1, spalte2, ...
+FROM tabellenname
+WHERE bedingung</code></pre>
+
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-4-red-green.png" alt="Tabelle mit grünem Pfeil über den Spalten und rotem Pfeil entlang der Zeilen"></div>
+      <figcaption>Abbildung 5: <code>SELECT</code> bestimmt die Spalten (grün), <code>WHERE</code> die Zeilen (rot).</figcaption>
+    </figure>
+
+    <h3>7.1. Vergleichsoperatoren</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>=</code></td><td>gleich</td><td><code>Country = 'Germany'</code></td></tr>
+          <tr><td><code>!=</code> oder <code>&lt;&gt;</code></td><td>ungleich</td><td><code>Country != 'Germany'</code></td></tr>
+          <tr><td><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code></td><td>kleiner, kleiner gleich, größer, größer gleich</td><td><code>Price &gt; 50</code></td></tr>
+          <tr><td><code>BETWEEN … AND …</code></td><td>zwischen zwei Werten (Grenzen eingeschlossen)</td><td><code>Price BETWEEN 10 AND 13</code></td></tr>
+          <tr><td><code>IN (…)</code></td><td>einer der Werte in der Liste</td><td><code>Country IN ('Germany', 'Austria')</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Vor <code>BETWEEN</code> und <code>IN</code> kehrt ein <code>NOT</code> die Bedingung um, etwa <code>Price NOT BETWEEN 10 AND 13</code>.</p>
+
+    <p>Name und Preis aller Produkte, die mehr als 50 kosten:</p>
+<pre><code class="language-sql">SELECT ProductName, Price
+FROM Products
+WHERE Price &gt; 50</code></pre>
+    <p class="result-caption">Ergebnis (7 Zeilen):</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>ProductName</th><th class="num">Price</th></tr></thead>
+        <tbody>
+          <tr><td>Mishi Kobe Niku</td><td class="num">97</td></tr>
+          <tr><td>Carnarvon Tigers</td><td class="num">62.5</td></tr>
+          <tr><td>Sir Rodney's Marmalade</td><td class="num">81</td></tr>
+          <tr><td>Thüringer Rostbratwurst</td><td class="num">123.79</td></tr>
+          <tr><td>Côte de Blaye</td><td class="num">263.5</td></tr>
+          <tr><td>Manjimup Dried Apples</td><td class="num">53</td></tr>
+          <tr><td>Raclette Courdavault</td><td class="num">55</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><code>BETWEEN</code> schließt beide Grenzen ein: <code>WHERE Price BETWEEN 10 AND 13</code> liefert acht Produkte, darunter „Aniseed Syrup“ zum Preis von genau 10 und „Original Frankfurter grüne Soße“ zum Preis von genau 13.</p>
+
+    <h3>7.2. Bedingungen für Text</h3>
+    <p>Texte stehen in SQL in <strong>einfachen Anführungszeichen</strong>: <code>'Germany'</code>. Für exakte Vergleiche dient <code>=</code>, für Muster der Operator <code>LIKE</code> mit zwei Platzhaltern:</p>
+    <ul>
+      <li><code>%</code> steht für beliebig viele Zeichen, auch für gar keines.</li>
+      <li><code>_</code> steht für genau ein Zeichen.</li>
+    </ul>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bedingung</th><th>findet</th></tr></thead>
+        <tbody>
+          <tr><td><code>City LIKE 'B%'</code></td><td>Städte, die mit B beginnen (Berlin, Bern, Buenos Aires …)</td></tr>
+          <tr><td><code>Country LIKE '%land'</code></td><td>Länder, die auf „land“ enden (Finland, Ireland, Poland, Switzerland)</td></tr>
+          <tr><td><code>ProductName LIKE '%Tofu%'</code></td><td>Produkte, die „Tofu“ irgendwo im Namen enthalten</td></tr>
+          <tr><td><code>PostalCode LIKE '____'</code></td><td>Postleitzahlen mit genau vier Zeichen (etwa in Österreich und der Schweiz)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Postleitzahlen sind übrigens als Text gespeichert und nicht als Zahl, weil sie führende Nullen und Buchstaben enthalten können (<code>05021</code>, <code>WA1 1DP</code>).</p>
+    <p>Ob Groß- und Kleinschreibung beachtet wird, hängt vom Datenbanksystem ab: Im W3Schools-Editor findet <code>Country = 'germany'</code> die elf deutschen Kunden, in Colab findet dieselbe Abfrage nichts. Am sichersten ist es, Werte genau so zu schreiben, wie sie in der Datenbank stehen.</p>
+
+    <h3>7.3. Mehrere Bedingungen verknüpfen</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>AND</code></td><td>beide Bedingungen sind erfüllt</td><td>weniger Treffer</td></tr>
+          <tr><td><code>OR</code></td><td>mindestens eine Bedingung ist erfüllt</td><td>mehr Treffer</td></tr>
+          <tr><td><code>NOT</code></td><td>die Bedingung ist nicht erfüllt</td><td>kehrt die Auswahl um</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Alle Kunden aus Deutschland oder Österreich:</p>
+<pre><code class="language-sql">SELECT CustomerName, City, Country
+FROM Customers
+WHERE Country = 'Germany' OR Country = 'Austria'</code></pre>
+    <p>Das Ergebnis enthält 13 Kunden: elf aus Deutschland und zwei aus Österreich (Ernst Handel in Graz und Piccolo und mehr in Salzburg). Kürzer geht es mit <code>WHERE Country IN ('Germany', 'Austria')</code>.</p>
+
+    <p>Werden <code>AND</code> und <code>OR</code> kombiniert, gilt <code>AND</code> vor <code>OR</code>, ähnlich wie Punkt vor Strich in der Mathematik. Klammern machen die gewünschte Reihenfolge eindeutig:</p>
+<pre><code class="language-sql">SELECT CustomerName, City
+FROM Customers
+WHERE Country = 'Germany' AND (City = 'Berlin' OR City = 'München')</code></pre>
+    <p>Diese Abfrage liefert zwei Kunden: Alfreds Futterkiste in Berlin und Frankenversand in München.</p>
+
+    <div class="box">
+      <span class="box-title">Fehlende Werte: NULL</span>
+      <p>Ist ein Feld leer, steht dort der besondere Wert <code>NULL</code>, also „unbekannt“. <code>NULL</code> ist weder 0 noch ein leerer Text. Gefiltert wird mit <code>IS NULL</code> bzw. <code>IS NOT NULL</code>; ein Vergleich wie <code>= NULL</code> findet nie etwas. Spätestens beim Verknüpfen von Tabellen (Abschnitt <a href="#join">12</a>) wird das wichtig.</p>
+    </div>
+
+    <!-- 8 -->
+    <h2 id="order-by">8. Sortieren und begrenzen: ORDER BY, TOP und LIMIT</h2>
+
+    <p>Ohne Angabe ist die Reihenfolge der Ergebniszeilen nicht festgelegt. <code>ORDER BY</code> sortiert das Ergebnis und steht immer am Ende der Abfrage:</p>
+<pre><code class="language-sql">SELECT spalte1, spalte2, ...
+FROM tabellenname
+WHERE bedingung
+ORDER BY spalte1 [ASC|DESC]</code></pre>
+    <p><code>ASC</code> sortiert aufsteigend (A bis Z, klein nach groß). Das ist der Standard und kann deshalb auch weggelassen werden. <code>DESC</code> sortiert absteigend.</p>
+    <p>Mehrere Sortierkriterien werden mit Komma getrennt: <code>ORDER BY Country, City</code> sortiert zuerst nach Land und innerhalb eines Landes nach Stadt.</p>
+
+    <h3>8.1. Die ersten n Zeilen</h3>
+    <p>Fragen wie „die fünf teuersten Produkte“ oder „die zehn umsatzstärksten Kunden“ sind im Marketing alltäglich. Dafür wird absteigend sortiert und die Anzahl der Zeilen begrenzt. Hier unterscheiden sich die Dialekte:</p>
+<pre><code class="language-sql">-- W3Schools-Editor (SQL Server)
+SELECT TOP 5 ProductName, Price
+FROM Products
+ORDER BY Price DESC
+
+-- Colab (SQLite), ebenso MySQL und PostgreSQL
+SELECT ProductName, Price
+FROM Products
+ORDER BY Price DESC
+LIMIT 5</code></pre>
+    <p class="result-caption">Ergebnis:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>ProductName</th><th class="num">Price</th></tr></thead>
+        <tbody>
+          <tr><td>Côte de Blaye</td><td class="num">263.5</td></tr>
+          <tr><td>Thüringer Rostbratwurst</td><td class="num">123.79</td></tr>
+          <tr><td>Mishi Kobe Niku</td><td class="num">97</td></tr>
+          <tr><td>Sir Rodney's Marmalade</td><td class="num">81</td></tr>
+          <tr><td>Carnarvon Tigers</td><td class="num">62.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Haben mehrere Zeilen denselben Wert, ist ihre Reihenfolge untereinander zufällig. Ein zweites Sortierkriterium schafft Klarheit, etwa <code>ORDER BY Price DESC, ProductName</code>.</p>
+
+    <!-- 9 -->
+    <h2 id="distinct">9. Doppelte entfernen: DISTINCT</h2>
+
+    <p><code>SELECT Country FROM Customers</code> liefert 91 Zeilen, eine pro Kunde, und damit viele Länder mehrfach. <code>DISTINCT</code> entfernt doppelte Zeilen aus dem Ergebnis:</p>
+<pre><code class="language-sql">SELECT DISTINCT Country
+FROM Customers
+ORDER BY Country</code></pre>
+    <p>Das Ergebnis enthält 21 Länder, von Argentina bis Venezuela. Die Anzahl lässt sich auch direkt zählen: <code>SELECT COUNT(DISTINCT Country) FROM Customers</code> ergibt 21.</p>
+
+    <!-- 10 -->
+    <h2 id="group-by">10. Zusammenfassen: Aggregatfunktionen und GROUP BY</h2>
+
+    <p>Oft interessieren nicht einzelne Zeilen, sondern Kennzahlen: Wie viele Kunden gibt es? Was kostet ein Produkt im Durchschnitt? Dafür gibt es <strong>Aggregatfunktionen</strong>, die viele Werte zu einem zusammenfassen:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Funktion</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>COUNT(*)</code></td><td>Anzahl der Zeilen</td></tr>
+          <tr><td><code>COUNT(spalte)</code></td><td>Anzahl der Werte in der Spalte, die nicht <code>NULL</code> sind</td></tr>
+          <tr><td><code>SUM(spalte)</code></td><td>Summe (nur für Zahlen)</td></tr>
+          <tr><td><code>AVG(spalte)</code></td><td>Durchschnitt (nur für Zahlen)</td></tr>
+          <tr><td><code>MIN(spalte)</code>, <code>MAX(spalte)</code></td><td>kleinster bzw. größter Wert (für Zahlen, Text und Datum)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<pre><code class="language-sql">SELECT COUNT(*) AS Anzahl,
+       MIN(Price) AS Minimum,
+       MAX(Price) AS Maximum,
+       ROUND(AVG(Price), 2) AS Durchschnitt
+FROM Products</code></pre>
+    <p class="result-caption">Ergebnis:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th class="num">Anzahl</th><th class="num">Minimum</th><th class="num">Maximum</th><th class="num">Durchschnitt</th></tr></thead>
+        <tbody><tr><td class="num">77</td><td class="num">2.5</td><td class="num">263.5</td><td class="num">28.87</td></tr></tbody>
+      </table>
+    </div>
+    <p>Mit <code>AS</code> erhält eine Ergebnisspalte einen eigenen Namen (<em>Alias</em>). Ohne Alias hieße die Spalte etwa <code>ROUND(AVG(Price), 2)</code> oder hätte gar keinen Namen.</p>
+
+    <h3>10.1. Kennzahlen pro Gruppe</h3>
+    <p>Spannend wird es, wenn Kennzahlen <strong>pro Gruppe</strong> berechnet werden: pro Land, pro Kategorie, pro Monat. Dafür gibt es <code>GROUP BY</code>. Die Datenbank teilt die Zeilen zuerst in Gruppen mit gleichem Wert ein und wendet die Aggregatfunktion dann auf jede Gruppe einzeln an.</p>
+    <p>Anzahl der Kunden pro Land, die Länder mit den meisten Kunden zuerst:</p>
+<pre><code class="language-sql">SELECT Country, COUNT(*) AS Kunden
+FROM Customers
+GROUP BY Country
+ORDER BY Kunden DESC</code></pre>
+    <p class="result-caption">Ergebnis (21 Zeilen, hier die ersten fünf):</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>Country</th><th class="num">Kunden</th></tr></thead>
+        <tbody>
+          <tr><td>USA</td><td class="num">13</td></tr>
+          <tr><td>France</td><td class="num">11</td></tr>
+          <tr><td>Germany</td><td class="num">11</td></tr>
+          <tr><td>Brazil</td><td class="num">9</td></tr>
+          <tr><td>UK</td><td class="num">7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box">
+      <span class="box-title">Die wichtigste Regel bei GROUP BY</span>
+      <p>Jede Spalte im <code>SELECT</code> muss entweder im <code>GROUP BY</code> stehen oder in einer Aggregatfunktion. <code>SELECT Country, City, COUNT(*) … GROUP BY Country</code> ist fehlerhaft: Welche der vielen Städte eines Landes sollte die Datenbank anzeigen?</p>
+    </div>
+
+    <h3>10.2. Gruppen filtern: HAVING</h3>
+    <p><code>WHERE</code> filtert einzelne Zeilen, <em>bevor</em> gruppiert wird. Soll nach dem Ergebnis einer Aggregatfunktion gefiltert werden, etwa „nur Länder mit mindestens zehn Kunden“, steht die Bedingung in <code>HAVING</code>:</p>
+<pre><code class="language-sql">SELECT Country, COUNT(*) AS Kunden
+FROM Customers
+GROUP BY Country
+HAVING COUNT(*) &gt;= 10</code></pre>
+    <p>Das Ergebnis enthält drei Länder: USA, France und Germany.</p>
+
+    <!-- 11 -->
+    <h2 id="kampagnen">11. Praxisbeispiel: Kampagnen vergleichen</h2>
+
+    <p>In der Einführung wurde gefragt, welche von zwei Kampagnen erfolgreicher war. Die Zahlen sind fiktiv und stehen nicht in der Beispieldatenbank. Angenommen, sie lägen in einer Tabelle <code>kampagnen</code>:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>kampagne</th><th>geraet</th><th class="num">kontakte</th><th class="num">conversions</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>Desktop</td><td class="num">600</td><td class="num">90</td></tr>
+          <tr><td>A</td><td>Mobile</td><td class="num">2400</td><td class="num">120</td></tr>
+          <tr><td>B</td><td>Desktop</td><td class="num">2000</td><td class="num">280</td></tr>
+          <tr><td>B</td><td>Mobile</td><td class="num">500</td><td class="num">20</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Die Conversion-Rate pro Kampagne:</p>
+<pre><code class="language-sql">SELECT kampagne,
+       SUM(conversions) * 100.0 / SUM(kontakte) AS quote
+FROM kampagnen
+GROUP BY kampagne</code></pre>
+    <p>Ergebnis: Kampagne A erreicht 7 %, Kampagne B 12 %. B scheint klar besser.</p>
+    <p>Nun dieselbe Rechnung, aufgeschlüsselt nach Kampagne <em>und</em> Gerät. Dafür stehen im <code>GROUP BY</code> einfach zwei Spalten:</p>
+<pre><code class="language-sql">SELECT kampagne, geraet,
+       SUM(conversions) * 100.0 / SUM(kontakte) AS quote
+FROM kampagnen
+GROUP BY kampagne, geraet</code></pre>
+    <p class="result-caption">Ergebnis:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>kampagne</th><th>geraet</th><th class="num">quote</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>Desktop</td><td class="num">15.0</td></tr>
+          <tr><td>A</td><td>Mobile</td><td class="num">5.0</td></tr>
+          <tr><td>B</td><td>Desktop</td><td class="num">14.0</td></tr>
+          <tr><td>B</td><td>Mobile</td><td class="num">4.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Kampagne A ist auf beiden Gerätetypen besser. B liegt insgesamt nur vorne, weil 80 % ihrer Kontakte vom Desktop kommen und der Desktop generell besser konvertiert. Dieses Phänomen heißt <strong>Simpson-Paradoxon</strong>. Wer nur die Gesamtzahl kennt, entscheidet hier falsch; wer die Daten selbst nach Segmenten aufschlüsseln kann, sieht den wahren Zusammenhang.</p>
+    <div class="box">
+      <span class="box-title">Warum „* 100.0“?</span>
+      <p>Viele Datenbanken rechnen mit ganzen Zahlen, wenn beide Werte ganze Zahlen sind: <code>210 / 3000</code> ergibt dort 0 statt 0,07. Die Multiplikation mit <code>100.0</code> macht daraus eine Kommazahl und rechnet gleich in Prozent um.</p>
+    </div>
+
+    <!-- 12 -->
+    <h2 id="join">12. Tabellen verknüpfen: JOIN</h2>
+
+    <p>Durch die Normalisierung (Abschnitt <a href="#beziehungen">3</a>) sind zusammengehörige Informationen auf mehrere Tabellen verteilt: Die Tabelle <code>Products</code> kennt nur die Nummer der Kategorie, ihren Namen kennt nur <code>Categories</code>. Mit <code>JOIN</code> werden Tabellen bei der Abfrage wieder zusammengeführt. Nach <code>ON</code> steht, über welche Spalten die Zeilen zusammenpassen, in der Regel Fremdschlüssel und Primärschlüssel:</p>
+<pre><code class="language-sql">SELECT p.ProductName, c.CategoryName
+FROM Products p
+JOIN Categories c ON p.CategoryID = c.CategoryID</code></pre>
+    <p class="result-caption">Ergebnis (77 Zeilen, hier die ersten drei):</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>ProductName</th><th>CategoryName</th></tr></thead>
+        <tbody>
+          <tr><td>Chais</td><td>Beverages</td></tr>
+          <tr><td>Chang</td><td>Beverages</td></tr>
+          <tr><td>Aniseed Syrup</td><td>Condiments</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Die Buchstaben <code>p</code> und <code>c</code> sind Kurznamen (Aliase) für die Tabellen. Sie ersparen Tipparbeit und machen eindeutig, aus welcher Tabelle eine Spalte stammt. Das ist nötig, wenn beide Tabellen eine Spalte gleichen Namens haben, wie hier <code>CategoryID</code>.</p>
+
+    <h3>12.1. Arten von Joins</h3>
+    <p>Interessant wird es, wenn nicht zu jeder Zeile ein passender Partner existiert. Je nach Art des Joins werden solche Zeilen unterschiedlich behandelt:</p>
+    <ul>
+      <li><code>INNER JOIN</code> (oder kurz <code>JOIN</code>): nur Zeilen, die in <strong>beiden</strong> Tabellen einen Partner haben.</li>
+      <li><code>LEFT JOIN</code>: <strong>alle</strong> Zeilen der linken Tabelle (der nach <code>FROM</code>). Fehlt ein Partner in der rechten Tabelle, sind deren Spalten <code>NULL</code>.</li>
+      <li><code>FULL OUTER JOIN</code>: alle Zeilen beider Tabellen, zusammengeführt, wo ein Partner existiert.</li>
+    </ul>
+    <figure>
+      <div class="frame">
+        <img src="../slides/assets/2-5-6-inner-join.png" alt="Inner Join: nur Zeilen mit Partner in beiden Tabellen">
+        <img src="../slides/assets/2-5-5-left-join.png" alt="Left Join: alle Zeilen der linken Tabelle">
+        <img src="../slides/assets/2-5-7-outer-join.png" alt="Full Outer Join: alle Zeilen beider Tabellen">
+      </div>
+      <figcaption>Abbildung 6: Inner Join, Left Join und Full Outer Join im Vergleich. Leere Felder entsprechen <code>NULL</code>.</figcaption>
+    </figure>
+
+    <p>Den Unterschied zeigen Kunden und Bestellungen:</p>
+    <ul>
+      <li><code>Customers INNER JOIN Orders</code> liefert 196 Zeilen: jede Bestellung mit ihrem Kunden. Kunden ohne Bestellung fehlen.</li>
+      <li><code>Customers LEFT JOIN Orders</code> liefert 213 Zeilen: zusätzlich die 17 Kunden, die noch nie bestellt haben, mit leeren Bestellspalten.</li>
+    </ul>
+    <p>Das lässt sich für eine typische Marketingfrage nutzen: Welche Kunden haben noch nie bestellt?</p>
+<pre><code class="language-sql">SELECT c.CustomerName, c.Country
+FROM Customers c
+LEFT JOIN Orders o ON c.CustomerID = o.CustomerID
+WHERE o.OrderID IS NULL</code></pre>
+    <p>Das Ergebnis enthält 17 Kunden, darunter Alfreds Futterkiste und Blauer See Delikatessen aus Deutschland, eine gute Zielgruppe für eine Reaktivierungskampagne.</p>
+
+    <h3>12.2. JOIN und GROUP BY kombinieren</h3>
+    <p>Joins lassen sich mit allem kombinieren, was bisher behandelt wurde. Anzahl und Durchschnittspreis der Produkte pro Kategorie, diesmal mit dem Namen der Kategorie:</p>
+<pre><code class="language-sql">SELECT c.CategoryName,
+       COUNT(*) AS Anzahl,
+       ROUND(AVG(p.Price), 2) AS Durchschnittspreis
+FROM Products p
+JOIN Categories c ON p.CategoryID = c.CategoryID
+GROUP BY c.CategoryName
+ORDER BY Durchschnittspreis DESC</code></pre>
+    <p class="result-caption">Ergebnis:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>CategoryName</th><th class="num">Anzahl</th><th class="num">Durchschnittspreis</th></tr></thead>
+        <tbody>
+          <tr><td>Meat/Poultry</td><td class="num">6</td><td class="num">54.01</td></tr>
+          <tr><td>Beverages</td><td class="num">12</td><td class="num">37.98</td></tr>
+          <tr><td>Produce</td><td class="num">5</td><td class="num">32.37</td></tr>
+          <tr><td>Dairy Products</td><td class="num">10</td><td class="num">28.73</td></tr>
+          <tr><td>Confections</td><td class="num">13</td><td class="num">25.16</td></tr>
+          <tr><td>Condiments</td><td class="num">12</td><td class="num">23.06</td></tr>
+          <tr><td>Seafood</td><td class="num">12</td><td class="num">20.68</td></tr>
+          <tr><td>Grains/Cereals</td><td class="num">7</td><td class="num">20.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Es können auch mehr als zwei Tabellen verknüpft werden, indem mehrere <code>JOIN</code> aufeinander folgen. Der Umsatz pro Kategorie ergibt sich aus Menge mal Preis jeder Bestellposition:</p>
+<pre><code class="language-sql">SELECT c.CategoryName,
+       SUM(d.Quantity * p.Price) AS Umsatz
+FROM OrderDetails d
+JOIN Products p ON d.ProductID = p.ProductID
+JOIN Categories c ON p.CategoryID = c.CategoryID
+GROUP BY c.CategoryName
+ORDER BY Umsatz DESC</code></pre>
+    <p>Die umsatzstärksten Kategorien sind Beverages (99.464,50), Dairy Products (69.921,00) und Confections (54.909,16). In Colab heißt die Tabelle der Bestellpositionen <code>order_details</code>.</p>
+
+    <!-- 13 -->
+    <h2 id="reihenfolge">13. Aufbau einer Abfrage</h2>
+
+    <p>Die Klauseln einer Abfrage müssen in einer festen Reihenfolge stehen. Nicht jede Abfrage braucht alle Teile, aber die vorhandenen stehen immer in dieser Reihenfolge:</p>
+<pre><code class="language-sql">SELECT   spalten, Aggregatfunktionen       -- welche Spalten
+FROM     tabelle                            -- aus welcher Tabelle
+JOIN     andere_tabelle ON bedingung        -- verknüpft mit
+WHERE    bedingung                          -- welche Zeilen
+GROUP BY spalten                            -- pro Gruppe
+HAVING   bedingung                          -- welche Gruppen
+ORDER BY spalten                            -- in welcher Reihenfolge
+LIMIT    n                                  -- wie viele (SQL Server: TOP n nach SELECT)</code></pre>
+    <p>Ausgeführt wird die Abfrage allerdings in einer anderen Reihenfolge: zuerst <code>FROM</code> und <code>JOIN</code>, dann <code>WHERE</code>, dann <code>GROUP BY</code> und <code>HAVING</code>, dann erst <code>SELECT</code>, zuletzt <code>ORDER BY</code> und die Begrenzung. Daraus erklären sich zwei Regeln:</p>
+    <ul>
+      <li>In <code>WHERE</code> sind keine Aggregatfunktionen erlaubt, weil zu diesem Zeitpunkt noch nicht gruppiert wurde. Dafür gibt es <code>HAVING</code>.</li>
+      <li>Ein Alias aus dem <code>SELECT</code> kann in <code>ORDER BY</code> verwendet werden, in <code>WHERE</code> aber nicht.</li>
+    </ul>
+
+    <!-- 14 -->
+    <h2 id="fehler">14. Typische Fehler</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Fehler</th><th>Richtig</th></tr></thead>
+        <tbody>
+          <tr><td><code>WHERE Country = Germany</code><br><code>WHERE Country = "Germany"</code></td><td><code>WHERE Country = 'Germany'</code><br>Text in einfachen Anführungszeichen</td></tr>
+          <tr><td><code>SELECT CustomerName, City, FROM …</code></td><td>kein Komma nach der letzten Spalte</td></tr>
+          <tr><td><code>WHERE Country = 'Germany' OR 'Austria'</code></td><td><code>WHERE Country = 'Germany' OR Country = 'Austria'</code><br>oder <code>Country IN ('Germany', 'Austria')</code></td></tr>
+          <tr><td><code>WHERE PostalCode = NULL</code></td><td><code>WHERE PostalCode IS NULL</code></td></tr>
+          <tr><td><code>WHERE COUNT(*) &gt;= 10</code></td><td><code>HAVING COUNT(*) &gt;= 10</code> nach <code>GROUP BY</code></td></tr>
+          <tr><td>Spalte im <code>SELECT</code>, die weder gruppiert noch aggregiert ist</td><td>Spalte in <code>GROUP BY</code> aufnehmen oder aggregieren</td></tr>
+          <tr><td>fehlende oder falsche <code>ON</code>-Bedingung beim <code>JOIN</code></td><td>Die Zeilenzahl explodiert, weil jede Zeile mit vielen anderen kombiniert wird. Die <code>ON</code>-Bedingung muss Fremdschlüssel und Primärschlüssel verbinden.</td></tr>
+          <tr><td><code>LIMIT</code> im W3Schools-Editor, <code>TOP</code> in Colab</td><td>auf den Dialekt achten (Abschnitt <a href="#sql">4</a>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 15 -->
+    <h2 id="ausprobieren">15. Zum Ausprobieren</h2>
+    <p>Die folgenden Aufgaben lassen sich im W3Schools-Editor oder in Colab lösen. Bei Abweichungen hilft ein Blick auf die Hinweise zum Dialekt.</p>
+    <ol>
+      <li>Name und Telefonnummer aller Lieferanten ausgeben.</li>
+      <li>Alle Produkte mit einem Preis zwischen 20 und 30 ausgeben, die teuersten zuerst.</li>
+      <li>Alle Kunden aus Städten ausgeben, deren Name mit „S“ beginnt.</li>
+      <li>Aus welchen Ländern kommen die Lieferanten? Jedes Land nur einmal ausgeben.</li>
+      <li>Wie viele Produkte liefert jeder Lieferant? Die Lieferantennummer genügt.</li>
+      <li>Dieselbe Frage mit dem Namen des Lieferanten (Tipp: <code>JOIN</code>).</li>
+      <li>Durchschnittspreis pro Kategorie mit Kategoriename, nur Kategorien mit einem Durchschnitt über 30.</li>
+      <li>Wie viele Bestellungen hat jede Mitarbeiterin bzw. jeder Mitarbeiter bearbeitet? Nachname und Anzahl ausgeben, sortiert nach Anzahl.</li>
+    </ol>
+
+    <!-- 16 -->
+    <h2 id="begriffe">16. Begriffe</h2>
+    <dl class="glossary">
+      <dt>Abfrage (Query)</dt><dd>Anweisung an die Datenbank, Daten zu liefern. Das Ergebnis ist immer eine Tabelle.</dd>
+      <dt>Aggregatfunktion</dt><dd>Funktion, die viele Werte zu einem zusammenfasst: <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>.</dd>
+      <dt>Alias</dt><dd>Eigener Name für eine Ergebnisspalte (<code>AS</code>) oder Kurzname für eine Tabelle.</dd>
+      <dt>Datenbankmanagementsystem (DBMS)</dt><dd>Software, die Datenbanken verwaltet, zum Beispiel Microsoft SQL Server, MySQL, PostgreSQL oder SQLite.</dd>
+      <dt>Datensatz</dt><dd>Eine Zeile einer Tabelle, also eine Beobachtung.</dd>
+      <dt>Dialekt</dt><dd>Die Variante von SQL, die ein bestimmtes Datenbanksystem versteht.</dd>
+      <dt>Entity-Relationship-Diagramm (ER-Diagramm)</dt><dd>Grafische Darstellung der Tabellen einer Datenbank und ihrer Beziehungen.</dd>
+      <dt>Fremdschlüssel (Foreign Key, FK)</dt><dd>Spalte, die auf den Primärschlüssel einer anderen Tabelle verweist.</dd>
+      <dt>JOIN</dt><dd>Verknüpfung zweier Tabellen in einer Abfrage über zusammenpassende Spalten.</dd>
+      <dt>Normalisierung</dt><dd>Aufteilen von Daten auf mehrere Tabellen, sodass jede Information nur einmal gespeichert wird.</dd>
+      <dt>NULL</dt><dd>Kennzeichnung für einen fehlenden oder unbekannten Wert.</dd>
+      <dt>Primärschlüssel (Primary Key, PK)</dt><dd>Spalte, die jede Zeile einer Tabelle eindeutig identifiziert.</dd>
+      <dt>Relationale Datenbank</dt><dd>Datenbank, die Daten in Tabellen speichert, die über Schlüssel verbunden sind.</dd>
+      <dt>SQL</dt><dd>Structured Query Language, die Standardsprache für relationale Datenbanken.</dd>
+    </dl>
+
+    <h3>16.1. Weiterführend</h3>
+    <ul>
+      <li><a href="https://www.w3schools.com/sql/" target="_blank" rel="noopener">W3Schools SQL Tutorial</a>: Erklärungen und Beispiele zu allen Befehlen, mit Editor zum Ausprobieren</li>
+      <li><a href="https://sqlbolt.com/" target="_blank" rel="noopener">SQLBolt</a>: interaktive Übungen, die Schritt für Schritt aufeinander aufbauen</li>
+    </ul>
+
+    <footer>
+      Skriptum zur Lehrveranstaltung Datengewinnung &amp; -aufbereitung, FH Wien der WKW, Wintersemester 2026/27 · Markus Schanta · <a href="../index.html">Zur Kursseite</a>
+    </footer>
+  </main>
+
+  <aside class="sidetoc" aria-label="Inhalt dieses Kapitels"></aside>
+  </div>
+
+  <script src="skriptum.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+
+</html>
