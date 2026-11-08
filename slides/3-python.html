@@ -1,0 +1,336 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" integrity="sha512-0AUO8B5ll9y1ERV/55xq3HeccBGnvAJQsVGitNac/iQCLyDTGLUBMPqlupIWp/rJg0hV3WWHusXchEIdqFAv1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" integrity="sha512-NJYOiL4HPnu7QvvGcvHAnVVz2X6qWcTDAH4x3fmUOW/SGUbK46IbzHhQ1KoKDfK2trs5RwUu03Ax9sxjqz1iQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/monokai.min.css" integrity="sha512-z8wQkuDRFwCBfoj7KOiu1MECaRVoXx6rZQWL21x0BsVVH7JkqCp1Otf39qve6CrCycOOL5o9vgfII5Smds23rg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <textarea data-template>
+          ##### Datengewinnung und -analyse
+          # 3. Programmierung mit Python
+
+          <p style="text-align: right; padding-top: 3em;">Markus Schanta</p>
+          <p style="text-align: right">
+            <img src='assets/0-logo-fh.png' width="100px" height="124px" />
+          </p>
+
+        </textarea>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Agenda
+            1. __Theorie & Motivation:__ Vorteile von Python
+            2. __Zuweisungen:__ Werte in Variablen abspeichern
+            3. __Datentypen:__ Einfache & Container-Datentypen
+            4. __Verzweigungen:__ Bedingte Anweisungen
+            5. __Schleifen:__ Wiederholte Ausführung von Code
+            6. __Funktionen:__ Wiederverwendbare Codeblöcke
+
+          </textarea>
+        </section>
+        <section>
+          <h2>Python: ein Überblick</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <img data-src="assets/3-1-python.png" style="max-width: 100%; margin: 0;">
+            </div>
+            <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start;">
+              <ul>
+                <li style="margin-bottom: 1em;">Interpretierte, universelle Programmiersprache</li>
+                <li style="margin-bottom: 1em;">1991 erstmals von Guido von Rossum veröffentlicht</li>
+                <li style="margin-bottom: 1em;"><span>Aktuelle (02.12.2025) Version: 3.14.1</span>
+                  <ul>
+                    <li>Python 2.0 veröffentlicht 2000</li>
+                    <li>Python 3.0 veröffentlicht 2008</li>
+                    <li>Python 2.7 end of life: 2015, 2020</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Vorteile von Python</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Universell</h5>
+                  <p style="font-size: 0.5em;">Python ist geeignet, um für unterschiedliche Problemstellungen eingesetzt zu werden</p>
+                </div>
+              </div>
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Interpretiert</h5>
+                  <p style="font-size: 0.5em;">Interaktive Ausführungsmodi möglich</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Erweiterbar</h5>
+                  <p style="font-size: 0.5em;">Python bietet ein riesiges Ökosystem an Erweiterungen (Libraries) für diverseste Zwecke</p>
+                </div>
+              </div>
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Leicht zugänglich</h5>
+                  <p style="font-size: 0.5em;">Leicht zu erlernen, sehr viele Ressourcen</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Prägnante Syntax</h5>
+                  <p style="font-size: 0.5em;">Die Syntax von Python ist einfach zu verstehen und auf das Wesentliche reduziert</p>
+                </div>
+              </div>
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="text-align: left;">
+                  <h5>Verbreitet</h5>
+                  <p style="font-size: 0.5em;">In vielen Organisationen verbreitet, große Community</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Python TIBOE Index</h2>
+          <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+          <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+          <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+          <p>Der TIOBE Programming Community Index ist ein Ranking von Programmiersprachen nach ihrer Popularität.</p>
+
+          <div id="vis" style="width: 100%; height: 300px;"></div>
+
+          <script type="text/javascript">
+            var spec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "TIOBE Index Ratings im Zeitverlauf",
+            "width": "container",
+            "height": 400,
+            "data": {
+              "url": "https://raw.githubusercontent.com/toUpperCase78/tiobe-index-ratings/refs/heads/master/Tiobe_Index_All_Ratings_November2025.csv",
+              "format": {
+              "type": "csv"
+              }
+            },
+            "transform": [{
+              "fold": ["Python", "C", "C++", "Java", "C#", "JavaScript", "SQL", "Go", "Visual Basic", "PHP"],
+              "as": ["Language", "Rating"]
+            }],
+            "mark": "line",
+            "encoding": {
+              "x": {
+              "field": "DATE",
+              "type": "temporal",
+              "title": "Date"
+              },
+              "y": {
+              "field": "Rating",
+              "type": "quantitative",
+              "title": "Rating (%)"
+              },
+              "color": {
+              "field": "Language",
+              "type": "nominal",
+              "title": "Language",
+              "scale": {
+                "domain": ["Python", "C", "C++", "Java", "C#", "JavaScript", "SQL", "Go", "Visual Basic", "PHP"],
+                "range": ["darkblue", "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"]
+              }
+              },
+              "strokeWidth": {
+              "condition": {
+                "test": "datum.Language === 'Python'",
+                "value": 3
+              },
+              "value": 1
+              },
+            }
+            };
+          vegaEmbed('#vis', spec);
+          </script>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Zuweisungen
+            * Grundstruktur einer Zuweisung: <!-- .element: class="fragment" -->
+              ```python
+              area = 3 * 5
+              ```
+            * <!-- .element: class="fragment" --> Der Variable <code>area</code> wird der Wert <code>3 * 5</code> zugewiesen. 
+            * <!-- .element: class="fragment" --> Der Wert kann eine Konstante, eine Berechnung, das Ergebnis eines Funktionsaufrufs oder das Ergebnis einer anderen Zuweisung sein.
+            * <!-- .element: class="fragment" --> Der zugewiesene Wert kann später im Programm durch den Variablennamen abgerufen werden.
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Variablennamen (1/3)
+            1. <!-- .element: class="fragment" --> <strong>Zeichen</strong>
+                * Variablennamen dürfen Buchstaben (<code>a-z</code>, <code>A-Z</code>), Zahlen (<code>0-9</code>) oder Unterstriche (<code>_</code>) enthalten.
+            2. <!-- .element: class="fragment" --> <strong>Länge</strong>
+                * Es gibt keine festgelegte maximale Länge für Variablennamen, aber es ist ratsam, sie kurz und prägnant zu halten, um die Lesbarkeit zu erhöhen.
+            3. <!-- .element: class="fragment" --> <strong>Groß- und Kleinschreibung</strong>
+                * Python unterscheidet zwischen Groß- und Kleinschreibung.
+                * Beispiel: <code>variable</code>, <code>Variable</code> und <code>VARIABLE</code> sind drei verschiedene Variablen.
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Variablennamen (2/3)
+            4. <!-- .element: class="fragment" --> <strong>Schlüsselwörter</strong>
+                * Variablennamen dürfen keine reservierten Schlüsselwörter (z.B. <code>if</code>, <code>for</code>, <code>while</code>, <code>def</code>, etc.) sein, die eine besondere Bedeutung in Python haben.
+            5. <!-- .element: class="fragment" --> <strong>Konventionen</strong>
+                * Es ist ratsam, aussagekräftige Namen zu verwenden, die den Zweck einer Variable widerspiegeln (z.B. <code>total_price</code> statt <code>tp</code>).
+                * Es ist üblich, Variablennamen in Kleinbuchstaben zu schreiben und Wörter durch Unterstriche zu trennen (z.B. <code>my_variable</code>).
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Variablennamen (3/3)
+            <p style="font-size: 0.75em;">In Python müssen Variablennamen mit einem Buchstaben oder Unterstrich beginnen, dürfen nur Buchstaben, Zahlen und Unterstriche enthalten und dürfen keine reservierten Schlüsselwörter verwenden.</p>
+            <div style="display: flex; width: 100%; gap: 20px; font-size: 0.8em;">
+              <div style="flex: 1; text-align: left;">
+                <h5>Gültige Variablennamen</h5>
+                <ul>
+                  <li><code>user_age</code></li>
+                  <li><code>age</code></li>
+                  <li><code>user_name</code></li>
+                  <li><code>total3</code></li>
+                  <li><code>_value</code></li>
+                  <li><code>myVariable</code></li>
+                </ul>
+              </div>
+              <div style="flex: 2; text-align: left;">
+                <h5>Ungültige Variablennamen</h5>
+                <ul>
+                  <li><code>3total</code> (beginnt mit einer Zahl)</li>
+                  <li><code>user-name</code> (Bindestrich ist nicht erlaubt)</li>
+                  <li><code>if</code> (Schlüsselwort)</li>
+                  <li><code>my variable</code> (Leerzeichen nicht erlaubt)</li>
+                </ul>
+              </div>
+            </div>
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Python Datentypen</h2>
+          <ul style="font-size: 0.8em;">
+            <li class="fragment">
+              <strong><code>int</code></strong>
+              <p style="font-size: 0.8em;">repräsentiert <strong>ganze Zahlen</strong> beliebiger Größe und unterstützt gängige arithmetische Operationen wie Addition, Subtraktion, Multiplikation und Division.</p>
+            </li>
+            <li class="fragment">
+              <strong><code>float</code></strong>
+              <p style="font-size: 0.8em;">repräsentiert <strong>Gleitkomma-Zahlen</strong> (=reelle Zahlen mit Dezimalstellen) und wird für präzise Berechnungen mit Brüchen, Exponentialnotation und großen oder kleinen Zahlen verwendet.</p>
+            </li>
+            <li class="fragment">
+              <strong><code>str</code></strong>
+              <p style="font-size: 0.8em;">repräsentiert <strong>Zeichenketten</strong> (Text) und unterstützt Operationen wie Verkettung und Wiederholung.</p>
+            </li>
+            <li class="fragment">
+              <strong><code>bool</code></strong>
+              <p style="font-size: 0.8em;">repräsentiert <strong>Wahrheitswerte</strong> (<code>True</code> oder <code>False</code>) und wird für logische Operationen verwendet.</p>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Python Sammeltypen / Collections</h2>
+          <ul style="font-size: 0.8em;">
+            <li class="fragment">
+              <strong><code>list</code></strong>
+              <p style="font-size: 0.8em;">ist ein geordneter Sammeltyp, der eine beliebig lange <strong>Folge von Elementen</strong> speichern kann und durch eckige Klammern <strong><code>[]</code></strong> dargestellt wird</p>
+            </li>
+            <li class="fragment">
+              <strong><code>dict</code></strong>
+              <p style="font-size: 0.8em;">ist ein ungeordneter Sammeltyp, der <strong>Schlüssel-Wert-Paare</strong> speichert und durch geschweifte Klammern <strong><code>{}</code></strong> dargestellt wird, wobei jeder Schlüssel eindeutig sein muss und auf einen Wert zugreifen kann.</p>
+            </li>
+            <li class="fragment">
+              <strong><code>set</code></strong>
+              <p style="font-size: 0.8em;">ist ein ungeordneter Sammeltyp, der eine <strong>Sammlung einzigartiger Elemente</strong> speichert und durch geschweifte Klammern <strong><code>{}</code></strong> dargestellt wird, wobei doppelte Werte automatisch entfernt werden.</p>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+
+
+      <section>
+        <section>
+          <h2>Python Built-in-Funktionen</h2>
+            <p style="font-size: 0.8em;">Python bietet eine Vielzahl von Built-in-Funktionen, die vordefiniert sind und häufige Programmieraufgaben erleichtern, darunter Funktionen zur Typumwandlung, zur mathematischen Berechnung oder zur Datenbearbeitung.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; width: 100%; font-size: 0.8em;">
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>print()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>type()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>len()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>abs()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>min()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>max()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>sum()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>mean()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>sorted()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>reversed()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>round()</code></strong></div>
+              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>chr()</code></strong></div>
+            </div>
+        </section>
+      </section>
+      
+      <section>
+        <section>
+          <h2>Fragen?</h2>
+        </section>
+        <section>
+          <h2>Nächste Schritte</h2>
+            <ul>
+              <li>Review Folien & Materialien der heutigen Einheit (bereits auf Moodle verfügbar)</li>
+              <li>Angabe 1. Gruppenübung ab nächster Woche auf Moodle verfügbar</li>
+              <li>Nächste Einheit: Mo. 15.12. 18:30</li>
+            </ul>
+        </section>
+        <section>
+          <h2>Danke und schönen Abend!</h2>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js" integrity="sha512-sMRSj1Ns64C2OE6VNS7WrV63OHW7dLAvi96CXRoy9AEe/tKF+868fhUJpc5ZKS166lwhe2ArCYjFitLJUY+VWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/markdown/markdown.min.js" integrity="sha512-4exkEeyVuaWUFKozXl6L3UCugl6ai1cKnrVFkWUstdrNB2sDxxmPEaHBzTlYm9wX78EjPzEBG0s8k37oPeUFIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js" integrity="sha512-tDzEYXTFwGOO3tWp8oTV3yGeZ4lG4gUt+tJFQTsP7W4jV/MJ1Rgr6m9aICicjh/ymL5GD6jkHXDi9cHKfctFGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js" integrity="sha512-xkVKkN0o7xECTHSUZ9zdsBYRXiAKH7CZ3aICpW6aQJZsufVVRLhEBTDjTpC1tPzm+gNZiOeW174zXAB2fOLsTg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    Reveal.initialize({
+      plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
+      hash: true
+    });
+  </script>
+</body>
+
+</html>

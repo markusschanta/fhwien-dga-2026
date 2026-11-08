@@ -1,0 +1,177 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" integrity="sha512-0AUO8B5ll9y1ERV/55xq3HeccBGnvAJQsVGitNac/iQCLyDTGLUBMPqlupIWp/rJg0hV3WWHusXchEIdqFAv1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" integrity="sha512-NJYOiL4HPnu7QvvGcvHAnVVz2X6qWcTDAH4x3fmUOW/SGUbK46IbzHhQ1KoKDfK2trs5RwUu03Ax9sxjqz1iQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/monokai.min.css" integrity="sha512-z8wQkuDRFwCBfoj7KOiu1MECaRVoXx6rZQWL21x0BsVVH7JkqCp1Otf39qve6CrCycOOL5o9vgfII5Smds23rg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <textarea data-template>
+          ##### Datengewinnung und -analyse
+          # 5. Datenvisualisierung mit Altair
+
+          <p style="text-align: right; padding-top: 3em;">Markus Schanta</p>
+          <p style="text-align: right">
+            <img src='assets/0-logo-fh.png' width="100px" height="124px" />
+          </p>
+
+        </textarea>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Bedeutung von Datenvisualisierung
+            * Datenvisualisierung kann helfen, Muster, Trends und Ausreißer in den Daten besser und schneller zu erkennen.
+            * Effektive Visualisierungen können komplexe Informationen verständlicher und glaubwürdiger vermitteln.
+            * Visualisierungen erleichtern die Kommunikation von Ergebnissen.
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Literaturempfehlung</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <img data-src="assets/5-1-cover.png" style="max-width: 100%; margin: 0;">
+            </div>
+            <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start;">
+              <ul>
+                <li>Fundamentals of Data Visualization</li>
+                <li style="margin-bottom: 1em;">Claus O. Wilke</li>
+                <li>Open Access Buch</li>
+                <li><a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <img data-src="assets/5-2-suggestions.jpg" style="max-width: 100%; margin: 0;">
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Altair: ein Überblick</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <img data-src="assets/5-3-altair.png" style="max-width: 100%; margin: 0;">
+            </div>
+            <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start;">
+              <ul>
+                <li style="margin-bottom: 0.5em;">Programmbibliothek für Python zur Visualisierung von Daten</li>
+                <li style="margin-bottom: 0.5em;">2017 erstmals von Jake VanderPlas veröffentlicht</li>
+                <li style="margin-bottom: 0.5em;">Baut auf der programmiersprachen-unabhängigen Vega-Spezifikation auf</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Altair: Dokumentation und Beispiele</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 2; display: flex; align-items: center; justify-content: center;">
+              <img data-src="assets/5-4-examples.png" style="max-width: 100%; margin: 0;">
+            </div>
+            <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+              <ul>
+                <li style="margin-bottom: 1em;"><a href="https://altair-viz.github.io/getting_started/overview.html">Getting Started</a></li>
+                <li style="margin-bottom: 1em;"><a href="https://altair-viz.github.io/user_guide/data.html">User Guide</a></li>
+                <li style="margin-bottom: 1em;"><a href="https://altair-viz.github.io/gallery/index.html">Beispiele</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">altair</code> Import
+            * <code>altair</code> kann in Python wie folgt importiert werden:
+              ```python
+              import altair as alt
+              ```
+              <!-- .element: class="fragment" --> 
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">altair</code> Verwendung
+            * <code>altair</code> kann in Python wie folgt verwendet werden:
+              ```python
+              # Altair unter dem alias "alt" importieren
+              import altair as alt
+
+              # Beispieldaten als pandas DataFrame laden
+              from altair.datasets import data
+              cars = data.cars()
+
+              # Diagramm erstellen
+              alt.Chart(cars).mark_point().encode(
+                  x='Horsepower',
+                  y='Miles_per_Gallon',
+                  color='Origin',
+              ).interactive()
+              ```
+              <!-- .element: class="fragment" --> 
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Fragen?</h2>
+        </section>
+        <section>
+          <h2>Nächste Schritte</h2>
+            <ul>
+              <li style="padding-bottom: 1em;">Review Folien & Materialien der heutigen Einheit</li>
+              <li style="padding-bottom: 1em;">2. Gruppenübung:
+                <ul>
+                  <li>Angabe diese Woche auf Moodle verfügbar</li>
+                  <li>Abgabe bis So. 27.01.2026 oder bis zum Abgabegespräch</li>
+                </ul>
+              </li>
+              <li>Nächste Einheit: Mo. 20.01.2026 18:30</li>
+            </ul>
+        </section>
+        <section>
+          <h2>Danke und schönen Abend!</h2>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js" integrity="sha512-sMRSj1Ns64C2OE6VNS7WrV63OHW7dLAvi96CXRoy9AEe/tKF+868fhUJpc5ZKS166lwhe2ArCYjFitLJUY+VWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/markdown/markdown.min.js" integrity="sha512-4exkEeyVuaWUFKozXl6L3UCugl6ai1cKnrVFkWUstdrNB2sDxxmPEaHBzTlYm9wX78EjPzEBG0s8k37oPeUFIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js" integrity="sha512-tDzEYXTFwGOO3tWp8oTV3yGeZ4lG4gUt+tJFQTsP7W4jV/MJ1Rgr6m9aICicjh/ymL5GD6jkHXDi9cHKfctFGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js" integrity="sha512-xkVKkN0o7xECTHSUZ9zdsBYRXiAKH7CZ3aICpW6aQJZsufVVRLhEBTDjTpC1tPzm+gNZiOeW174zXAB2fOLsTg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    Reveal.initialize({
+      plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
+      hash: true
+    });
+  </script>
+</body>
+
+</html>

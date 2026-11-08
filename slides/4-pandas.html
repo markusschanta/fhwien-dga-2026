@@ -1,0 +1,217 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" integrity="sha512-0AUO8B5ll9y1ERV/55xq3HeccBGnvAJQsVGitNac/iQCLyDTGLUBMPqlupIWp/rJg0hV3WWHusXchEIdqFAv1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" integrity="sha512-NJYOiL4HPnu7QvvGcvHAnVVz2X6qWcTDAH4x3fmUOW/SGUbK46IbzHhQ1KoKDfK2trs5RwUu03Ax9sxjqz1iQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/monokai.min.css" integrity="sha512-z8wQkuDRFwCBfoj7KOiu1MECaRVoXx6rZQWL21x0BsVVH7JkqCp1Otf39qve6CrCycOOL5o9vgfII5Smds23rg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <textarea data-template>
+          ##### Datengewinnung und -analyse
+          # 4. Datenanalyse mit Pandas
+
+          <p style="text-align: right; padding-top: 3em;">Markus Schanta</p>
+          <p style="text-align: right">
+            <img src='assets/0-logo-fh.png' width="100px" height="124px" />
+          </p>
+
+        </textarea>
+      </section>
+
+      <section>
+        <section>
+          <h2>pandas: ein Überblick</h2>
+          <div style="display: flex; width: 100%; gap: 20px;">
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <img data-src="assets/4-1-pandas.png" style="max-width: 100%; margin: 0;">
+            </div>
+            <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start;">
+              <ul>
+                <li style="margin-bottom: 1em;">Programmbibliothek für Python zur Verarbeitung, Analyse und Darstellung von Daten</li>
+                <li style="margin-bottom: 1em;">2008 erstmals von Wes McKinney veröffentlicht</li>
+                <li style="margin-bottom: 1em;">Seit ca. 2012-2015 der de-facto Standard für Datenanalyse in Python</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">pandas</code> Import
+            * <code>pandas</code> kann in Python wie folgt importiert werden:
+              ```python
+              import pandas as pd
+              ```
+              <!-- .element: class="fragment" --> 
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">pandas</code> DataFrames
+            * Daten werden in <code class="hljs-keyword">pandas</code> hauptsächlich in sogenannten <code class="hljs-keyword">DataFrame</code>s gespeichert.
+
+            <img data-src="assets/4-2-dataframe.svg" style="max-width: 70%; margin: 0;">
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">pandas</code> Series
+            * Die Zeilen und Spalten eines <code class="hljs-keyword">DataFrame</code>s bestehen aus sogenannten <code class="hljs-keyword">Series</code>.
+
+            <img data-src="assets/4-3-series.svg" style="max-width: 70%; margin: 0;">
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">pandas</code> DataFrames
+            * Ein einfaches Beispiel zur Erstellung eines <code class="hljs-keyword">DataFrame</code>s:
+              ```python
+              import pandas as pd
+
+              data = {
+                  'Name': ['Alice', 'Bob', 'Charlie'],
+                  'Alter': [25, 30, 35],
+                  'Stadt': ['Wien', 'Graz', 'Linz']
+              }
+
+              df = pd.DataFrame(data)
+
+              print(df)
+              ```
+              <!-- .element: class="fragment" -->
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Daten mit <code class="hljs-keyword">pandas</code> laden und speichern
+            * <code class="hljs-keyword">pandas</code> bietet Funktionen zum Laden (<code>read_*</code>) und Speichern (<code>to_*</code>) von Daten in verschiedenen Formaten, z.B. CSV, Excel, SQL-Datenbanken und mehr.
+
+            <img data-src="assets/4-4-read-to.svg" style="max-width: 70%; margin: 0; padding-top: 1em;">
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Selektieren von Spalten
+            <img data-src="assets/4-5-subset-columns.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+
+            * Über den Spaltennamen als Attribut oder als Schlüssel:<!-- .element: class="fragment" -->
+              ```python
+              # Als Attribut
+              selection = df.Name
+
+              # Als Schlüssel
+              selection = df['Name']
+              ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Selektieren von Zeilen
+            <img data-src="assets/4-5-subset-rows.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Selektieren von Zeilen und Spalten
+            <img data-src="assets/4-5-subset-columns-rows.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Neue Spalten aus<br> bestehenden Spalten erstellen
+            <img data-src="assets/4-6-new-column.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Neue Spalten aus<br> mehreren bestehenden Spalten erstellen
+            <img data-src="assets/4-6-new-column-2.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Einzelne Spalten aggregieren
+            <img data-src="assets/4-7-aggregate-one.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Mehrere Spalten aggregieren
+            <img data-src="assets/4-7-aggregate-many.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            ## Umfangreiche Methoden zur Visualisierung von Daten
+            <img data-src="assets/4-8-plot.svg" style="max-width: 70%; margin: 0; padding: 1em 0;">
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Fragen?</h2>
+        </section>
+        <section>
+          <h2>Nächste Schritte</h2>
+            <ul>
+              <li style="padding-bottom: 1em;">Review Folien & Materialien der heutigen Einheit</li>
+              <li style="padding-bottom: 1em;">1. Gruppenübung:
+                <ul>
+                  <li>Angabe diese Woche auf Moodle verfügbar</li>
+                  <li>Abgabe bis So. 11.01.2026</li>
+                </ul>
+              </li>
+              <li>Nächste Einheit: Mo. 14.01.2026 18:30</li>
+            </ul>
+        </section>
+        <section>
+          <h2>Danke und schönen Abend!</h2>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js" integrity="sha512-sMRSj1Ns64C2OE6VNS7WrV63OHW7dLAvi96CXRoy9AEe/tKF+868fhUJpc5ZKS166lwhe2ArCYjFitLJUY+VWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/markdown/markdown.min.js" integrity="sha512-4exkEeyVuaWUFKozXl6L3UCugl6ai1cKnrVFkWUstdrNB2sDxxmPEaHBzTlYm9wX78EjPzEBG0s8k37oPeUFIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js" integrity="sha512-tDzEYXTFwGOO3tWp8oTV3yGeZ4lG4gUt+tJFQTsP7W4jV/MJ1Rgr6m9aICicjh/ymL5GD6jkHXDi9cHKfctFGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js" integrity="sha512-xkVKkN0o7xECTHSUZ9zdsBYRXiAKH7CZ3aICpW6aQJZsufVVRLhEBTDjTpC1tPzm+gNZiOeW174zXAB2fOLsTg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    Reveal.initialize({
+      plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
+      hash: true
+    });
+  </script>
+</body>
+
+</html>
