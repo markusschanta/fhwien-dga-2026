@@ -98,10 +98,10 @@
 #calendar td.dga-striped {
   background: repeating-linear-gradient(
     45deg,
-    #a89bc9,
-    #a89bc9 10px,
-    #c4b8d6 10px,
-    #c4b8d6 20px
+    #ddd4f0,
+    #ddd4f0 10px,
+    #ffffff 10px,
+    #ffffff 20px
  );
 }
 

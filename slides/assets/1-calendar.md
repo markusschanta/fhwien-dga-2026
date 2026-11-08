@@ -63,7 +63,7 @@
         <td class="grey"><div>&nbsp;</div><div>20.12.</div></td>
     </tr>
     <tr>
-        <td><div><strong>Pr&uuml;fung</strong></div><div>21.12.</div></td>
+        <td class="dga-striped"><div><strong>Pr&uuml;fung</strong></div><div>21.12.</div></td>
         <td><div>&nbsp;</div><div>22.12.</div></td>
         <td><div>&nbsp;</div><div>23.12.</div></td>
         <td class="grey"><div>🎄</div><div>24.12.</div></td>

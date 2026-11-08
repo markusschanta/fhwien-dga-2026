@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datengewinnung &amp; -aufbereitung · WS 2026/27</title>
+  <meta name="description" content="Folien, Notebooks, Kalender und Syllabus zur Lehrveranstaltung Datengewinnung &amp; -aufbereitung an der FH Wien der WKW, Wintersemester 2026/27.">
+  <link rel="icon" type="image/png" href="slides/assets/0-logo-fh.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f7;
+      --border: #e4e1ec;
+      --text: #4d4d4d;
+      --muted: #75727d;
+      --heading: #503795;
+      --accent: #503795;
+      --accent-soft: #efeaf8;
+      --on-accent: #ffffff;
+
+      --cal-line: #cfcad8;
+      --cal-bold: #4d4d4d;
+      --cal-off: #e6e4ea;
+      --cal-dga: #a89bc9;
+      --cal-ph: #ddd4f0;
+      --cal-ph-alt: #ffffff;
+      --cal-ag: #ff9f9f;
+      --cal-deadline: #fff38a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #141218;
+        --surface: #1f1c26;
+        --border: #34303f;
+        --text: #dcd9e3;
+        --muted: #a19dab;
+        --heading: #c3b5f0;
+        --accent: #b4a3ec;
+        --accent-soft: #2a2438;
+        --on-accent: #141218;
+
+        --cal-line: #3d3848;
+        --cal-bold: #d9d4e6;
+        --cal-off: #26232e;
+        --cal-dga: #5d4d94;
+        --cal-ph: #4a3d78;
+        --cal-ph-alt: #141218;
+        --cal-ag: #7d3a3a;
+        --cal-deadline: #6b6420;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #141218;
+      --surface: #1f1c26;
+      --border: #34303f;
+      --text: #dcd9e3;
+      --muted: #a19dab;
+      --heading: #c3b5f0;
+      --accent: #b4a3ec;
+      --accent-soft: #2a2438;
+      --on-accent: #141218;
+
+      --cal-line: #3d3848;
+      --cal-bold: #d9d4e6;
+      --cal-off: #26232e;
+      --cal-dga: #5d4d94;
+      --cal-ph: #4a3d78;
+      --cal-ph-alt: #141218;
+      --cal-ag: #7d3a3a;
+      --cal-deadline: #6b6420;
+    }
+
+    * { box-sizing: border-box; }
+
+    a { color: var(--accent); }
+
+    .nowrap { white-space: nowrap; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      border-top: 6px solid var(--accent);
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 32px 48px;
+    }
+
+    /* Kopfbereich */
+
+    header {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding-bottom: 32px;
+    }
+
+    header img {
+      flex: none;
+      width: 120px;
+      height: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: var(--heading);
+      font-size: clamp(1.6rem, 4.2vw, 2.8rem);
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    header p:not(.eyebrow) {
+      max-width: 68ch;
+      margin: 0;
+    }
+
+    /* Navigation */
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+
+    /* Abschnitte */
+
+    section { scroll-margin-top: 24px; }
+
+    h2 {
+      margin: 48px 0 20px;
+      color: var(--heading);
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Einheiten */
+
+    .units {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .unit {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .num {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .unit h3 { margin-bottom: 8px; font-size: 1.1rem; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .links a {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    .links a:hover,
+    .links a:focus-visible {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Kalender & Termine */
+
+    .schedule {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+    }
+
+    #calendar {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    #calendar th {
+      padding: 0 0 6px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    #calendar td {
+      height: 46px;
+      padding: 4px 2px;
+      border: 1px solid var(--cal-line);
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    #calendar td.grey { background: var(--cal-off); }
+    #calendar td.dga { background: var(--cal-dga); }
+    #calendar td.dga-striped {
+      background: repeating-linear-gradient(45deg,
+        var(--cal-ph), var(--cal-ph) 6px,
+        var(--cal-ph-alt) 6px, var(--cal-ph-alt) 12px);
+    }
+    #calendar td.red { background: var(--cal-ag); }
+    #calendar td.yellow { background: var(--cal-deadline); }
+    #calendar td.top-bold { border-top: 3px solid var(--cal-bold); }
+    #calendar td.bottom-bold { border-bottom: 3px solid var(--cal-bold); }
+    #calendar td.right-bold { border-right: 3px solid var(--cal-bold); }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .legend li { display: flex; align-items: center; gap: 6px; }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--cal-line);
+      border-radius: 3px;
+    }
+
+    .swatch.dga { background: var(--cal-dga); }
+    .swatch.dga-striped {
+      background: repeating-linear-gradient(45deg,
+        var(--cal-ph), var(--cal-ph) 3px,
+        var(--cal-ph-alt) 3px, var(--cal-ph-alt) 6px);
+    }
+    .swatch.yellow { background: var(--cal-deadline); }
+    .swatch.red { background: var(--cal-ag); }
+    .swatch.grey { background: var(--cal-off); }
+
+    .dates {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .dates th {
+      padding: 0 10px 6px 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .dates td {
+      padding: 8px 10px 8px 0;
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .dates td:first-child { white-space: nowrap; }
+
+    /* Syllabus */
+
+    .syllabus {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      margin: 0;
+    }
+
+    .syllabus dt,
+    .syllabus dd {
+      margin: 0;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .syllabus dt {
+      padding-right: 24px;
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    .syllabus ul { margin: 0; padding-left: 1.2em; }
+    .syllabus li + li { margin-top: 4px; }
+    .syllabus p { margin: 0; }
+
+    .pct {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: inherit; }
+
+    /* Schmale Bildschirme */
+
+    @media (max-width: 900px) {
+      .schedule { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      main { padding: 32px 16px 40px; }
+      header { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 24px; }
+      header img { width: 80px; }
+      h2 { margin-top: 36px; }
+      .unit { padding: 16px; gap: 14px; align-items: flex-start; }
+      .num { width: 36px; height: 36px; font-size: 0.95rem; }
+      #calendar { font-size: 0.7rem; }
+      #calendar td { height: 40px; padding: 3px 1px; }
+      .syllabus { grid-template-columns: minmax(0, 1fr); }
+      .syllabus dt { padding-bottom: 4px; }
+      .syllabus dd { border-top: 0; padding-top: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <img src="slides/assets/0-logo-fh.png" alt="Logo FH Wien der WKW">
+      <div>
+        <p class="eyebrow">FH Wien der WKW · Wintersemester 2026/27</p>
+        <h1>Datengewinnung <span class="nowrap">&amp; -aufbereitung</span></h1>
+        <p>Diese Seite enthält die Materialien zur Lehrveranstaltung <strong>Datengewinnung <span class="nowrap">&amp; -aufbereitung</span></strong> an der <a href="https://www.fh-wien.ac.at/">FH Wien</a> für das Wintersemester 2026/27.</p>
+      </div>
+    </header>
+
+    <nav aria-label="Inhalt">
+      <a href="#syllabus">Syllabus</a>
+      <a href="#kalender">Kalender</a>
+      <a href="#materialien">Folien &amp; Notebooks</a>
+    </nav>
+
+    <section id="syllabus">
+      <h2>Syllabus</h2>
+      <dl class="syllabus">
+        <dt>Lehrveranstaltung</dt>
+        <dd>
+          <p>0510.1205 Datengewinnung &amp; -aufbereitung · 3 SSt · Integrierte Lehrveranstaltung (IL)</p>
+          <p>Marketing- &amp; Salesmanagement · Wintersemester 2026/27</p>
+        </dd>
+
+        <dt>Vortragender</dt>
+        <dd>Markus Schanta, MSc</dd>
+
+        <dt>Zielsetzung</dt>
+        <dd>Studierende sollen befähigt werden, Rohdaten in saubere Analysen, klare Visualisierungen und belastbare Erkenntnisse umzusetzen, um Annahmen zu prüfen und bessere Entscheidungen zu treffen.</dd>
+
+        <dt>Inhalte</dt>
+        <dd>
+          <ul>
+            <li>Grundlagen der Datenanalyse und Excel</li>
+            <li>Datenbanken und SQL</li>
+            <li>Datenanalyse mit Python</li>
+            <li>Datenvisualisierung</li>
+            <li>Statistische Methoden und AI</li>
+          </ul>
+        </dd>
+
+        <dt>Methoden</dt>
+        <dd>
+          <ul>
+            <li>Dialog</li>
+            <li>Interaktive Hands-on-Übungen in Google Colab</li>
+            <li>Gruppenarbeit</li>
+          </ul>
+        </dd>
+
+        <dt>Werkzeuge</dt>
+        <dd>Google Colab im Browser – ein Google-Konto ist erforderlich.</dd>
+
+        <dt>Literatur &amp; Ressourcen</dt>
+        <dd>
+          <ul>
+            <li>Claus O. Wilke: <a href="https://clauswilke.com/dataviz/"><em>Fundamentals of Data Visualization</em></a> (Open Access)</li>
+            <li><a href="https://www.w3schools.com/sql/">W3Schools SQL Tutorial</a></li>
+            <li><a href="https://altair-viz.github.io/">Altair-Dokumentation</a></li>
+          </ul>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="kalender">
+      <h2>Kalender</h2>
+      <div class="schedule">
+        <div>
+          <!-- Der Kalender wird aus slides/assets/1-calendar.md geladen (gleiche Quelle wie die Intro-Folien). -->
+          <div id="calendar-container">
+            <noscript><p class="note">Der Kalender benötigt JavaScript. <a href="slides/1-intro.html#/4">Kalender in den Intro-Folien öffnen</a></p></noscript>
+          </div>
+          <ul class="legend">
+            <li><span class="swatch dga"></span>Präsenztermine</li>
+            <li><span class="swatch dga-striped"></span>Platzhalter</li>
+            <li><span class="swatch yellow"></span>Abgabefrist</li>
+            <li><span class="swatch red"></span>Abgabegespräche</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Lehrveranstaltungstermine</h3>
+          <table class="dates">
+            <thead>
+              <tr><th>Datum</th><th>Zeit</th><th>Ort</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Di. 10.11.2026</td><td class="nowrap">18:30–21:45</td><td>B516</td></tr>
+              <tr><td>Fr. 20.11.2026</td><td class="nowrap">16:35–21:45</td><td>B518</td></tr>
+              <tr><td>Mo. 30.11.2026</td><td class="nowrap">18:30–21:45</td><td>B516</td></tr>
+              <tr><td>Fr. 04.12.2026</td><td class="nowrap">16:35–21:45</td><td>B516</td></tr>
+              <tr><td>Mo. 14.12.2026</td><td class="nowrap">18:30–21:45</td><td>B516</td></tr>
+              <tr><td>Fr. 18.12.2026</td><td class="nowrap">16:35–21:45</td><td>B516</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Abgaben &amp; Abgabegespräche</h3>
+          <table class="dates">
+            <tbody>
+              <tr><td>So. 13.12.2026</td><td>Abgabe Gruppenübung 1</td></tr>
+              <tr><td>So. 10.01.2027</td><td>Abgabe Gruppenübung 2</td></tr>
+              <tr><td>12.–14.01.2027</td><td>Abgabegespräche</td></tr>
+              <tr><td>26.–28.01.2027</td><td>Abgabegespräche</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="materialien">
+      <h2>Folien &amp; Notebooks</h2>
+      <ol class="units">
+        <li class="unit">
+          <span class="num">1</span>
+          <div>
+            <h3>Intro</h3>
+            <div class="links">
+              <a href="slides/1-intro.html">Folien</a>
+            </div>
+          </div>
+        </li>
+        <li class="unit">
+          <span class="num">2</span>
+          <div>
+            <h3>Datenbanken und SQL</h3>
+            <div class="links">
+              <a href="slides/2-sql.html">Folien (HTML)</a>
+              <a href="slides/2-sql.pdf">Folien (PDF)</a>
+              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/2-sql.ipynb">Notebook (Colab)</a>
+            </div>
+          </div>
+        </li>
+        <li class="unit">
+          <span class="num">3</span>
+          <div>
+            <h3>Python</h3>
+            <div class="links">
+              <a href="slides/3-python.html">Folien (HTML)</a>
+              <a href="slides/3-python.pdf">Folien (PDF)</a>
+              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/3-python.ipynb">Notebook (Colab)</a>
+            </div>
+          </div>
+        </li>
+        <li class="unit">
+          <span class="num">4</span>
+          <div>
+            <h3>Pandas</h3>
+            <div class="links">
+              <a href="slides/4-pandas.html">Folien (HTML)</a>
+              <a href="slides/4-pandas.pdf">Folien (PDF)</a>
+              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/4-pandas.ipynb">Notebook (Colab)</a>
+            </div>
+          </div>
+        </li>
+        <li class="unit">
+          <span class="num">5</span>
+          <div>
+            <h3>Altair</h3>
+            <div class="links">
+              <a href="slides/5-altair.html">Folien (HTML)</a>
+              <a href="slides/5-altair.pdf">Folien (PDF)</a>
+              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/5-altair.ipynb">Notebook (Colab)</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <footer>
+      Materialien unter <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de">CC0 1.0</a> ·
+      Quellen auf <a href="https://github.com/markusschanta/fhwien-dga-2026">GitHub</a>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var container = document.getElementById('calendar-container');
+      fetch('slides/assets/1-calendar.md')
+        .then(function (response) {
+          if (!response.ok) throw new Error(response.status);
+          return response.text();
+        })
+        .then(function (html) {
+          container.innerHTML = html;
+        })
+        .catch(function () {
+          container.innerHTML = '<p class="note">Der Kalender konnte nicht geladen werden. ' +
+            '<a href="slides/1-intro.html#/4">Kalender in den Intro-Folien öffnen</a></p>';
+        });
+    })();
+  </script>
+</body>
+
+</html>
