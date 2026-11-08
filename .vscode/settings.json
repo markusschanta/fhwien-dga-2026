@@ -1,0 +1,4 @@
+{
+  // Das private Repo in private/ (gitignoriert) in der Quellcodeverwaltung mit anzeigen
+  "git.scanRepositories": ["private"]
+}
