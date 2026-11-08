@@ -117,3 +117,9 @@
         <td class="grey"><div>&nbsp;</div><div>31.01.</div></td>
     </tr>
 </table>
+<ul class="legend">
+    <li><span class="swatch dga"></span>Präsenztermine</li>
+    <li><span class="swatch dga-striped"></span>Platzhalter</li>
+    <li><span class="swatch yellow"></span>Abgabefrist</li>
+    <li><span class="swatch red"></span>Abgabegespräche</li>
+</ul>

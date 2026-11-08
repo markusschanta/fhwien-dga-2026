@@ -75,7 +75,7 @@
 #calendar {
   table-layout: fixed;
   border-collapse: collapse;
-  font-size: 35%;
+  font-size: 41%;
 }
 
 #calendar td, #calendar th {
@@ -127,4 +127,296 @@
 
 #calendar td.grey {
   background-color: #e0e0e0;
+}
+/* Intro: Einstiegsfrage */
+.reveal .statement {
+  font-size: 1.4em;
+  line-height: 1.35;
+  font-weight: 600;
+  color: #503795;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Intro: Fortschrittsanzeige der drei Gründe */
+.reveal .reasons {
+  display: flex;
+  justify-content: center;
+  gap: 0.6em;
+  margin: 0 0 0.8em;
+  font-size: 0.5em;
+}
+
+.reveal .reasons > span {
+  padding: 0.25em 0.8em;
+  border: 2px solid #ddd4f0;
+  border-radius: 999px;
+  color: #a89bc9;
+}
+
+.reveal .reasons > span.active {
+  background: #503795;
+  border-color: #503795;
+  color: #fff;
+  font-weight: 700;
+}
+
+.reveal .reasons-large {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+  margin: 1em 0;
+  font-size: 1.1em;
+}
+
+.reveal .reasons-large > span {
+  min-width: 9em;
+  border-color: #503795;
+  background: #503795;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Intro: Vergleichstabellen */
+.reveal table.compare {
+  font-size: 0.65em;
+  margin: 0.5em auto;
+}
+
+.reveal table.compare th {
+  color: #503795;
+  border-bottom: 2px solid #503795;
+}
+
+.reveal table.compare td,
+.reveal table.compare th {
+  padding: 0.5em 1em;
+}
+
+.reveal table.compare-numbers td {
+  text-align: right;
+}
+
+.reveal table.compare-numbers td:first-child {
+  text-align: center;
+  font-weight: 700;
+}
+
+.reveal table.compare .win {
+  color: #1a7f37;
+}
+
+.reveal .source {
+  font-size: 0.4em;
+  color: #888;
+  margin: 0.3em 0 0;
+}
+
+.reveal .reasons .num {
+  margin-right: 0.5em;
+  opacity: 0.6;
+}
+
+/* Intro: Gehaltsvergleich (Vega-Lite) */
+.reveal .chart-subtitle {
+  font-size: 0.55em;
+  color: #888;
+  margin: -0.4em 0 0.6em;
+}
+
+.reveal .chart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal blockquote.quote {
+  width: 80%;
+  margin: 0.6em auto 0.5em;
+  padding: 0.2em 0.8em;
+  font-size: 0.55em;
+  font-style: italic;
+  background: none;
+  box-shadow: none;
+  border-left: 4px solid #503795;
+  text-align: left;
+}
+
+.reveal blockquote.quote cite {
+  display: block;
+  margin-top: 0.2em;
+  font-size: 0.8em;
+  font-style: normal;
+  color: #888;
+}
+
+.reveal p.goal {
+  font-size: 1em;
+  line-height: 1.35;
+}
+
+.reveal .reasons-summary {
+  font-size: 0.85em;
+  gap: 0.35em;
+  margin: 0 0 1.2em;
+}
+
+/* Kalender-Legende (Teil von 1-calendar.md, auch auf index.html) */
+.reveal .legend {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em 1.4em;
+  margin: 0.9em 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.34em;
+  color: #4D4D4D;
+}
+
+.reveal .legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.reveal .swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #000;
+}
+
+.reveal .swatch.dga { background: #a89bc9; }
+.reveal .swatch.dga-striped {
+  background: repeating-linear-gradient(45deg, #ddd4f0, #ddd4f0 3px, #ffffff 3px, #ffffff 6px);
+}
+.reveal .swatch.yellow { background: #ffff99; }
+.reveal .swatch.red { background: #ff9999; }
+
+/* Intro: Inhalte als nummerierte Liste */
+.reveal ol.units {
+  list-style: none;
+  margin: 0.5em auto;
+  padding: 0;
+  display: inline-block;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.reveal ol.units li {
+  margin: 0.35em 0;
+}
+
+.reveal ol.units .num {
+  display: inline-block;
+  width: 1.4em;
+  font-weight: 700;
+  color: #503795;
+}
+
+.reveal ol.units li.outlook {
+  margin-top: 0.8em;
+  color: #888;
+  font-style: italic;
+}
+
+.reveal ol.units li.outlook .num {
+  color: #a89bc9;
+}
+
+/* Intro: Leistungsbeurteilung */
+.reveal ul.grading .pct {
+  margin-left: 0.4em;
+  font-weight: 700;
+  color: #503795;
+}
+
+/* Intro: beruflicher Weg */
+.reveal .path {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.3em;
+  margin-top: 3em;
+  font-size: 0.5em;
+}
+
+.reveal .path .station {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  width: 11em;
+  padding: 1.2em 0.6em;
+  border: 2px solid #ddd4f0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.reveal .path .station strong {
+  color: #503795;
+  margin-bottom: 0.2em;
+}
+
+.reveal .path .station .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.reveal p.subtitle {
+  font-size: 0.75em;
+  color: #888;
+  margin: -0.3em 0 0.4em;
+}
+
+.reveal .path-reason {
+  margin: 3.6em 0 0;
+}
+
+.reveal .path .arrow {
+  align-self: center;
+  font-size: 2em;
+  color: #a89bc9;
+}
+
+/* Intro: Umfrage */
+.reveal ul.survey li {
+  margin: 0.4em 0;
+}
+
+.reveal p.survey-scale {
+  font-size: 0.7em;
+  color: #888;
+}
+
+/* Intro: Anspruch des Kurses */
+.reveal p.not-goal {
+  font-size: 0.7em;
+  color: #888;
+  margin: 0 0 1em;
+}
+
+.reveal ul.goal-list li {
+  margin: 0.4em 0;
+}
+
+/* SQL: Übungsfolien und Hinweise */
+.reveal ol.exercise {
+  font-size: 0.85em;
+}
+
+.reveal ol.exercise li {
+  margin: 0.5em 0;
+}
+
+.reveal p.exercise-hint,
+.reveal p.table-note {
+  font-size: 0.55em;
+  color: #888;
+}
+
+.reveal p.editor-link {
+  font-size: 0.7em;
+  margin: 0 0 0.4em;
 }

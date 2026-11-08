@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="1000" height="300" font-family="'Noto Sans', 'Helvetica Neue', Arial, sans-serif" role="img"><title>Altair-Code und Balkendiagramm: Kunden je Land</title>
+<rect x="0" y="30" width="450" height="220" rx="12" fill="#f5f5f7" stroke="#ddd4f0" stroke-width="2"/><path d="M0 64 V42 Q0 30 12 30 H438 Q450 30 450 42 V64 Z" fill="#e9e5f2"/><circle cx="20" cy="47" r="5" fill="#a89bc9"/><circle cx="38" cy="47" r="5" fill="#ddd4f0"/><circle cx="56" cy="47" r="5" fill="#ddd4f0"/><text x="225.0" y="52" text-anchor="middle" font-size="14" fill="#8f889e">Altair</text>
+<text x="20" y="100" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" xml:space="preserve"><tspan fill="#503795">alt.Chart(kunden).mark_bar().encode(</tspan></text><text x="20" y="130" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" xml:space="preserve"><tspan fill="#503795">    x=</tspan><tspan fill="#7a5fb5">"Kunden:Q"</tspan><tspan fill="#503795">,</tspan></text><text x="20" y="160" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" xml:space="preserve"><tspan fill="#503795">    y=alt.Y(</tspan><tspan fill="#7a5fb5">"Land:N"</tspan><tspan fill="#503795">).sort(</tspan><tspan fill="#7a5fb5">"-x"</tspan><tspan fill="#503795">),</tspan></text><text x="20" y="190" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" xml:space="preserve"><tspan fill="#503795">)</tspan></text>
+<line x1="470" y1="140" x2="523" y2="140" stroke="#a89bc9" stroke-width="4" stroke-linecap="round"/><path d="M519 130 L535 140 L519 150 Z" fill="#a89bc9"/>
+<text x="668" y="57.0" text-anchor="end" font-size="16" fill="#4d4d4d">USA</text>
+<path d="M680 40 H936 Q940 40 940 44 V58 Q940 62 936 62 H680 Z" fill="#503795"/>
+<text x="668" y="97.0" text-anchor="end" font-size="16" fill="#4d4d4d">Frankreich</text>
+<path d="M680 80 H896 Q900 80 900 84 V98 Q900 102 896 102 H680 Z" fill="#503795"/>
+<text x="668" y="137.0" text-anchor="end" font-size="16" fill="#4d4d4d">Deutschland</text>
+<path d="M680 120 H896 Q900 120 900 124 V138 Q900 142 896 142 H680 Z" fill="#503795"/>
+<text x="668" y="177.0" text-anchor="end" font-size="16" fill="#4d4d4d">Brasilien</text>
+<path d="M680 160 H856 Q860 160 860 164 V178 Q860 182 856 182 H680 Z" fill="#503795"/>
+<text x="668" y="217.0" text-anchor="end" font-size="16" fill="#4d4d4d">UK</text>
+<path d="M680 200 H816 Q820 200 820 204 V218 Q820 222 816 222 H680 Z" fill="#503795"/>
+<line x1="680" y1="30" x2="680" y2="240" stroke="#8f889e" stroke-width="1.5"/>
+<line x1="680" y1="240" x2="960" y2="240" stroke="#8f889e" stroke-width="1.5"/>
+<line x1="680" y1="240" x2="680" y2="246" stroke="#8f889e" stroke-width="1.5"/>
+<text x="680" y="264" text-anchor="middle" font-size="14" fill="#8f889e">0</text>
+<line x1="780" y1="240" x2="780" y2="246" stroke="#8f889e" stroke-width="1.5"/>
+<text x="780" y="264" text-anchor="middle" font-size="14" fill="#8f889e">5</text>
+<line x1="880" y1="240" x2="880" y2="246" stroke="#8f889e" stroke-width="1.5"/>
+<text x="880" y="264" text-anchor="middle" font-size="14" fill="#8f889e">10</text>
+<text x="820" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#4d4d4d">Kunden</text>
+</svg>

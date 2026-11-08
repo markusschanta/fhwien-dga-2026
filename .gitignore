@@ -1,1 +1,5 @@
 .DS_Store
+
+# Nicht-öffentliche Inhalte (eigenes privates Repo bzw. lokale Datei)
+/private/
+/CLAUDE.md

@@ -468,14 +468,8 @@
         <div>
           <!-- Der Kalender wird aus slides/assets/1-calendar.md geladen (gleiche Quelle wie die Intro-Folien). -->
           <div id="calendar-container">
-            <noscript><p class="note">Der Kalender benötigt JavaScript. <a href="slides/1-intro.html#/4">Kalender in den Intro-Folien öffnen</a></p></noscript>
+            <noscript><p class="note">Der Kalender benötigt JavaScript. <a href="slides/1-intro.html#/kalender">Kalender in den Intro-Folien öffnen</a></p></noscript>
           </div>
-          <ul class="legend">
-            <li><span class="swatch dga"></span>Präsenztermine</li>
-            <li><span class="swatch dga-striped"></span>Platzhalter</li>
-            <li><span class="swatch yellow"></span>Abgabefrist</li>
-            <li><span class="swatch red"></span>Abgabegespräche</li>
-          </ul>
         </div>
 
         <div>
@@ -585,7 +579,7 @@
         })
         .catch(function () {
           container.innerHTML = '<p class="note">Der Kalender konnte nicht geladen werden. ' +
-            '<a href="slides/1-intro.html#/4">Kalender in den Intro-Folien öffnen</a></p>';
+            '<a href="slides/1-intro.html#/kalender">Kalender in den Intro-Folien öffnen</a></p>';
         });
     })();
   </script>

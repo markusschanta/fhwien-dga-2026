@@ -17,7 +17,7 @@
     <div class="slides">
 
 
-      <section data-markdown>
+      <section id="titel" data-markdown>
         <textarea data-template>
           ## Datengewinnung &amp; -aufbereitung
           ### Marketing- & Salesmanagement
@@ -30,69 +30,175 @@
       </section>
 
       <section>
-        <section>
-          <h2>Zielsetzung des Kurses</h2>
-          <p class="fragment">Studierende sollen befähigt werden, Rohdaten in saubere Analysen, klare Visualisierungen und belastbare Erkenntnisse umzusetzen, um Annahmen zu prüfen und bessere Entscheidungen zu treffen.</p>
+        <section id="einstieg">
+          <p class="statement">Wann habt ihr zuletzt<br>eine Entscheidung<br>auf Basis von Zahlen getroffen,<br>die ihr selbst <em><u>nicht</u></em><br>nachprüfen konntet?</p>
         </section>
-        <section data-auto-animate>
-          <h2 data-id="motivation">Motivation</h2>
+        <section id="warum">
+          <h2>Drei Gründe,<br>warum sich Datenanalyse lohnt</h2>
+          <div class="reasons reasons-large">
+            <span class="fragment"><span class="num">1</span>Marktwert</span>
+            <span class="fragment"><span class="num">2</span>Unabhängigkeit</span>
+            <span class="fragment"><span class="num">3</span>Erkenntnis</span>
+          </div>
         </section>
-        <section data-auto-animate>
-          <h2 data-id="motivation" style="font-size: 1.3em;">Motivation #1</h2>
-          <img data-src="assets/1-1-glassdoor.png" style="max-width: 80%;">
+        <section id="grund-marktwert">
+          <div class="reasons">
+            <span class="active"><span class="num">1</span>Marktwert</span>
+            <span><span class="num">2</span>Unabhängigkeit</span>
+            <span><span class="num">3</span>Erkenntnis</span>
+          </div>
+          <h2>Datenkompetenz ist gefragt<br>und wird bezahlt</h2>
+          <p class="chart-subtitle">Ausgeschriebenes Jahresgehalt, gleicher Beruf mit und ohne SQL, Großbritannien</p>
+          <div id="salary-chart" class="chart"></div>
+          <blockquote class="quote">„Marketing-Manager mit SQL-Kenntnissen verdienen 41&nbsp;% mehr als jene ohne.“
+            <cite>Burning Glass (2019), USA</cite></blockquote>
+          <p class="source">Quellen: Burning Glass Technologies im Auftrag des UK Department for Digital, Culture, Media &amp; Sport (2019):
+            <em>No Longer Optional: Employer Demand for Digital Skills</em>, S.&nbsp;55 ·
+            Burning Glass Technologies (2019): <em>The Hybrid Job Economy</em>, S.&nbsp;4 (übersetzt)</p>
         </section>
-        <section data-auto-animate>
-          <h2 data-id="motivation">Motivation #2: Unabhängigkeit</h2>
+        <section id="grund-unabhaengigkeit">
+          <div class="reasons">
+            <span><span class="num">1</span>Marktwert</span>
+            <span class="active"><span class="num">2</span>Unabhängigkeit</span>
+            <span><span class="num">3</span>Erkenntnis</span>
+          </div>
+          <h2>Wer selbst analysieren kann,<br>muss nicht warten</h2>
+          <table class="compare">
+            <thead>
+              <tr><th>Ohne Datenkompetenz</th><th>Mit Datenkompetenz</th></tr>
+            </thead>
+            <tbody>
+              <tr class="fragment"><td>Anfrage an BI/IT, zwei Wochen warten</td><td>20 Minuten, eine SQL-Abfrage</td></tr>
+              <tr class="fragment"><td>Die Antwort trifft die Frage nur halb</td><td>Nachfragen und weiterbohren</td></tr>
+              <tr class="fragment"><td>Abhängig von Team und Organisation</td><td>Wechsel in andere Branchen, remote, selbstständig</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="grund-erkenntnis">
+          <div class="reasons">
+            <span><span class="num">1</span>Marktwert</span>
+            <span><span class="num">2</span>Unabhängigkeit</span>
+            <span class="active"><span class="num">3</span>Erkenntnis</span>
+          </div>
+          <h2>Welche Kampagne war erfolgreicher?</h2>
+          <table class="compare compare-numbers">
+            <thead>
+              <tr><th>Kampagne</th><th>Conversions gesamt</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>210 / 3.000 = <strong>7&nbsp;%</strong></td></tr>
+              <tr><td>B</td><td>300 / 2.500 = <strong>12&nbsp;%</strong></td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="grund-erkenntnis-aufloesung">
+          <div class="reasons">
+            <span><span class="num">1</span>Marktwert</span>
+            <span><span class="num">2</span>Unabhängigkeit</span>
+            <span class="active"><span class="num">3</span>Erkenntnis</span>
+          </div>
+          <h2>Wer selbst analysiert,<br>versteht, statt zu glauben</h2>
+          <table class="compare compare-numbers">
+            <thead>
+              <tr><th>Kampagne</th><th>Gesamt</th><th class="fragment" data-fragment-index="1">Desktop</th><th class="fragment" data-fragment-index="2">Mobile</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>210 / 3.000 = 7&nbsp;%</td><td class="fragment" data-fragment-index="1">90 / 600 = <strong class="win">15&nbsp;%</strong></td><td class="fragment" data-fragment-index="2">120 / 2.400 = <strong class="win">5&nbsp;%</strong></td></tr>
+              <tr><td>B</td><td>300 / 2.500 = 12&nbsp;%</td><td class="fragment" data-fragment-index="1">280 / 2.000 = 14&nbsp;%</td><td class="fragment" data-fragment-index="2">20 / 500 = 4&nbsp;%</td></tr>
+            </tbody>
+          </table>
           <ul>
-            <li>Aufstiegs-, Wechselchancen, Branchenmobilität</li>
-            <li>Operative Unabhängigkeit innerhalb der Organisation</li>
-            <li>Flexibilität in der Arbeitsweise: Remote/projektbasiertes Arbeiten</li>
-            <li>Möglichkeit zu Nebentätigkeiten/Selbstständigkeit</li>
+            <li class="fragment" data-fragment-index="3">A ist in <strong>beiden</strong> Segmenten besser.</li>
+            <li class="fragment" data-fragment-index="4">B liegt gesamt nur vorne, weil 80&nbsp;% seiner Kontakte vom besser konvertierenden Desktop kommen.</li>
           </ul>
         </section>
-        <section data-auto-animate>
-          <h2 data-id="motivation">Motivation #3: Erkenntnis</h2>
+        <section id="zielsetzung">
+          <div class="reasons reasons-large reasons-summary">
+            <span><span class="num">1</span>Marktwert</span>
+            <span><span class="num">2</span>Unabhängigkeit</span>
+            <span><span class="num">3</span>Erkenntnis</span>
+          </div>
+          <h2 class="fragment" data-fragment-index="1">Ziel des Kurses</h2>
+          <p class="fragment goal" data-fragment-index="1">Rohdaten in saubere Analysen, klare Visualisierungen<br>und belastbare Erkenntnisse umsetzen,<br>um Annahmen zu prüfen<br>und bessere Entscheidungen zu treffen.</p>
         </section>
       </section>
 
       <section>
-        <section data-markdown>
+        <section id="methoden" data-markdown>
           <textarea data-template>
             ## Methoden
           </textarea>
         </section>
-        <section data-auto-animate>
+        <section id="dialog" data-auto-animate>
           <h2>Dialog</h2>
-          <img data-src="assets/1-2-1-dialog.png" style="max-width: 70%;">
+          <img data-src="assets/1-1-1-dialog.png" style="max-width: 70%;">
         </section>
-        <section data-auto-animate>
+        <section id="interaktivitaet" data-auto-animate>
           <h2>Interaktivität</h2>
-          <img data-src="assets/1-2-2-hands-on.png" style="max-width: 70%;">
+          <img data-src="assets/1-1-2-hands-on.png" style="max-width: 70%;">
         </section>
-        <section data-auto-animate>
+        <section id="gruppenarbeit" data-auto-animate>
           <h2>Gruppenarbeit</h2>
-          <img data-src="assets/1-2-3-group-work.png" style="max-width: 70%;">
+          <img data-src="assets/1-1-3-group-work.png" style="max-width: 70%;">
         </section>
       </section>
 
       <section>
-        <section data-markdown>
-          <textarea data-template>
-            <h2>Leistungsbeurteilung</h2>
-            <ul>
-              <li class="fragment" data-fragment-index="1">2 Gruppenarbeiten <span class="fragment" data-fragment-index="4" style="color: #e2001a;">(~40% der Note)</span></li>
-              <li class="fragment" data-fragment-index="2">Abgabegespräche<span class="fragment" data-fragment-index="3">:</span>
-                <ul>
-                  <li class="fragment" data-fragment-index="3">Individuelle Fragen zur Gruppenarbeit  <span class="fragment" data-fragment-index="4" style="color: #e2001a;">(~30%)</span></li>
-                  <li class="fragment" data-fragment-index="3">Individuelle Verständnisfragen zu Kursinhalten <span class="fragment" data-fragment-index="4" style="color: #e2001a;">(~30%)</span></li>
-                </ul>
-              </li>
-            </ul>
-          </textarea>
+        <section id="inhalte">
+          <h2>Inhalte</h2>
+          <ol class="units">
+            <li><span class="num">1</span>Grundlagen: Skalenniveaus und Datenarten</li>
+            <li><span class="num">2</span>Datenbanken und SQL</li>
+            <li><span class="num">3</span>Programmieren mit Python</li>
+            <li><span class="num">4</span>Datenanalyse mit pandas</li>
+            <li><span class="num">5</span>Visualisierung mit Altair</li>
+            <li class="outlook"><span class="num">+</span>Ausblick: Statistische Methoden und AI</li>
+          </ol>
+        </section>
+        <section id="anspruch">
+          <h2>Mitreden und selbst anpacken</h2>
+          <p class="not-goal">Nicht das Ziel: Programmieren als Beruf<br>oder ein Doktorat in Statistik</p>
+          <ul class="goal-list">
+            <li class="fragment">Verstehen, wie Programme und Datenbanken arbeiten</li>
+            <li class="fragment">Alles einmal selbst gemacht haben</li>
+            <li class="fragment">Auf Augenhöhe mit IT- und Datenteams sprechen</li>
+            <li class="fragment">Kleinere Auswertungen selbst erledigen</li>
+          </ul>
+        </section>
+        <section id="inhalt-sql">
+          <h2>Datenbanken und SQL</h2>
+          <img data-src="assets/1-2-1-sql.svg" alt="SQL-Abfrage, Datenbank und Ergebnis" style="width: 100%;">
+        </section>
+        <section id="inhalt-python">
+          <h2>Python und pandas</h2>
+          <img data-src="assets/1-2-2-python.svg" alt="Python-Notebook mit pandas" style="width: 92%;">
+        </section>
+        <section id="inhalt-visualisierung">
+          <h2>Visualisierung mit Altair</h2>
+          <img data-src="assets/1-2-3-vis.svg" alt="Altair-Code und Balkendiagramm" style="width: 100%;">
+        </section>
+        <section id="inhalt-statistik">
+          <h2>Ausblick:<br>Statistische Methoden und AI</h2>
+          <img data-src="assets/1-2-4-stats.svg" alt="Statistik und AI" style="width: 100%;">
         </section>
       </section>
 
-      <section
+      <section>
+        <section id="leistungsbeurteilung">
+          <h2>Leistungsbeurteilung</h2>
+          <ul class="grading">
+            <li class="fragment" data-fragment-index="1">2 Gruppenübungen <span class="fragment pct" data-fragment-index="4">40&nbsp;%</span></li>
+            <li class="fragment" data-fragment-index="2">Abgabegespräche:
+              <ul>
+                <li class="fragment" data-fragment-index="3">Individuelle Fragen zur Gruppenübung <span class="fragment pct" data-fragment-index="4">30&nbsp;%</span></li>
+                <li class="fragment" data-fragment-index="3">Individuelle Verständnisfragen zu Kursinhalten <span class="fragment pct" data-fragment-index="4">30&nbsp;%</span></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="kalender"
         data-markdown="assets/1-calendar.md"
         data-separator="^\n\n\n"
         data-separator-vertical="^\n\n"
@@ -100,201 +206,161 @@
         data-charset="utf-8"
       >
       </section>
-      
-      <section>
-        <h1>Übungsgruppen</h1>
+
+      <section id="uebungsgruppen">
+        <h2>Übungsgruppen</h2>
         <ul>
-          <li>10 Gruppen zu 4 Personen</li>
-          <li>Gruppenslots ab morgen in Moodle belegbar</li>
+          <li>Gruppen zu je 4 Personen</li>
+          <li>Einteilung über Moodle</li>
+          <li>Gemeinsam lösen, einzeln erklären können</li>
         </ul>
       </section>
 
       <section>
-        <section>
-          <h2>Inhalte</h2>
-          <ul>
-            <li>Grundlagen der Datenanalyse und Excel</li>
-            <li>Datenbanken und SQL</li>
-            <li>Datenanalyse mit Python</li>
-            <li>Datenvisualisierung</li>
-            <li>Statistische Methoden und AI</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Grundlagen der Datenanalyse und Excel</h2>
-          <img data-src="assets/1-3-1-excel.png" style="max-width: 80%;">
-        </section>
-        <section>
-          <h2>Datenbanken und SQL</h2>
-          <img data-src="assets/1-3-2-database.png" style="max-width: 80%;">
-        </section>
-        <section>
-          <h2>Datenanalyse mit Python</h2>
-          <img data-src="assets/1-3-3-python.png" style="max-width: 80%;">
-        </section>
-        <section>
-          <h2>Datenvisualisierung</h2>
-          <img data-src="assets/1-3-4-vis.png" style="max-width: 80%;">
-        </section>
-        <section>
-          <h2>Statistische Methoden und AI</h2>
-          <img data-src="assets/1-3-5-stats.png" style="max-width: 80%;">
-        </section>
-      </section>
-      
-      <section>
-        <section>
+        <section id="ueber-mich">
           <h2>Über mich</h2>
-          <ul>
-            <li>TU Wien (Informatik), WU Wien (BWL)</li>
-            <li>Columbia University (Machine Learning)</li>
-            <li>Investment Bank, Hedge Fonds (London)</li>
-            <li>Asset Management (Wien)</li>
-            <li>Steuerberatung & Datenanalyse-Agentur (Wien)</li>
-          </ul>
+          <p class="subtitle">Was Datenkompetenz mir ermöglicht hat</p>
+          <div class="path">
+            <div class="station"><strong>Studium</strong><div class="body"><span>TU Wien (Informatik)</span><span>WU Wien (BWL)</span><span>Columbia University<br>(Machine Learning)</span></div></div>
+            <div class="arrow">›</div>
+            <div class="station"><strong>London</strong><div class="body"><span>Investment Bank</span><span>Hedgefonds</span></div></div>
+            <div class="arrow">›</div>
+            <div class="station"><strong>Wien</strong><div class="body"><span>Asset Management<br>(Co-Founder)</span></div></div>
+            <div class="arrow">›</div>
+            <div class="station"><strong>Selbstständig</strong><div class="body"><span>Steuerberatung</span><span>Datenanalyse-Agentur</span></div></div>
+          </div>
+          <div class="reasons path-reason fragment">
+            <span class="active"><span class="num">2</span>Unabhängigkeit</span>
+          </div>
         </section>
-        <section>
+        <section id="ueber-euch">
           <h2>Über euch</h2>
+          <p class="subtitle">Kurze Umfrage</p>
+          <ul class="survey">
+            <li><strong>Beruf</strong> neben dem Studium</li>
+            <li><strong>Excel</strong></li>
+            <li><strong>Datenbanken</strong></li>
+            <li><strong>Programmieren</strong></li>
+          </ul>
+          <p class="survey-scale">Vorkenntnisse jeweils: keine, Grundlagen, fortgeschritten</p>
         </section>
       </section>
 
       <section>
-        <section>
-          <h2>Skalenniveaus<em> (nach S. Stephens)</em></h2>
+        <section id="skalenniveaus">
+          <h2>Skalenniveaus <em>(nach S.&nbsp;S.&nbsp;Stevens)</em></h2>
           <ol>
             <li class="fragment" data-fragment-index="1">
-              <strong>Nominal</strong><span class="fragment" data-fragment-index="2">: Kategorien ohne Ordnungsrelation</span>
-              <ul class="fragment" data-fragment-index="3"><li><em>Beispiele: Geschlecht, Nationalität</em></li></ul>
+              <strong>Nominal</strong><span class="fragment" data-fragment-index="2">: Kategorien ohne Reihenfolge</span>
+              <ul class="fragment" data-fragment-index="3"><li><em>Beispiele: Beruf, Branche, Vertriebskanal</em></li></ul>
             </li>
             <li class="fragment" data-fragment-index="4">
-              <strong>Ordinal</strong><span class="fragment" data-fragment-index="5">: + Ordnungsrelation</span>
-              <ul class="fragment" data-fragment-index="6"><li><em>Beispiele: Schulnoten, Rangordnung</em></li></ul>
+              <strong>Ordinal</strong><span class="fragment" data-fragment-index="5">: + Reihenfolge</span>
+              <ul class="fragment" data-fragment-index="6"><li><em>Beispiele: Vorkenntnisse, Schulnoten, Zufriedenheit</em></li></ul>
             </li>
             <li class="fragment" data-fragment-index="7">
-              <strong>Intervall</strong><span class="fragment" data-fragment-index="8">: + (konstante) Abstände</span>
-              <ul class="fragment" data-fragment-index="9"><li><em>Beispiele: Temperatur in Celsius, Datum</em></li></ul>
+              <strong>Intervall</strong><span class="fragment" data-fragment-index="8">: + gleiche Abstände</span>
+              <ul class="fragment" data-fragment-index="9"><li><em>Beispiele: Temperatur in °C, Kalenderjahr</em></li></ul>
             </li>
             <li class="fragment" data-fragment-index="10">
-              <strong>Verhältnis</strong><span class="fragment" data-fragment-index="11">: + absoluten Nullpunkt</span>
-              <ul class="fragment" data-fragment-index="12"><li><em>Beispiele: Gewicht, Einkommen</em></li></ul>
+              <strong>Verhältnis</strong><span class="fragment" data-fragment-index="11">: + absoluter Nullpunkt</span>
+              <ul class="fragment" data-fragment-index="12"><li><em>Beispiele: Umsatz, Alter, Anzahl Bestellungen</em></li></ul>
             </li>
           </ol>
         </section>
       </section>
 
-
-
       <section>
-        <section>
+        <section id="datenarten">
           <h2>Arten von Daten</h2>
         </section>
-        <section>
+        <section id="tabellarisch">
           <h2>Tabellarische Daten</h2>
           <ul>
             <li class="fragment" data-fragment-index="1">
-              <strong>Definition und Struktur</strong><span>:</span>
+              <strong>Struktur</strong>:
               <ul><li>Eine Zeile = eine Beobachtung</li></ul>
-              <ul><li>Spalten = unterschiedliche Attribute der Beobachtung</li></ul>
+              <ul><li>Spalten = Merkmale der Beobachtung</li></ul>
             </li>
             <li class="fragment" data-fragment-index="2">
-              <strong>Typische Operationen</strong><span>:</span>
+              <strong>Typische Operationen</strong>:
               <ul><li>Filtern, Sortieren, Gruppieren, Aggregieren (Summe, Mittelwert)</li></ul>
             </li>
             <li class="fragment" data-fragment-index="3">
-              <strong>Dateiformate</strong><span>:</span>
-              <ul><li>.csv, .tsv, .txt., .xlsx</li></ul>
+              <strong>Dateiformate</strong>:
+              <ul><li>.csv, .tsv, .txt, .xlsx</li></ul>
             </li>
             <li class="fragment" data-fragment-index="4">
-              <strong>Tools</strong><span>:</span>
-              <ul><li>Excel/Sheets, Python</li></ul>
+              <strong>Werkzeuge</strong>:
+              <ul><li>Excel, Google Sheets, SQL, Python (pandas)</li></ul>
             </li>
           </ul>
         </section>
-        <section>
+        <section id="csv">
           <h2>Tabellarische Daten (CSV-Datei)</h2>
-          <img data-src="assets/1-4-1-csv.png" style="max-width: 70%;">
+          <img data-src="assets/1-3-1-csv.png" style="max-width: 70%;">
         </section>
-        <section>
-          <h2>Semi-strukturierte Daten</h2>
+        <section id="semistrukturiert">
+          <h2>Semistrukturierte Daten</h2>
           <ul>
             <li class="fragment" data-fragment-index="1">
-              <strong>Definition und Struktur</strong><span>:</span>
-              <ul><li>Selbst-beschreibende Dokumente mit Schemadefinition</li></ul>
+              <strong>Struktur</strong>:
+              <ul><li>Selbstbeschreibend: Feldnamen stehen in den Daten</li></ul>
+              <ul><li>Verschachtelt, Schema optional</li></ul>
             </li>
             <li class="fragment" data-fragment-index="2">
-              <strong>Typische Operationen</strong><span>:</span>
-              <ul><li>Einlesen, Validieren, Bearbeiten (Transformieren, Darstellen)</li></ul>
+              <strong>Typische Operationen</strong>:
+              <ul><li>Einlesen, Validieren, Umwandeln in Tabellen</li></ul>
             </li>
             <li class="fragment" data-fragment-index="3">
-              <strong>Dateiformate</strong><span>:</span>
+              <strong>Dateiformate</strong>:
               <ul><li>.json, .xml, .html, .yaml</li></ul>
             </li>
             <li class="fragment" data-fragment-index="4">
-              <strong>Tools</strong><span>:</span>
-              <ul><li>Formatspezifische Tools</li></ul>
+              <strong>Werkzeuge</strong>:
+              <ul><li>Browser, Texteditor, Python</li></ul>
             </li>
           </ul>
         </section>
-        <section>
-          <h2>Semi-strukturierte Daten (XML)</h2>
-          <img data-src="assets/1-4-2-xml.png" style="max-width: 70%;">
+        <section id="xml">
+          <h2>Semistrukturierte Daten (XML)</h2>
+          <img data-src="assets/1-3-2-xml.png" style="max-width: 70%;">
         </section>
-        <section>
-          <h2>Semi-strukturierte Daten (HTML)</h2>
-          <img data-src="assets/1-4-3-html.png" style="width: 70%;">
+        <section id="html">
+          <h2>Semistrukturierte Daten (HTML)</h2>
+          <img data-src="assets/1-3-3-html.png" style="width: 70%;">
         </section>
-        <section>
-          <h2>Bilddaten</h2>
+        <section id="textdaten">
+          <h2>Unstrukturierte Daten (Text)</h2>
           <ul>
             <li class="fragment" data-fragment-index="1">
-              <strong>Definition und Struktur</strong><span>:</span>
-              <ul><li>Pixelbasiert: 2D-Array von Pixeln (H×B×F)</li></ul>
-              <ul><li>Vektorbasiert: Vektorobjekte (z.B. SVG)</li></ul>
+              <strong>Struktur</strong>:
+              <ul><li>Freitext ohne festes Schema</li></ul>
+              <ul><li>Beispiele: E-Mails, Kundenbewertungen, Postings</li></ul>
             </li>
             <li class="fragment" data-fragment-index="2">
-              <strong>Metadaten</strong><span>:</span> (z.B. EXIF-Daten)
+              <strong>Typische Operationen</strong>:
+              <ul><li>Suchen, Zählen, Kategorisieren, Stimmung erkennen</li></ul>
             </li>
             <li class="fragment" data-fragment-index="3">
-              <strong>Dateiformate</strong><span>:</span>
-              <ul><li>.jpg, .png, .gif, .svg</li></ul>
+              <strong>Dateiformate</strong>:
+              <ul><li>.txt, .docx, .pdf</li></ul>
             </li>
             <li class="fragment" data-fragment-index="4">
-              <strong>Tools</strong><span>:</span>
-              <ul><li>Browser, Photoshop, GIMP, Inkscape</li></ul>
+              <strong>Werkzeuge</strong>:
+              <ul><li>Texteditor, Python, KI-Sprachmodelle</li></ul>
             </li>
           </ul>
         </section>
       </section>
 
       <section>
-        <section>
-          <h2>Komponenten einer Datenbank</h2>
-          <img data-src="assets/1-5-db-architecture.png" style="max-width: 80%; margin: 0;">
-        </section>
-        <section>
-          <h2>Entity-Relationship Diagramm</h2>
-          <img data-src="assets/1-6-er.jpg" style="max-width: 80%; margin: 0;">
-        </section>
-        <section>
-          <h2>Architektur einer Webapplikation</h2>
-          <img data-src="assets/1-7-1-architecture.png" style="max-width: 70%; margin: 0;">
-          <img data-src="assets/1-7-2-website.png" style="max-width: 70%; margin: 0;">
-        </section>
-      </section>
-      
-      <section>
-        <section>
+        <section id="fragen">
           <h2>Fragen?</h2>
         </section>
-        <section>
-          <h2>Nächste Schritte</h2>
-            <ul>
-              <li>Gruppenslots in Moodle buchen</li>
-              <li>Folien & Materialien auf Moodle (1 Woche vor nächster Einheit)</li>
-            </ul>
-        </section>
-        <section>
-          <h2>Danke und schönen Abend!</h2>
+        <section id="weiter-sql">
+          <h2>Nach der Pause:<br>Datenbanken und SQL</h2>
+          <p><a href="2-sql.html">Weiter zu den SQL-Folien</a></p>
         </section>
       </section>
     </div>
@@ -309,6 +375,11 @@
       hash: true
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0/build/vega.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0/build/vega-lite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0/build/vega-embed.min.js"></script>
+  <script src="assets/1-salary-chart.js"></script>
+  <script src="assets/notes.js"></script>
 </body>
 
 </html>
