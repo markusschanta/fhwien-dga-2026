@@ -232,6 +232,41 @@
       color: var(--on-accent);
     }
 
+    .links .placeholder {
+      display: inline-block;
+      padding: 3px 13px;
+      border: 1px dashed var(--muted);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: default;
+      position: relative;
+    }
+
+    .links .placeholder::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 6px);
+      transform: translateX(-50%);
+      z-index: 1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    .links .placeholder:hover::after {
+      opacity: 1;
+    }
+
     a:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -509,7 +544,7 @@
           <div>
             <h3>Intro</h3>
             <div class="links">
-              <a href="slides/1-intro.html">Folien</a>
+              <a href="slides/1-intro.html">Folien (HTML)</a>
             </div>
           </div>
         </li>
@@ -529,9 +564,9 @@
           <div>
             <h3>Python</h3>
             <div class="links">
-              <a href="slides/3-python.html">Folien (HTML)</a>
-              <a href="slides/3-python.pdf">Folien (PDF)</a>
-              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/3-python.ipynb">Notebook (Colab)</a>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (HTML)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (PDF)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Notebook (Colab)</span>
             </div>
           </div>
         </li>
@@ -540,9 +575,9 @@
           <div>
             <h3>Pandas</h3>
             <div class="links">
-              <a href="slides/4-pandas.html">Folien (HTML)</a>
-              <a href="slides/4-pandas.pdf">Folien (PDF)</a>
-              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/4-pandas.ipynb">Notebook (Colab)</a>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (HTML)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (PDF)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Notebook (Colab)</span>
             </div>
           </div>
         </li>
@@ -551,9 +586,9 @@
           <div>
             <h3>Altair</h3>
             <div class="links">
-              <a href="slides/5-altair.html">Folien (HTML)</a>
-              <a href="slides/5-altair.pdf">Folien (PDF)</a>
-              <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/5-altair.ipynb">Notebook (Colab)</a>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (HTML)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Folien (PDF)</span>
+              <span class="placeholder" data-tip="folgt demnächst">Notebook (Colab)</span>
             </div>
           </div>
         </li>
