@@ -420,3 +420,45 @@
   font-size: 0.7em;
   margin: 0 0 0.4em;
 }
+
+/* Eingebetteter SQL-Editor */
+.reveal iframe.sql-editor {
+  width: 100%;
+  height: 540px;
+  margin: 0;
+  border: 1px solid #c9c0dc;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.reveal iframe.sql-editor-exercise { height: 470px; }
+
+.reveal p.exercise-task {
+  margin: 0 0 0.5em;
+  font-size: 0.8em;
+}
+
+.reveal .exercise-count {
+  margin-left: 0.3em;
+  color: #a89bc9;
+  font-size: 0.6em;
+  font-weight: 600;
+}
+
+/* Im PDF (Druckansicht) statt des interaktiven Editors nur einen Hinweis zeigen */
+.reveal .editor-print-hint { display: none; }
+
+html.print-pdf .reveal iframe.sql-editor { display: none; }
+
+html.print-pdf .reveal .editor-print-hint {
+  display: block;
+  margin: 1.5em auto 0;
+  padding: 1em;
+  max-width: 80%;
+  border: 2px dashed #c9c0dc;
+  border-radius: 12px;
+  color: #503795;
+  font-size: 0.6em;
+}
+
+.reveal .nowrap { white-space: nowrap; }

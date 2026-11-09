@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SQL-Editor · Datengewinnung &amp; -aufbereitung</title>
+  <link rel="icon" type="image/png" href="../slides/assets/0-logo-fh.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="editor.css">
+</head>
+
+<body>
+  <header class="toolbar">
+    <span class="app-title">SQL-Editor</span>
+    <span class="spacer"></span>
+    <button id="toggle-er" type="button" title="ER-Diagramm ein- oder ausblenden">ER-Diagramm</button>
+    <button id="reset" type="button" title="Abfrage und Datenbank in den Ausgangszustand zurücksetzen">Zurücksetzen</button>
+    <a id="popout" class="button" href="index.html" target="_blank" rel="noopener" title="Editor in einem eigenen Fenster öffnen">↗ Eigenes Fenster</a>
+  </header>
+
+  <div class="panes">
+    <section class="pane pane-er" aria-label="ER-Diagramm">
+      <div class="pane-head">
+        <span>Datenbank <span class="er-hint">Klick auf eine Tabelle zeigt ihren Inhalt</span></span>
+        <span class="pane-tools">
+          <button id="zoom-out" type="button" title="Verkleinern">−</button>
+          <button id="zoom-in" type="button" title="Vergrößern">+</button>
+        </span>
+      </div>
+      <div class="pane-body er-body">
+        <div id="er" class="er">ER-Diagramm wird geladen …</div>
+      </div>
+    </section>
+
+    <div class="gutter gutter-h" id="gutter-h" role="separator" aria-orientation="horizontal" aria-label="Höhe des ER-Diagramms ändern" tabindex="0"><span class="grip"></span></div>
+
+    <section class="pane pane-editor" aria-label="Abfrage">
+      <div class="pane-head">
+        <span>Abfrage</span>
+        <span class="head-actions">
+          <select id="examples" aria-label="Beispiel aus den Folien laden" title="Beispiel aus den Folien laden">
+            <option value="">Beispiele</option>
+          </select>
+          <button id="solution" type="button" title="Musterlösung einfügen und ausführen" hidden>Lösung</button>
+          <button id="run" class="primary" type="button" title="Abfrage ausführen (Shift + Enter, auch Strg + Enter bzw. ⌘ + Enter)">▶ Ausführen <span class="kbd">Shift + Enter</span></button>
+        </span>
+      </div>
+      <div class="pane-body editor-body">
+        <textarea id="sql" spellcheck="false"></textarea>
+      </div>
+    </section>
+
+    <div class="gutter gutter-v" id="gutter-v" role="separator" aria-orientation="vertical" aria-label="Breite von Abfrage und Ergebnis ändern" tabindex="0"><span class="grip"></span></div>
+
+    <section class="pane pane-result" aria-label="Ergebnis">
+      <div class="pane-head"><span>Ergebnis</span><span id="status" class="status"></span></div>
+      <div id="result" class="pane-body result-body">
+        <p class="placeholder">Datenbank wird geladen …</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="beispiele.js"></script>
+  <script src="editor.js"></script>
+</body>
+
+</html>

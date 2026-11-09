@@ -102,10 +102,10 @@
               ``` 
           </textarea>
         </section>
-        <section id="w3schools">
-          <h2>W3Schools SQL Editor</h2>
-          <p class="editor-link"><a href="https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all" target="_blank" rel="noopener">w3schools.com/sql/trysql.asp</a></p>
-          <img data-src="assets/2-3-w3schools-editor.png" style="max-width: 75%; margin: 0;">
+        <section id="sql-editor">
+          <h2>SQL-Editor</h2>
+          <iframe class="sql-editor" data-src="../sql-editor/index.html?er=0&amp;q=SELECT%20*%0AFROM%20Customers" title="SQL-Editor"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
         <section id="select-1" data-markdown>
           <textarea data-template>
@@ -201,6 +201,12 @@
               <!-- .element: class="fragment" -->
           </textarea>
         </section>
+        <section id="where-uebung-1">
+          <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">1/4</span></h2>
+          <p class="exercise-task">Name und Preis aller Produkte unter 10 ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20unter%2010%20ausgeben%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3C%2010" title="SQL-Editor für Aufgabe 1"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
         <section id="where-strings" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>: Operatoren für Text
@@ -228,6 +234,12 @@
               <!-- .element: class="fragment" --> 
           </textarea>
         </section>
+        <section id="where-uebung-2">
+          <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">2/4</span></h2>
+          <p class="exercise-task">Alle Kunden aus London ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Alle%20Kunden%20aus%20London%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20City%20%3D%20%27London%27" title="SQL-Editor für Aufgabe 2"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
         <section id="and-or-not" data-markdown>
           <textarea data-template>
             ## Mehrere Bedingungen verknüpfen
@@ -249,6 +261,12 @@
               ```
               <!-- .element: class="fragment" --> 
           </textarea>
+        </section>
+        <section id="where-uebung-3">
+          <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">3/4</span></h2>
+          <p class="exercise-task">Alle Kunden aus Spanien, Frankreich oder Italien ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Alle%20Kunden%20aus%20Spanien%2C%20Frankreich%20oder%20Italien%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20IN%20%28%27Spain%27%2C%20%27France%27%2C%20%27Italy%27%29" title="SQL-Editor für Aufgabe 3"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
         <section id="where-4" data-markdown>
           <textarea data-template>
@@ -274,15 +292,11 @@
               <!-- .element: class="fragment" --> 
           </textarea>
         </section>
-        <section id="where-uebung">
-          <h2>Übung: <code class="hljs-keyword">WHERE</code></h2>
-          <ol class="exercise">
-            <li>Name und Preis aller Produkte unter 10 ausgeben</li>
-            <li>Alle Kunden aus London ausgeben</li>
-            <li>Alle Kunden aus Spanien, Frankreich oder Italien ausgeben</li>
-            <li>Alle Kunden aus Deutschland ausgeben,<br>deren Name mit „B“ beginnt</li>
-          </ol>
-          <p class="exercise-hint">Im W3Schools SQL Editor ausprobieren</p>
+        <section id="where-uebung-4">
+          <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">4/4</span></h2>
+          <p class="exercise-task">Alle Kunden aus Deutschland ausgeben, deren Name mit „B“ beginnt</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%204%3A%20Alle%20Kunden%20aus%20Deutschland%20ausgeben%2C%20deren%20Name%20mit%20%E2%80%9EB%E2%80%9C%20beginnt%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27Germany%27%20AND%20CustomerName%20LIKE%20%27B%25%27" title="SQL-Editor für Aufgabe 4"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
 
@@ -327,14 +341,23 @@
             * <!-- .element: class="fragment" --> In anderen Datenbanksystemen (z.&nbsp;B. MySQL, SQLite):<br><code class="hljs-keyword">LIMIT 5</code> am Ende der Abfrage
           </textarea>
         </section>
-        <section id="uebung-abschluss">
-          <h2>Übung zum Abschluss</h2>
-          <ol class="exercise">
-            <li>Name und Preis aller Produkte der Kategorie 1 ausgeben,<br>die teuersten zuerst</li>
-            <li>Die 3 günstigsten Produkte ausgeben,<br>die mehr als 20 kosten</li>
-            <li>Name und Stadt aller Kunden aus den USA ausgeben,<br>alphabetisch nach Stadt sortiert</li>
-          </ol>
-          <p class="exercise-hint">Im W3Schools SQL Editor ausprobieren</p>
+        <section id="uebung-abschluss-1">
+          <h2>Übung zum Abschluss <span class="exercise-count">1/3</span></h2>
+          <p class="exercise-task">Name und Preis aller Produkte der Kategorie 1 ausgeben, die teuersten zuerst</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20der%20Kategorie%201%20ausgeben%2C%20die%20teuersten%20zuerst%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20CategoryID%20%3D%201%0AORDER%20BY%20Price%20DESC" title="SQL-Editor für Aufgabe 1"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section id="uebung-abschluss-2">
+          <h2>Übung zum Abschluss <span class="exercise-count">2/3</span></h2>
+          <p class="exercise-task">Die 3 günstigsten Produkte ausgeben, die mehr als 20 kosten</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Die%203%20g%C3%BCnstigsten%20Produkte%20ausgeben%2C%20die%20mehr%20als%2020%20kosten%0A%0A&amp;loesung=SELECT%20TOP%203%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3E%2020%0AORDER%20BY%20Price" title="SQL-Editor für Aufgabe 2"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section id="uebung-abschluss-3">
+          <h2>Übung zum Abschluss <span class="exercise-count">3/3</span></h2>
+          <p class="exercise-task">Name und Stadt aller Kunden aus den USA ausgeben, alphabetisch nach Stadt sortiert</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Name%20und%20Stadt%20aller%20Kunden%20aus%20den%20USA%20ausgeben%2C%20alphabetisch%20nach%20Stadt%20sortiert%0A%0A&amp;loesung=SELECT%20CustomerName%2C%20City%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27USA%27%0AORDER%20BY%20City" title="SQL-Editor für Aufgabe 3"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
 
@@ -348,7 +371,8 @@
           <ul>
             <li>Gruppeneinteilung in Moodle</li>
             <li>Folien auf der Kursseite (Link in Moodle)</li>
-            <li>Google-Konto erstellen, Colab aufrufen &amp; ausprobieren</li>
+            <li>Beispiele und Übungen im SQL-Editor wiederholen<br>(Link auf der Kursseite)</li>
+            <li>Für Teil 3 (Python): Google-Konto erstellen</li>
           </ul>
         </section>
         <section id="zwischenstopp-danke">
@@ -372,12 +396,6 @@
             * <code class="hljs-keyword">WHERE</code>: welche Zeilen
             * <code class="hljs-keyword">ORDER BY</code>: in welcher Reihenfolge
           </textarea>
-        </section>
-      </section>
-
-      <section>
-        <section id="colab">
-          <h2>SQL-Abfragen in Google Colab</h2>
         </section>
       </section>
 

@@ -1,0 +1,369 @@
+/* SQL-Editor: drei Spalten (ER-Diagramm, Abfrage, Ergebnis) */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --border: #e4e1ec;
+  --frame: #c9c0dc;
+  --gutter: #ebe8f2;
+  --text: #4d4d4d;
+  --muted: #75727d;
+  --accent: #503795;
+  --accent-soft: #efeaf8;
+  --keyword: #c2185b;
+  --string: #6d4fb3;
+  --number: #2f6f8f;
+  --error-bg: #fdecef;
+  --error: #a3123f;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans", system-ui, sans-serif;
+  font-size: 15px;
+  border-top: 4px solid var(--accent);
+}
+
+button, .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover, .button:hover { background: var(--accent-soft); }
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+button.primary:hover { opacity: 0.9; background: var(--accent); }
+
+button[aria-pressed="false"] { color: var(--muted); }
+
+/* Kopfzeile */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-title {
+  margin-right: 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hint { color: var(--muted); font-size: 0.8rem; }
+.spacer { flex: 1; }
+
+/* Spalten */
+
+.panes {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--ed-w, minmax(0, 1fr)) 10px minmax(0, 1fr);
+  grid-template-rows: var(--er-h, 60%) 10px minmax(0, 1fr);
+  grid-template-areas:
+    "er     er     er"
+    "hgut   hgut   hgut"
+    "editor vgut   result";
+}
+
+.pane-er { grid-area: er; }
+.pane-editor { grid-area: editor; }
+.pane-result { grid-area: result; }
+.gutter-h { grid-area: hgut; }
+.gutter-v { grid-area: vgut; }
+
+body.no-er .panes {
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "editor vgut result";
+}
+body.no-er .pane-er,
+body.no-er .gutter-h { display: none; }
+
+/* Trennbalken zum Verschieben */
+
+.gutter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gutter);
+  touch-action: none;
+  outline: none;
+}
+
+.gutter-h { cursor: row-resize; }
+.gutter-v { cursor: col-resize; }
+
+.gutter:hover,
+.gutter:focus-visible,
+body.resizing .gutter.active { background: var(--accent-soft); }
+
+/* Griff in der Mitte: drei Punkte */
+.gutter .grip {
+  display: block;
+  border-radius: 999px;
+  background-image: radial-gradient(circle, var(--muted) 1.6px, transparent 2.2px);
+}
+
+.gutter-h .grip { width: 34px; height: 6px; background-size: 11px 6px; }
+.gutter-v .grip { width: 6px; height: 34px; background-size: 6px 11px; }
+
+.gutter:hover .grip,
+.gutter:focus-visible .grip,
+body.resizing .gutter.active .grip {
+  background-image: radial-gradient(circle, var(--accent) 1.8px, transparent 2.4px);
+}
+
+body.resizing { user-select: none; }
+body.resizing.resizing-h { cursor: row-resize; }
+body.resizing.resizing-v { cursor: col-resize; }
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--frame);
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 36px;
+  padding: 4px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--frame);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pane-tools { display: flex; gap: 4px; }
+
+.head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pane-head button {
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+button[hidden], select[hidden] { display: none; }
+
+.pane-head button.primary {
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+button .kbd {
+  margin-left: 4px;
+  padding: 0 6px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.pane-head select {
+  flex: none;
+  width: 8.2em;            /* nur „Beispiele“ und Pfeil; die Liste öffnet sich breiter */
+  padding: 3px 28px 3px 12px;
+  border: 1px solid var(--frame);
+  border-radius: 999px;
+  background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23503795'/%3E%3C/svg%3E") no-repeat right 11px center;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.pane-head select:hover { background-color: var(--accent-soft); }
+.pane-tools button { padding: 0 10px; font-size: 1rem; line-height: 1.4; }
+
+.pane-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* ER-Diagramm */
+
+.er-body { padding: 10px; }
+
+.er { height: 100%; }
+
+/* Diagramm füllt die Höhe des Bereichs; mit Zoom größer und scrollbar */
+.er svg {
+  display: block;
+  height: calc(100% * var(--zoom, 1));
+  width: auto;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.er g.table { cursor: pointer; }
+.er g.table:hover rect:first-child { stroke-width: 3; }
+
+.er-hint {
+  margin-left: 10px;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Editor */
+
+.editor-body { overflow: hidden; }
+
+.CodeMirror {
+  height: 100%;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #3b2a70;
+}
+
+.CodeMirror-lines { padding: 12px 0; }
+.CodeMirror pre.CodeMirror-line { padding: 0 14px; }
+.cm-s-default .cm-keyword { color: var(--keyword); font-weight: 700; }
+.cm-s-default .cm-builtin { color: var(--keyword); }
+.cm-s-default .cm-string { color: var(--string); }
+.cm-s-default .cm-number { color: var(--number); }
+.cm-s-default .cm-comment { color: var(--muted); font-style: italic; }
+.cm-s-default .cm-operator { color: #3b2a70; }
+.cm-s-default .cm-variable-2, .cm-s-default .cm-variable-3 { color: #3b2a70; }
+.cm-s-default .cm-atom { color: var(--keyword); font-weight: 700; }
+
+/* Ergebnis */
+
+.status { text-transform: none; letter-spacing: 0; font-weight: 600; }
+
+.result-body { padding: 0; }
+
+.placeholder, .note {
+  margin: 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  margin: 12px;
+  padding: 10px 12px;
+  background: var(--error-bg);
+  border-left: 4px solid var(--error);
+  border-radius: 0 8px 8px 0;
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+table.result {
+  border-collapse: collapse;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+table.result th, table.result td {
+  padding: 5px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+table.result th {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+table.result td.num { text-align: right; }
+table.result td.null { color: var(--muted); font-style: italic; }
+table.result tr:nth-child(even) td { background: #faf9fc; }
+
+/* Eingebettet (z. B. auf Folien): kompakter */
+
+body.embedded { font-size: 14px; border-top-width: 0; }
+body.embedded .app-title { display: none; }
+body.embedded .CodeMirror { font-size: 14px; }
+body:not(.embedded) #popout { display: none; }
+
+/* Schmale Bildschirme: Spalten untereinander */
+
+@media (max-width: 860px) {
+  .panes, body.no-er .panes {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px minmax(220px, auto) minmax(260px, auto);
+    grid-template-areas: "er" "editor" "result";
+    overflow: auto;
+  }
+  .gutter { display: none; }
+  body.embedded .pane-editor { border-right: 0; border-bottom: 1px solid var(--frame); }
+  body.embedded .pane-result { border-left: 0; }
+  body.no-er .panes { grid-template-rows: minmax(220px, auto) minmax(260px, auto); grid-template-areas: "editor" "result"; }
+  .er-hint { display: none; }
+  .pane { border-bottom: 1px solid var(--border); }
+  .pane-editor { min-height: 220px; }
+  .hint { display: none; }
+}
+
+/* Tastenkürzel im Ausführen-Knopf nur bei großem Editor (nicht auf Folien) */
+@media (max-width: 1100px) {
+  button .kbd { display: none; }
+}
+
+/* Eingebettet: Die Folie zeichnet den äußeren Rahmen (mit runden Ecken).
+   Daher keine Rahmen der Bereiche an den Außenkanten, nur an den inneren Trennungen. */
+body.embedded .toolbar { border-bottom: 0; }
+body.embedded .pane { border-left: 0; border-right: 0; border-bottom: 0; }
+body.embedded .pane-editor { border-right: 1px solid var(--frame); }
+body.embedded .pane-result { border-left: 1px solid var(--frame); }
+body.embedded .pane-er { border-bottom: 1px solid var(--frame); }

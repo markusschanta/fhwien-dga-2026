@@ -34,7 +34,7 @@
         <li><a href="#tabellen">Tabellen, Zeilen, Spalten</a></li>
         <li><a href="#beziehungen">Schlüssel und Beziehungen</a></li>
         <li><a href="#sql">SQL: die Sprache der Datenbanken</a></li>
-        <li><a href="#werkzeuge">Werkzeuge im Kurs</a></li>
+        <li><a href="#werkzeuge">Der SQL-Editor</a></li>
         <li><a href="#select">Spalten auswählen: SELECT</a></li>
         <li><a href="#where">Zeilen filtern: WHERE</a></li>
         <li><a href="#order-by">Sortieren und begrenzen</a></li>
@@ -168,38 +168,29 @@ WHERE Country = 'Austria'</code></pre>
     <p>Die Datenbank nimmt die Abfrage entgegen (<em>Request</em>) und liefert ein Ergebnis zurück (<em>Response</em>). Wichtig: <strong>Das Ergebnis einer Abfrage ist immer wieder eine Tabelle</strong>, auch wenn sie nur eine Zeile oder eine Zahl enthält.</p>
 
     <h3>4.2. Dialekte</h3>
-    <p>Jedes Datenbanksystem spricht seinen eigenen <strong>Dialekt</strong> von SQL. Die Grundlagen sind überall gleich, in Details gibt es Unterschiede. Im Kurs begegnen uns zwei Systeme:</p>
+    <p>Jedes Datenbanksystem spricht seinen eigenen <strong>Dialekt</strong> von SQL. Die Grundlagen sind überall gleich, in Details gibt es Unterschiede, zum Beispiel:</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th></th><th>W3Schools-Editor<br>(Microsoft SQL Server)</th><th>Google Colab<br>(SQLite)</th></tr></thead>
+        <thead><tr><th></th><th>Microsoft SQL Server</th><th>MySQL, PostgreSQL, SQLite</th></tr></thead>
         <tbody>
           <tr><td>Anzahl der Ergebniszeilen begrenzen</td><td><code>SELECT TOP 5 …</code></td><td><code>… LIMIT 5</code> am Ende</td></tr>
-          <tr><td>Groß- und Kleinschreibung bei <code>=</code></td><td>wird ignoriert</td><td>wird beachtet</td></tr>
-          <tr><td>Tabelle der Bestellpositionen</td><td><code>OrderDetails</code></td><td><code>order_details</code></td></tr>
+          <tr><td>Groß- und Kleinschreibung bei <code>=</code></td><td>wird üblicherweise ignoriert</td><td>wird in SQLite und PostgreSQL beachtet</td></tr>
         </tbody>
       </table>
     </div>
+    <p>Der SQL-Editor des Kurses (Abschnitt <a href="#werkzeuge">5</a>) versteht beide Schreibweisen zum Begrenzen und ignoriert Groß- und Kleinschreibung bei Textvergleichen.</p>
 
     <!-- 5 -->
-    <h2 id="werkzeuge">5. Werkzeuge im Kurs</h2>
+    <h2 id="werkzeuge">5. Der SQL-Editor</h2>
 
-    <h3>5.1. W3Schools SQL Editor</h3>
-    <p>Für den Einstieg reicht ein Browser. Der <a href="https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all" target="_blank" rel="noopener">SQL Editor von W3Schools</a> enthält die Beispieldatenbank bereits. Die Abfrage wird in das Textfeld geschrieben und mit „Run SQL“ ausgeführt. Rechts listet der Editor alle Tabellen auf; ein Klick auf einen Tabellennamen zeigt ihren Inhalt.</p>
-
-    <figure>
-      <div class="frame"><img src="../slides/assets/2-3-w3schools-editor.png" alt="Der W3Schools SQL Editor mit Abfrage, Ergebnis und Tabellenliste"></div>
-      <figcaption>Abbildung 4: Der W3Schools SQL Editor. Oben die Abfrage, darunter das Ergebnis, rechts die Tabellen der Datenbank.</figcaption>
-    </figure>
-
-    <h3>5.2. Google Colab</h3>
-    <p>Im Notebook zu diesem Kapitel wird dieselbe Datenbank geladen. Abfragen werden dort als Text in einer Variablen gespeichert und mit der Bibliothek pandas ausgeführt. Das Ergebnis erscheint als Tabelle unter der Zelle:</p>
-<pre><code class="language-python">SQL = """
-SELECT CustomerName
-FROM Customers
-"""
-
-pd.read_sql_query(SQL, db)</code></pre>
-    <p>Alle Abfragen in diesem Skriptum funktionieren in beiden Werkzeugen, sofern nicht ausdrücklich auf einen Unterschied hingewiesen wird.</p>
+    <p>Zum Ausprobieren reicht ein Browser. Der <a href="../sql-editor/" target="_blank" rel="noopener">SQL-Editor</a> auf der Kursseite enthält die Beispieldatenbank bereits und läuft vollständig im Browser, ohne Anmeldung und ohne Installation. Er besteht aus drei Bereichen:</p>
+    <ul>
+      <li>Oben zeigt das <strong>ER-Diagramm</strong> alle Tabellen und Spalten. Ein Klick auf eine Tabelle zeigt ihren Inhalt.</li>
+      <li>Links unten wird die <strong>Abfrage</strong> geschrieben und mit „Ausführen“ oder Shift + Enter gestartet.</li>
+      <li>Rechts unten erscheint das <strong>Ergebnis</strong>, bei einem Fehler eine Erklärung.</li>
+    </ul>
+    <p>Über das Menü „Beispiele“ lassen sich alle Abfragen aus den Folien zu diesem Kapitel laden. „Zurücksetzen“ stellt die Datenbank wieder her, falls Daten verändert wurden. Alle Abfragen in diesem Skriptum funktionieren im Editor; die Abfrage im folgenden Fenster kann direkt hier geändert und ausgeführt werden:</p>
+    <iframe class="editor-embed" src="../sql-editor/index.html?er=0&amp;q=SELECT%20*%0AFROM%20Customers" title="SQL-Editor" loading="lazy"></iframe>
 
     <!-- 6 -->
     <h2 id="select">6. Spalten auswählen: SELECT</h2>
@@ -247,7 +238,7 @@ WHERE bedingung</code></pre>
 
     <figure>
       <div class="frame"><img src="../slides/assets/2-4-red-green.png" alt="Tabelle mit grünem Pfeil über den Spalten und rotem Pfeil entlang der Zeilen"></div>
-      <figcaption>Abbildung 5: <code>SELECT</code> bestimmt die Spalten (grün), <code>WHERE</code> die Zeilen (rot).</figcaption>
+      <figcaption>Abbildung 4: <code>SELECT</code> bestimmt die Spalten (grün), <code>WHERE</code> die Zeilen (rot).</figcaption>
     </figure>
 
     <h3>7.1. Vergleichsoperatoren</h3>
@@ -304,7 +295,7 @@ WHERE Price &gt; 50</code></pre>
       </table>
     </div>
     <p>Postleitzahlen sind übrigens als Text gespeichert und nicht als Zahl, weil sie führende Nullen und Buchstaben enthalten können (<code>05021</code>, <code>WA1 1DP</code>).</p>
-    <p>Ob Groß- und Kleinschreibung beachtet wird, hängt vom Datenbanksystem ab: Im W3Schools-Editor findet <code>Country = 'germany'</code> die elf deutschen Kunden, in Colab findet dieselbe Abfrage nichts. Am sichersten ist es, Werte genau so zu schreiben, wie sie in der Datenbank stehen.</p>
+    <p>Ob Groß- und Kleinschreibung beachtet wird, hängt vom Datenbanksystem ab: Im SQL-Editor des Kurses findet <code>Country = 'germany'</code> die elf deutschen Kunden, in SQLite oder PostgreSQL fände dieselbe Abfrage nichts. Am sichersten ist es, Werte genau so zu schreiben, wie sie in der Datenbank stehen.</p>
 
     <h3>7.3. Mehrere Bedingungen verknüpfen</h3>
     <div class="table-wrap">
@@ -348,12 +339,12 @@ ORDER BY spalte1 [ASC|DESC]</code></pre>
 
     <h3>8.1. Die ersten n Zeilen</h3>
     <p>Fragen wie „die fünf teuersten Produkte“ oder „die zehn umsatzstärksten Kunden“ sind im Marketing alltäglich. Dafür wird absteigend sortiert und die Anzahl der Zeilen begrenzt. Hier unterscheiden sich die Dialekte:</p>
-<pre><code class="language-sql">-- W3Schools-Editor (SQL Server)
+<pre><code class="language-sql">-- Microsoft SQL Server
 SELECT TOP 5 ProductName, Price
 FROM Products
 ORDER BY Price DESC
 
--- Colab (SQLite), ebenso MySQL und PostgreSQL
+-- MySQL, PostgreSQL, SQLite
 SELECT ProductName, Price
 FROM Products
 ORDER BY Price DESC
@@ -525,7 +516,7 @@ JOIN Categories c ON p.CategoryID = c.CategoryID</code></pre>
         <img src="../slides/assets/2-5-5-left-join.png" alt="Left Join: alle Zeilen der linken Tabelle">
         <img src="../slides/assets/2-5-7-outer-join.png" alt="Full Outer Join: alle Zeilen beider Tabellen">
       </div>
-      <figcaption>Abbildung 6: Inner Join, Left Join und Full Outer Join im Vergleich. Leere Felder entsprechen <code>NULL</code>.</figcaption>
+      <figcaption>Abbildung 5: Inner Join, Left Join und Full Outer Join im Vergleich. Leere Felder entsprechen <code>NULL</code>.</figcaption>
     </figure>
 
     <p>Den Unterschied zeigen Kunden und Bestellungen:</p>
@@ -574,7 +565,7 @@ JOIN Products p ON d.ProductID = p.ProductID
 JOIN Categories c ON p.CategoryID = c.CategoryID
 GROUP BY c.CategoryName
 ORDER BY Umsatz DESC</code></pre>
-    <p>Die umsatzstärksten Kategorien sind Beverages (99.464,50), Dairy Products (69.921,00) und Confections (54.909,16). In Colab heißt die Tabelle der Bestellpositionen <code>order_details</code>.</p>
+    <p>Die umsatzstärksten Kategorien sind Beverages (99.464,50), Dairy Products (69.921,00) und Confections (54.909,16).</p>
 
     <!-- 13 -->
     <h2 id="reihenfolge">13. Aufbau einer Abfrage</h2>
@@ -607,14 +598,14 @@ LIMIT    n                                  -- wie viele (SQL Server: TOP n nach
           <tr><td><code>WHERE COUNT(*) &gt;= 10</code></td><td><code>HAVING COUNT(*) &gt;= 10</code> nach <code>GROUP BY</code></td></tr>
           <tr><td>Spalte im <code>SELECT</code>, die weder gruppiert noch aggregiert ist</td><td>Spalte in <code>GROUP BY</code> aufnehmen oder aggregieren</td></tr>
           <tr><td>fehlende oder falsche <code>ON</code>-Bedingung beim <code>JOIN</code></td><td>Die Zeilenzahl explodiert, weil jede Zeile mit vielen anderen kombiniert wird. Die <code>ON</code>-Bedingung muss Fremdschlüssel und Primärschlüssel verbinden.</td></tr>
-          <tr><td><code>LIMIT</code> im W3Schools-Editor, <code>TOP</code> in Colab</td><td>auf den Dialekt achten (Abschnitt <a href="#sql">4</a>)</td></tr>
+          <tr><td><code>TOP</code> in MySQL, PostgreSQL oder SQLite, <code>LIMIT</code> in SQL Server</td><td>auf den Dialekt achten (Abschnitt <a href="#sql">4</a>); der SQL-Editor des Kurses versteht beides</td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- 15 -->
     <h2 id="ausprobieren">15. Zum Ausprobieren</h2>
-    <p>Die folgenden Aufgaben lassen sich im W3Schools-Editor oder in Colab lösen. Bei Abweichungen hilft ein Blick auf die Hinweise zum Dialekt.</p>
+    <p>Die folgenden Aufgaben lassen sich im <a href="../sql-editor/" target="_blank" rel="noopener">SQL-Editor</a> lösen.</p>
     <ol>
       <li>Name und Telefonnummer aller Lieferanten ausgeben.</li>
       <li>Alle Produkte mit einem Preis zwischen 20 und 30 ausgeben, die teuersten zuerst.</li>
