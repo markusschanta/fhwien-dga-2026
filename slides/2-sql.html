@@ -17,7 +17,7 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      <section id="titel" data-markdown>
+      <section data-state="no-header" id="titel" data-markdown>
         <textarea data-template>
           ##### Datengewinnung &amp; -aufbereitung
           # 2. Datenbanken und SQL
@@ -30,12 +30,12 @@
         </textarea>
       </section>
 
-      <section>
+      <section data-abschnitt="Datenbanken">
         <section id="web-architektur">
           <h2>Architektur einer Webapplikation</h2>
           <img data-src="assets/2-1-1-architecture.png" style="max-width: 70%; margin: 0;">
         </section>
-        <section id="db-komponenten">
+        <section data-state="no-header" id="db-komponenten">
           <h2>Komponenten einer Datenbank</h2>
           <img data-src="assets/2-1-2-db-architecture.png" style="max-width: 80%; margin: 0;">
         </section>
@@ -43,13 +43,13 @@
           <h2>Aufbau einer Tabelle</h2>
           <img data-src="assets/2-1-3-products.png" style="max-width: 70%; margin: 0;">
         </section>
-        <section id="er-diagramm">
+        <section data-state="no-header" id="er-diagramm">
           <h2>Entity-Relationship-Diagramm</h2>
           <img data-src="assets/2-1-4-er.svg" alt="ER-Diagramm der Beispieldatenbank" style="width: 82%; margin: 0;">
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="SQL">
         <section id="begriff-datenbank">
           <h2>Der Begriff „Datenbank“</h2>
           <p>bezeichnet</p>
@@ -79,8 +79,8 @@
         </section>
       </section>
 
-      <section>
-        <section id="select" data-markdown>
+      <section data-abschnitt="SELECT">
+        <section data-state="no-header" id="select" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">SELECT</code>-Abfragen
             * Grundstruktur einer SQL-Abfrage: <!-- .element: class="fragment" -->
@@ -102,7 +102,7 @@
               ``` 
           </textarea>
         </section>
-        <section id="sql-editor">
+        <section data-state="no-header" id="sql-editor">
           <h2>SQL-Editor</h2>
           <iframe class="sql-editor" data-src="../sql-editor/index.html?er=0&amp;q=SELECT%20*%0AFROM%20Customers" title="SQL-Editor"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
@@ -131,7 +131,7 @@
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="WHERE">
         <section id="where" data-markdown>
           <textarea data-template>
             ## Abfragen mit <code class="hljs-keyword">WHERE</code>-Bedingungen
@@ -201,7 +201,7 @@
               <!-- .element: class="fragment" -->
           </textarea>
         </section>
-        <section id="where-uebung-1">
+        <section data-state="no-header" id="where-uebung-1">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">1/4</span></h2>
           <p class="exercise-task">Name und Preis aller Produkte unter 10 ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20unter%2010%20ausgeben%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3C%2010" title="SQL-Editor für Aufgabe 1"></iframe>
@@ -234,7 +234,7 @@
               <!-- .element: class="fragment" --> 
           </textarea>
         </section>
-        <section id="where-uebung-2">
+        <section data-state="no-header" id="where-uebung-2">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">2/4</span></h2>
           <p class="exercise-task">Alle Kunden aus London ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Alle%20Kunden%20aus%20London%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20City%20%3D%20%27London%27" title="SQL-Editor für Aufgabe 2"></iframe>
@@ -262,7 +262,7 @@
               <!-- .element: class="fragment" --> 
           </textarea>
         </section>
-        <section id="where-uebung-3">
+        <section data-state="no-header" id="where-uebung-3">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">3/4</span></h2>
           <p class="exercise-task">Alle Kunden aus Spanien, Frankreich oder Italien ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Alle%20Kunden%20aus%20Spanien%2C%20Frankreich%20oder%20Italien%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20IN%20%28%27Spain%27%2C%20%27France%27%2C%20%27Italy%27%29" title="SQL-Editor für Aufgabe 3"></iframe>
@@ -292,7 +292,7 @@
               <!-- .element: class="fragment" --> 
           </textarea>
         </section>
-        <section id="where-uebung-4">
+        <section data-state="no-header" id="where-uebung-4">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">4/4</span></h2>
           <p class="exercise-task">Alle Kunden aus Deutschland ausgeben, deren Name mit „B“ beginnt</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%204%3A%20Alle%20Kunden%20aus%20Deutschland%20ausgeben%2C%20deren%20Name%20mit%20%E2%80%9EB%E2%80%9C%20beginnt%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27Germany%27%20AND%20CustomerName%20LIKE%20%27B%25%27" title="SQL-Editor für Aufgabe 4"></iframe>
@@ -300,7 +300,7 @@
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="ORDER BY">
         <section id="order-by" data-markdown>
           <textarea data-template>
             ## Sortierung mit <code class="hljs-keyword">ORDER BY</code>
@@ -341,19 +341,19 @@
             * <!-- .element: class="fragment" --> In anderen Datenbanksystemen (z.&nbsp;B. MySQL, SQLite):<br><code class="hljs-keyword">LIMIT 5</code> am Ende der Abfrage
           </textarea>
         </section>
-        <section id="uebung-abschluss-1">
+        <section data-state="no-header" id="uebung-abschluss-1">
           <h2>Übung zum Abschluss <span class="exercise-count">1/3</span></h2>
           <p class="exercise-task">Name und Preis aller Produkte der Kategorie 1 ausgeben, die teuersten zuerst</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20der%20Kategorie%201%20ausgeben%2C%20die%20teuersten%20zuerst%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20CategoryID%20%3D%201%0AORDER%20BY%20Price%20DESC" title="SQL-Editor für Aufgabe 1"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
-        <section id="uebung-abschluss-2">
+        <section data-state="no-header" id="uebung-abschluss-2">
           <h2>Übung zum Abschluss <span class="exercise-count">2/3</span></h2>
           <p class="exercise-task">Die 3 günstigsten Produkte ausgeben, die mehr als 20 kosten</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Die%203%20g%C3%BCnstigsten%20Produkte%20ausgeben%2C%20die%20mehr%20als%2020%20kosten%0A%0A&amp;loesung=SELECT%20TOP%203%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3E%2020%0AORDER%20BY%20Price" title="SQL-Editor für Aufgabe 2"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
-        <section id="uebung-abschluss-3">
+        <section data-state="no-header" id="uebung-abschluss-3">
           <h2>Übung zum Abschluss <span class="exercise-count">3/3</span></h2>
           <p class="exercise-task">Name und Stadt aller Kunden aus den USA ausgeben, alphabetisch nach Stadt sortiert</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Name%20und%20Stadt%20aller%20Kunden%20aus%20den%20USA%20ausgeben%2C%20alphabetisch%20nach%20Stadt%20sortiert%0A%0A&amp;loesung=SELECT%20CustomerName%2C%20City%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27USA%27%0AORDER%20BY%20City" title="SQL-Editor für Aufgabe 3"></iframe>
@@ -362,7 +362,7 @@
       </section>
 
       <!-- Zwischenstopp: Ende des ersten Termins (Intro + SQL bis ORDER BY) -->
-      <section>
+      <section data-abschnitt="Fragen &amp; nächste Schritte">
         <section id="zwischenstopp-fragen">
           <h2>Fragen?</h2>
         </section>
@@ -381,7 +381,7 @@
       </section>
 
       <!-- Einstieg in den zweiten Termin -->
-      <section>
+      <section data-abschnitt="Rückblick">
         <section id="wiederholung" data-markdown>
           <textarea data-template>
             ## Rückblick
@@ -399,7 +399,7 @@
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="DISTINCT">
         <section data-markdown>
           <textarea data-template>
             ## De-Duplizierung mit <code class="hljs-keyword">DISTINCT</code>
@@ -413,7 +413,7 @@
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="GROUP BY">
         <section data-markdown>
           <textarea data-template>
             ## Gruppierung & Aggregatfunktionen
@@ -465,7 +465,7 @@
         </section>
       </section>
 
-      <section>
+      <section data-abschnitt="JOIN">
         <section>
           <h2>Normalisierung</h2>
             <div style="display: flex; width: 100%; gap: 20px;">
@@ -496,7 +496,7 @@
               <img data-src="assets/2-5-2-join.png" style="max-width: 100%; margin: 0;"><!-- .element: class="fragment" -->
           </textarea>
         </section>
-        <section data-markdown>
+        <section data-state="no-header" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">JOIN</code> Beispiel 1
             * <!-- .element: class="fragment" --> Gib alle <code>Produkte</code> aus der <code>Produktkategorie Produce</code> aus: 
@@ -511,7 +511,7 @@
               <img data-src="assets/2-5-3-join-produce.png" style="max-width: 100%; margin: 0;"><!-- .element: class="fragment" -->
           </textarea>
         </section>
-        <section data-markdown>
+        <section data-state="no-header" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">JOIN</code> Beispiel 2
             * <!-- .element: class="fragment" --> Gib die Anzahl der <code>Produkte</code> pro <code>Produktkategorie</code> aus: 
@@ -564,7 +564,7 @@
         </section>
       </section>
       
-      <section>
+      <section data-abschnitt="Abschluss">
         <section>
           <h2>Fragen?</h2>
         </section>
@@ -591,6 +591,7 @@
       hash: true
     });
   </script>
+  <script src="assets/header.js"></script>
   <script src="assets/notes.js"></script>
 </body>
 

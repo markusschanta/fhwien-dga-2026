@@ -462,3 +462,71 @@ html.print-pdf .reveal .editor-print-hint {
 }
 
 .reveal .nowrap { white-space: nowrap; }
+
+/* Kopfleiste (assets/header.js) */
+.dga-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 50px;
+  padding: 0 20px;
+  background: #f3f0f9;
+  border-bottom: 1px solid #ddd4f0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dga-header img {
+  height: 38px;
+  width: auto;
+}
+
+.dga-header a.dga-header-title {
+  color: #503795;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dga-header a.dga-header-title:hover { text-decoration: underline; }
+
+.dga-header .dga-header-semester { color: #75727d; }
+
+.dga-header .dga-header-where {
+  margin-left: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #75727d;
+}
+
+.dga-header .dga-header-section {
+  color: #503795;
+  font-weight: 600;
+}
+
+.dga-header .dga-header-number {
+  min-width: 4.5em;
+  padding-left: 14px;
+  border-left: 1px solid #ddd4f0;
+  color: #75727d;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Folien unter der Kopfleiste: reveal.js skaliert in die verbleibende Höhe */
+html.has-dga-header .reveal {
+  top: 50px;
+  height: calc(100% - 50px);
+}
+
+html.has-dga-header.dga-header-hidden .dga-header { display: none; }
+html.has-dga-header.dga-header-hidden .reveal {
+  top: 0;
+  height: 100%;
+}
