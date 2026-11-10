@@ -33,15 +33,15 @@
       <section data-abschnitt="Datenbanken">
         <section id="web-architektur">
           <h2>Architektur einer Webapplikation</h2>
-          <img data-src="assets/2-1-1-architecture.png" style="max-width: 70%; margin: 0;">
-        </section>
-        <section data-state="no-header" id="db-komponenten">
-          <h2>Komponenten einer Datenbank</h2>
-          <img data-src="assets/2-1-2-db-architecture.png" style="max-width: 80%; margin: 0;">
+          <img data-src="assets/2-1-1-architecture.svg" alt="Frontend (Browser oder App), Backend (Server) und Datenbank, verbunden über HTTP und SQL" style="width: 90%; margin: 0;">
         </section>
         <section id="aufbau-tabelle">
           <h2>Aufbau einer Tabelle</h2>
-          <img data-src="assets/2-1-3-products.png" style="max-width: 70%; margin: 0;">
+          <img data-src="assets/2-1-2-products.svg" alt="Tabelle Products mit hervorgehobener Zeile und Spalte" style="width: 92%; margin: 0;">
+        </section>
+        <section data-state="no-header" id="tabellen-schluessel">
+          <h2>Tabellen und Schlüssel</h2>
+          <img data-src="assets/2-1-3-keys.svg" alt="Tabellen Customers, Orders, OrderDetails und Products, über Schlüssel verbunden" style="width: 86%; margin: 0;">
         </section>
         <section data-state="no-header" id="er-diagramm">
           <h2>Entity-Relationship-Diagramm</h2>
@@ -75,7 +75,7 @@
         </section>
         <section id="request-response">
           <h2>Request → Response</h2>
-          <img data-src="assets/2-2-request-response.jpg" style="max-width: 70%; margin: 0;">
+          <img data-src="assets/2-2-request-response.svg" alt="Abfrage als Request an die Datenbank, Ergebnis als Response wieder eine Tabelle" style="width: 92%; margin: 0;">
         </section>
       </section>
 
@@ -148,14 +148,14 @@
         <section id="spalten-zeilen" data-markdown>
           <textarea data-template>
             ## Spalten / Zeilen
-            * <span style="color: green; font-weight: bold;">SELECT</span> bestimmt die <strong>Spalten</strong>, <span style="color: red; font-weight: bold;">WHERE</span> die <strong>Zeilen</strong>: <!-- .element: class="fragment" -->
+            * <span style="color: #503795; font-weight: bold;">SELECT</span> bestimmt die <strong>Spalten</strong>, <span style="color: #c2185b; font-weight: bold;">WHERE</span> die <strong>Zeilen</strong>: <!-- .element: class="fragment" -->
             <pre>
               <code class="sql" data-noescape>SELECT spalte1, spalte2, ...
               FROM tabellenname
               WHERE bedingung
               </code>
             </pre>
-            <img data-src="assets/2-4-red-green.png" style="max-width: 90%; margin: 0;">
+            <img data-src="assets/2-4-columns-rows.svg" alt="Tabelle Customers: SELECT wählt Spalten, WHERE wählt Zeilen" style="max-width: 90%; margin: 0;">
           </textarea>
         </section>
         <section id="where-operatoren" data-markdown>
@@ -474,7 +474,7 @@
               </div>
               <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
                 <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                  <img data-src="assets/2-1-3-products.png" style="max-width: 100%; margin: 0;">
+                  <img data-src="assets/2-1-2-products.png" style="max-width: 100%; margin: 0;">
                 </div>
                 <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
                   <img data-src="assets/2-5-1-categories.png" style="max-width: 100%; margin: 0;">
