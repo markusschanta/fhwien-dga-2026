@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 812 180" width="812" height="180" font-family="'Noto Sans', 'Helvetica Neue', Arial, sans-serif" role="img"><title>Ausschnitt aus dem ER-Diagramm: OrderDetails, Products und Categories</title>
+<rect x="0" y="4" width="210" height="122" rx="6" fill="#ffffff" stroke="#503795" stroke-width="1.5"/>
+<path d="M0 34 V10 Q0 4 6 4 H204 Q210 4 210 10 V34 Z" fill="#503795"/>
+<text x="105.0" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">OrderDetails <tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-weight="400" fill="#ddd4f0">d</tspan></text>
+<text x="10" y="50" font-size="10" font-weight="700" fill="#503795" text-anchor="start">PK</text>
+<text x="38" y="50" font-size="14" font-weight="400" fill="#333333" text-anchor="start">OrderDetailID</text>
+<line x1="1" y1="57" x2="209" y2="57" stroke="#e5e1ef"/>
+<text x="10" y="73" font-size="10" font-weight="700" fill="#c2185b" text-anchor="start">FK</text>
+<text x="38" y="73" font-size="14" font-weight="400" fill="#333333" text-anchor="start">OrderID</text>
+<rect x="2" y="81" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="10" y="96" font-size="10" font-weight="700" fill="#c2185b" text-anchor="start">FK</text>
+<text x="38" y="96" font-size="14" font-weight="700" fill="#333333" text-anchor="start">ProductID</text>
+<rect x="2" y="104" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="38" y="119" font-size="14" font-weight="700" fill="#333333" text-anchor="start">Quantity</text>
+<rect x="300" y="4" width="210" height="168" rx="6" fill="#ffffff" stroke="#503795" stroke-width="1.5"/>
+<path d="M300 34 V10 Q300 4 306 4 H504 Q510 4 510 10 V34 Z" fill="#503795"/>
+<text x="405.0" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Products <tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-weight="400" fill="#ddd4f0">p</tspan></text>
+<rect x="302" y="35" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="310" y="50" font-size="10" font-weight="700" fill="#503795" text-anchor="start">PK</text>
+<text x="338" y="50" font-size="14" font-weight="700" fill="#333333" text-anchor="start">ProductID</text>
+<line x1="301" y1="57" x2="509" y2="57" stroke="#e5e1ef"/>
+<text x="338" y="73" font-size="14" font-weight="400" fill="#333333" text-anchor="start">ProductName</text>
+<line x1="301" y1="80" x2="509" y2="80" stroke="#e5e1ef"/>
+<text x="310" y="96" font-size="10" font-weight="700" fill="#c2185b" text-anchor="start">FK</text>
+<text x="338" y="96" font-size="14" font-weight="400" fill="#333333" text-anchor="start">SupplierID</text>
+<rect x="302" y="104" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="310" y="119" font-size="10" font-weight="700" fill="#c2185b" text-anchor="start">FK</text>
+<text x="338" y="119" font-size="14" font-weight="700" fill="#333333" text-anchor="start">CategoryID</text>
+<line x1="301" y1="126" x2="509" y2="126" stroke="#e5e1ef"/>
+<text x="338" y="142" font-size="14" font-weight="400" fill="#333333" text-anchor="start">Unit</text>
+<rect x="302" y="150" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="338" y="165" font-size="14" font-weight="700" fill="#333333" text-anchor="start">Price</text>
+<rect x="600" y="4" width="210" height="99" rx="6" fill="#ffffff" stroke="#503795" stroke-width="1.5"/>
+<path d="M600 34 V10 Q600 4 606 4 H804 Q810 4 810 10 V34 Z" fill="#503795"/>
+<text x="705.0" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Categories <tspan font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-weight="400" fill="#ddd4f0">c</tspan></text>
+<rect x="602" y="35" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="610" y="50" font-size="10" font-weight="700" fill="#503795" text-anchor="start">PK</text>
+<text x="638" y="50" font-size="14" font-weight="700" fill="#333333" text-anchor="start">CategoryID</text>
+<rect x="602" y="58" width="206" height="21" rx="3" fill="#ddd4f0"/>
+<text x="638" y="73" font-size="14" font-weight="700" fill="#333333" text-anchor="start">CategoryName</text>
+<line x1="601" y1="80" x2="809" y2="80" stroke="#e5e1ef"/>
+<text x="638" y="96" font-size="14" font-weight="400" fill="#333333" text-anchor="start">Description</text>
+<g fill="none" stroke="#4d4d4d" stroke-width="1.6"><path d="M300 45.5 L255 45.5 L255 91.5 L210 91.5"/><line x1="292" y1="52.5" x2="292" y2="38.5"/><line x1="287" y1="52.5" x2="287" y2="38.5"/><line x1="223" y1="91.5" x2="210" y2="84.5"/><line x1="223" y1="91.5" x2="210" y2="91.5"/><line x1="223" y1="91.5" x2="210" y2="98.5"/><circle cx="229" cy="91.5" r="4.5" fill="#ffffff"/></g>
+<g fill="none" stroke="#4d4d4d" stroke-width="1.6"><path d="M600 45.5 L555 45.5 L555 114.5 L510 114.5"/><line x1="592" y1="52.5" x2="592" y2="38.5"/><line x1="587" y1="52.5" x2="587" y2="38.5"/><line x1="523" y1="114.5" x2="510" y2="107.5"/><line x1="523" y1="114.5" x2="510" y2="114.5"/><line x1="523" y1="114.5" x2="510" y2="121.5"/><circle cx="529" cy="114.5" r="4.5" fill="#ffffff"/></g>
+</svg>

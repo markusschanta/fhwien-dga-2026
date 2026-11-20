@@ -396,3 +396,64 @@ iframe.editor-embed {
   border-radius: 12px;
   background: #ffffff;
 }
+
+/* Kochrezept: Klauseln einer Abfrage mit Reihenfolge der Ausführung */
+.recipe {
+  margin: 16px 0 16px 28px;
+  padding: 10px 14px;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.recipe ol {
+  display: grid;
+  grid-template-columns: auto auto 26px;
+  grid-auto-flow: row dense;
+  align-items: center;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recipe li {
+  display: contents;
+}
+.recipe li > code { grid-column: 1; }
+.recipe-desc { grid-column: 2; }
+.recipe-step { grid-column: 3; }
+.recipe code {
+  white-space: pre;
+  font-size: 0.86rem;
+}
+.recipe-kw {
+  display: inline-block;
+  min-width: 5.6em;
+  color: var(--code-keyword);
+  font-weight: 700;
+}
+.recipe-desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.recipe-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+@media (max-width: 640px) {
+  .recipe { margin-left: 0; max-width: 100%; }
+  .recipe ol { grid-template-columns: minmax(0, 1fr) 26px; row-gap: 2px; }
+  .recipe li > code { grid-column: 1; white-space: normal; min-width: 0; }
+  .recipe-kw { min-width: 0; margin-right: 0.5em; }
+  .recipe-step { grid-column: 2; }
+  .recipe-desc { grid-column: 1 / -1; margin-bottom: 6px; }
+}

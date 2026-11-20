@@ -18,14 +18,21 @@ window.DGA_BEISPIELE = [
   { gruppe: 'ORDER BY', titel: 'Beispiel 2: die 5 teuersten Produkte (TOP)', sql: 'SELECT TOP 5 ProductName, Price\nFROM Products\nORDER BY Price DESC' },
   { gruppe: 'ORDER BY', titel: 'Rückblick: SELECT, WHERE und ORDER BY', sql: 'SELECT ProductName, Price\nFROM Products\nWHERE Price > 20\nORDER BY Price DESC' },
 
-  { gruppe: 'DISTINCT', titel: 'Länder der Kunden ohne Doppelte', sql: 'SELECT DISTINCT Country\nFROM Customers' },
+  { gruppe: 'DISTINCT', titel: 'Beispiel 1: Länder der Kunden', sql: 'SELECT DISTINCT Country\nFROM Customers' },
+  { gruppe: 'DISTINCT', titel: 'Beispiel 2: Kunden mit mindestens einer Bestellung', sql: 'SELECT DISTINCT CustomerID\nFROM Orders' },
 
-  { gruppe: 'GROUP BY', titel: 'Gruppieren nach Kategorie', sql: 'SELECT CategoryID\nFROM Products\nGROUP BY CategoryID' },
-  { gruppe: 'GROUP BY', titel: 'Anzahl Produkte pro Kategorie (COUNT)', sql: 'SELECT CategoryID, COUNT(ProductID)\nFROM Products\nGROUP BY CategoryID' },
-  { gruppe: 'GROUP BY', titel: 'Beispiel 1: Durchschnittspreis pro Kategorie (AVG)', sql: 'SELECT CategoryID, AVG(Price)\nFROM Products\nGROUP BY CategoryID' },
+  { gruppe: 'GROUP BY', titel: 'Anzahl aller Kunden (COUNT)', sql: 'SELECT COUNT(*)\nFROM Customers' },
+  { gruppe: 'GROUP BY', titel: 'Prinzip: Kunden pro Land in DACH', sql: "SELECT Country, COUNT(*) AS Kunden\nFROM Customers\nWHERE Country IN ('Austria', 'Germany', 'Switzerland')\nGROUP BY Country" },
+  { gruppe: 'GROUP BY', titel: 'Beispiel 1: Kunden pro Land', sql: 'SELECT Country, COUNT(*) AS Kunden\nFROM Customers\nGROUP BY Country\nORDER BY Kunden DESC' },
+  { gruppe: 'GROUP BY', titel: 'Beispiel 2: Durchschnittspreis pro Kategorie', sql: 'SELECT CategoryID, AVG(Price) AS Durchschnittspreis\nFROM Products\nGROUP BY CategoryID' },
+  { gruppe: 'GROUP BY', titel: 'HAVING: Länder mit mindestens 10 Kunden', sql: 'SELECT Country, COUNT(*) AS Kunden\nFROM Customers\nGROUP BY Country\nHAVING COUNT(*) >= 10' },
+  { gruppe: 'GROUP BY', titel: 'Kampagnen: Conversion-Rate pro Kampagne', sql: 'SELECT Kampagne,\n  SUM(Conversions) * 100.0 / SUM(Kontakte) AS Quote\nFROM Kampagnen\nGROUP BY Kampagne' },
 
-  { gruppe: 'JOIN', titel: 'Produkte mit Kategorien (LEFT JOIN)', sql: 'SELECT *\nFROM Products\nLEFT JOIN Categories\n  ON Products.CategoryID = Categories.CategoryID' },
-  { gruppe: 'JOIN', titel: 'Beispiel 1: Produkte der Kategorie „Produce“', sql: "SELECT *\nFROM Products\nLEFT JOIN Categories\n  ON Products.CategoryID = Categories.CategoryID\nWHERE CategoryName = 'Produce'" },
-  { gruppe: 'JOIN', titel: 'Beispiel 2: Anzahl Produkte pro Kategoriename', sql: 'SELECT CategoryName, COUNT(ProductID) AS ProductIDCount\nFROM Products\nLEFT JOIN Categories\n  ON Products.CategoryID = Categories.CategoryID\nGROUP BY CategoryName' },
-  { gruppe: 'JOIN', titel: 'Beispiel 3: Produkte mit Kategorie und Lieferant', sql: 'SELECT *\nFROM Products p\nLEFT JOIN Categories c\n  ON p.CategoryID = c.CategoryID\nLEFT JOIN Suppliers s\n  ON p.SupplierID = s.SupplierID' }
+  { gruppe: 'JOIN', titel: 'Beispiel 1: Produkte mit Kategoriename', sql: 'SELECT p.ProductName, c.CategoryName\nFROM Products p\nJOIN Categories c\n  ON p.CategoryID = c.CategoryID' },
+  { gruppe: 'JOIN', titel: 'Beispiel 2: Produkte der Kategorie Produce', sql: "SELECT p.ProductName, p.Price\nFROM Products p\nJOIN Categories c\n  ON p.CategoryID = c.CategoryID\nWHERE c.CategoryName = 'Produce'" },
+  { gruppe: 'JOIN', titel: 'Beispiel 3: Durchschnittspreis pro Kategoriename', sql: 'SELECT c.CategoryName, AVG(p.Price) AS Durchschnittspreis\nFROM Products p\nJOIN Categories c\n  ON p.CategoryID = c.CategoryID\nGROUP BY c.CategoryName\nORDER BY Durchschnittspreis DESC' },
+  { gruppe: 'JOIN', titel: 'JOIN: Kunden mit Bestellungen', sql: 'SELECT c.CustomerName, o.OrderID\nFROM Customers c\nJOIN Orders o\n  ON c.CustomerID = o.CustomerID' },
+  { gruppe: 'JOIN', titel: 'LEFT JOIN: alle Kunden, auch ohne Bestellung', sql: 'SELECT c.CustomerName, o.OrderID\nFROM Customers c\nLEFT JOIN Orders o\n  ON c.CustomerID = o.CustomerID' },
+  { gruppe: 'JOIN', titel: 'Beispiel 4: Kunden ohne Bestellung', sql: 'SELECT c.CustomerName, c.Country\nFROM Customers c\nLEFT JOIN Orders o\n  ON c.CustomerID = o.CustomerID\nWHERE o.OrderID IS NULL' },
+  { gruppe: 'JOIN', titel: 'Beispiel 5: Umsatz pro Kategorie (drei Tabellen)', sql: 'SELECT c.CategoryName, SUM(d.Quantity * p.Price) AS Umsatz\nFROM OrderDetails d\nJOIN Products p ON d.ProductID = p.ProductID\nJOIN Categories c ON p.CategoryID = c.CategoryID\nGROUP BY c.CategoryName\nORDER BY Umsatz DESC' }
 ];

@@ -121,7 +121,7 @@
         <section id="select-2" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">SELECT</code> Beispiel 2
-            * Die Postleitzahl und Stadt aller Kunden ausgeben:
+            * Die <strong><u>Postleitzahl</u></strong> und <strong><u>Stadt</u></strong> aller <strong><u>Kunden</u></strong> ausgeben:
               ```sql
               SELECT PostalCode, City
               FROM Customers
@@ -173,7 +173,7 @@
         <section id="where-1" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>-Bedingungen Beispiel 1
-            * <code>Namen</code> und <code>Preise</code> aller <code>Produkte</code> mit <br> einem <code>Preis</code> von mehr als <code>50</code> ausgeben:
+            * <strong><u>Namen</u></strong> und <strong><u>Preise</u></strong> aller <strong><u>Produkte</u></strong> mit <br> einem <strong><u>Preis</u></strong> von mehr als <strong><u>50</u></strong> ausgeben:
               ```sql
               SELECT ProductName, Price
               FROM Products
@@ -185,7 +185,7 @@
         <section id="where-2" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>-Bedingungen Beispiel 2
-            * <code>Namen</code> aller <code>Produkte</code> mit <br> einem <code>Preis</code> zwischen <code>10</code> und <code>13</code> ausgeben:
+            * <strong><u>Namen</u></strong> aller <strong><u>Produkte</u></strong> mit <br> einem <strong><u>Preis</u></strong> zwischen <strong><u>10</u></strong> und <strong><u>13</u></strong> ausgeben:
               ```sql
               SELECT ProductName
               FROM Products
@@ -203,7 +203,7 @@
         </section>
         <section data-state="no-header" id="where-uebung-1">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">1/4</span></h2>
-          <p class="exercise-task">Name und Preis aller Produkte unter 10 ausgeben</p>
+          <p class="exercise-task"><strong><u>Name</u></strong> und <strong><u>Preis</u></strong> aller <strong><u>Produkte</u></strong> unter <strong><u>10</u></strong> ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20unter%2010%20ausgeben%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3C%2010" title="SQL-Editor für Aufgabe 1"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
@@ -225,7 +225,7 @@
         <section id="where-3" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>-Bedingungen Beispiel 3
-            * Alle <code>Kunden</code> aus <code>Deutschland</code> ausgeben:
+            * Alle <strong><u>Kunden</u></strong> aus <strong><u>Deutschland</u></strong> ausgeben:
               ```sql
               SELECT *
               FROM Customers
@@ -236,7 +236,7 @@
         </section>
         <section data-state="no-header" id="where-uebung-2">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">2/4</span></h2>
-          <p class="exercise-task">Alle Kunden aus London ausgeben</p>
+          <p class="exercise-task">Alle <strong><u>Kunden</u></strong> aus <strong><u>London</u></strong> ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Alle%20Kunden%20aus%20London%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20City%20%3D%20%27London%27" title="SQL-Editor für Aufgabe 2"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
@@ -253,7 +253,7 @@
         <section id="and-or-beispiel" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">OR</code> Beispiel
-            * Alle <code>Kunden</code> aus <code>Deutschland</code> oder <code>Österreich</code> ausgeben:
+            * Alle <strong><u>Kunden</u></strong> aus <strong><u>Deutschland</u></strong> oder <strong><u>Österreich</u></strong> ausgeben:
               ```sql
               SELECT CustomerName, City, Country
               FROM Customers
@@ -264,14 +264,14 @@
         </section>
         <section data-state="no-header" id="where-uebung-3">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">3/4</span></h2>
-          <p class="exercise-task">Alle Kunden aus Spanien, Frankreich oder Italien ausgeben</p>
+          <p class="exercise-task">Alle <strong><u>Kunden</u></strong> aus <strong><u>Spanien</u></strong>, <strong><u>Frankreich</u></strong> oder <strong><u>Italien</u></strong> ausgeben</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Alle%20Kunden%20aus%20Spanien%2C%20Frankreich%20oder%20Italien%20ausgeben%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20IN%20%28%27Spain%27%2C%20%27France%27%2C%20%27Italy%27%29" title="SQL-Editor für Aufgabe 3"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
         <section id="where-4" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>-Bedingungen Beispiel 4
-            * Alle <code>Kunden</code> aus <code>Ländern</code> ausgeben,<br>deren Name auf <code>„land“</code> endet:
+            * Alle <strong><u>Kunden</u></strong> aus <strong><u>Ländern</u></strong> ausgeben,<br>deren Name auf <strong><u>„land“</u></strong> endet:
               ```sql
               SELECT *
               FROM Customers
@@ -283,7 +283,7 @@
         <section id="where-5" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">WHERE</code>-Bedingungen Beispiel 5
-            * Alle <code>Kunden</code> mit einer vierstelligen <code>Postleitzahl</code> ausgeben:
+            * Alle <strong><u>Kunden</u></strong> mit einer vierstelligen <strong><u>Postleitzahl</u></strong> ausgeben:
               ```sql
               SELECT *
               FROM Customers
@@ -294,74 +294,13 @@
         </section>
         <section data-state="no-header" id="where-uebung-4">
           <h2>Übung: <code class="hljs-keyword">WHERE</code> <span class="exercise-count">4/4</span></h2>
-          <p class="exercise-task">Alle Kunden aus Deutschland ausgeben, deren Name mit „B“ beginnt</p>
+          <p class="exercise-task">Alle <strong><u>Kunden</u></strong> aus <strong><u>Deutschland</u></strong> ausgeben, deren <strong><u>Name</u></strong> mit <strong><u>„B“</u></strong> beginnt</p>
           <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%204%3A%20Alle%20Kunden%20aus%20Deutschland%20ausgeben%2C%20deren%20Name%20mit%20%E2%80%9EB%E2%80%9C%20beginnt%0A%0A&amp;loesung=SELECT%20%2A%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27Germany%27%20AND%20CustomerName%20LIKE%20%27B%25%27" title="SQL-Editor für Aufgabe 4"></iframe>
           <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
 
-      <section data-abschnitt="ORDER BY">
-        <section id="order-by" data-markdown>
-          <textarea data-template>
-            ## Sortierung mit <code class="hljs-keyword">ORDER BY</code>
-            * Sortiert das Ergebnis nach der angegebenen Spalte: <!-- .element: class="fragment" -->
-              ```sql
-              SELECT spalte1, spalte2, ...
-              FROM tabellenname
-              WHERE bedingung
-              ORDER BY spalte1 [ASC|DESC]
-              ```
-            * <!-- .element: class="fragment" --> Standardmäßig aufsteigend (<code class="hljs-keyword">ASC</code>)
-            * <!-- .element: class="fragment" --> Absteigend mit <code class="hljs-keyword">DESC</code>
-          </textarea>
-        </section>
-        <section id="order-by-1" data-markdown>
-          <textarea data-template>
-            ## <code class="hljs-keyword">ORDER BY</code> Beispiel 1
-            * Alle <code>Produkte</code> sortiert nach <code>Preis</code> ausgeben:
-              ```sql
-              SELECT *
-              FROM Products
-              ORDER BY Price ASC
-              ```
-              <!-- .element: class="fragment" -->
-          </textarea>
-        </section>
-        <section id="order-by-2" data-markdown>
-          <textarea data-template>
-            ## <code class="hljs-keyword">ORDER BY</code> Beispiel 2
-            * Die 5 teuersten <code>Produkte</code> ausgeben:
-              ```sql
-              SELECT TOP 5 ProductName, Price
-              FROM Products
-              ORDER BY Price DESC
-              ```
-              <!-- .element: class="fragment" -->
-            * <!-- .element: class="fragment" --> <code class="hljs-keyword">TOP</code> begrenzt die Anzahl der Zeilen im Ergebnis
-            * <!-- .element: class="fragment" --> In anderen Datenbanksystemen (z.&nbsp;B. MySQL, SQLite):<br><code class="hljs-keyword">LIMIT 5</code> am Ende der Abfrage
-          </textarea>
-        </section>
-        <section data-state="no-header" id="uebung-abschluss-1">
-          <h2>Übung zum Abschluss <span class="exercise-count">1/3</span></h2>
-          <p class="exercise-task">Name und Preis aller Produkte der Kategorie 1 ausgeben, die teuersten zuerst</p>
-          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20der%20Kategorie%201%20ausgeben%2C%20die%20teuersten%20zuerst%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20CategoryID%20%3D%201%0AORDER%20BY%20Price%20DESC" title="SQL-Editor für Aufgabe 1"></iframe>
-          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
-        </section>
-        <section data-state="no-header" id="uebung-abschluss-2">
-          <h2>Übung zum Abschluss <span class="exercise-count">2/3</span></h2>
-          <p class="exercise-task">Die 3 günstigsten Produkte ausgeben, die mehr als 20 kosten</p>
-          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Die%203%20g%C3%BCnstigsten%20Produkte%20ausgeben%2C%20die%20mehr%20als%2020%20kosten%0A%0A&amp;loesung=SELECT%20TOP%203%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3E%2020%0AORDER%20BY%20Price" title="SQL-Editor für Aufgabe 2"></iframe>
-          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
-        </section>
-        <section data-state="no-header" id="uebung-abschluss-3">
-          <h2>Übung zum Abschluss <span class="exercise-count">3/3</span></h2>
-          <p class="exercise-task">Name und Stadt aller Kunden aus den USA ausgeben, alphabetisch nach Stadt sortiert</p>
-          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Name%20und%20Stadt%20aller%20Kunden%20aus%20den%20USA%20ausgeben%2C%20alphabetisch%20nach%20Stadt%20sortiert%0A%0A&amp;loesung=SELECT%20CustomerName%2C%20City%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27USA%27%0AORDER%20BY%20City" title="SQL-Editor für Aufgabe 3"></iframe>
-          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
-        </section>
-      </section>
-
-      <!-- Zwischenstopp: Ende des ersten Termins (Intro + SQL bis ORDER BY) -->
+      <!-- Zwischenstopp: Ende des ersten Termins (Intro + SQL bis WHERE) -->
       <section data-abschnitt="Fragen &amp; nächste Schritte">
         <section id="zwischenstopp-fragen">
           <h2>Fragen?</h2>
@@ -389,193 +328,519 @@
             SELECT ProductName, Price
             FROM Products
             WHERE Price > 20
-            ORDER BY Price DESC
             ```
             * <code class="hljs-keyword">SELECT</code>: welche Spalten
             * <code class="hljs-keyword">FROM</code>: aus welcher Tabelle
             * <code class="hljs-keyword">WHERE</code>: welche Zeilen
-            * <code class="hljs-keyword">ORDER BY</code>: in welcher Reihenfolge
           </textarea>
+        </section>
+      </section>
+
+      <section data-abschnitt="ORDER BY">
+        <section id="order-by" data-markdown>
+          <textarea data-template>
+            ## Sortierung mit <code class="hljs-keyword">ORDER BY</code>
+            * Sortiert das Ergebnis nach der angegebenen Spalte: <!-- .element: class="fragment" -->
+              ```sql
+              SELECT spalte1, spalte2, ...
+              FROM tabellenname
+              WHERE bedingung
+              ORDER BY spalte1 [ASC|DESC]
+              ```
+            * <!-- .element: class="fragment" --> Standardmäßig aufsteigend (<code class="hljs-keyword">ASC</code>)
+            * <!-- .element: class="fragment" --> Absteigend mit <code class="hljs-keyword">DESC</code>
+          </textarea>
+        </section>
+        <section id="order-by-1" data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">ORDER BY</code> Beispiel 1
+            * Alle <strong><u>Produkte</u></strong> nach <strong><u>Preis</u></strong> sortiert ausgeben:
+              ```sql
+              SELECT *
+              FROM Products
+              ORDER BY Price ASC
+              ```
+              <!-- .element: class="fragment" -->
+          </textarea>
+        </section>
+        <section id="order-by-2" data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">ORDER BY</code> Beispiel 2
+            * Die <strong><u>5</u></strong> teuersten <strong><u>Produkte</u></strong> ausgeben:
+              ```sql
+              SELECT TOP 5 ProductName, Price
+              FROM Products
+              ORDER BY Price DESC
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">TOP</code> begrenzt die Anzahl der Zeilen im Ergebnis
+            * <!-- .element: class="fragment" --> In anderen Datenbanksystemen (z.&nbsp;B. MySQL, SQLite):<br><code class="hljs-keyword">LIMIT 5</code> am Ende der Abfrage
+          </textarea>
+        </section>
+        <section data-state="no-header" id="order-by-uebung-1">
+          <h2>Übung: <code class="hljs-keyword">ORDER BY</code> <span class="exercise-count">1/3</span></h2>
+          <p class="exercise-task"><strong><u>Name</u></strong> und <strong><u>Preis</u></strong> aller <strong><u>Produkte</u></strong> der <strong><u>Kategorie</u></strong> <strong><u>1</u></strong> ausgeben, die teuersten zuerst</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Name%20und%20Preis%20aller%20Produkte%20der%20Kategorie%201%20ausgeben%2C%20die%20teuersten%20zuerst%0A%0A&amp;loesung=SELECT%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20CategoryID%20%3D%201%0AORDER%20BY%20Price%20DESC" title="SQL-Editor für Aufgabe 1"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="order-by-uebung-2">
+          <h2>Übung: <code class="hljs-keyword">ORDER BY</code> <span class="exercise-count">2/3</span></h2>
+          <p class="exercise-task">Die <strong><u>3</u></strong> günstigsten <strong><u>Produkte</u></strong> ausgeben, die mehr als <strong><u>20</u></strong> kosten</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Die%203%20g%C3%BCnstigsten%20Produkte%20ausgeben%2C%20die%20mehr%20als%2020%20kosten%0A%0A&amp;loesung=SELECT%20TOP%203%20ProductName%2C%20Price%0AFROM%20Products%0AWHERE%20Price%20%3E%2020%0AORDER%20BY%20Price" title="SQL-Editor für Aufgabe 2"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="order-by-uebung-3">
+          <h2>Übung: <code class="hljs-keyword">ORDER BY</code> <span class="exercise-count">3/3</span></h2>
+          <p class="exercise-task"><strong><u>Name</u></strong>, <strong><u>Stadt</u></strong> und <strong><u>Land</u></strong> aller <strong><u>Kunden</u></strong> aus <strong><u>Deutschland</u></strong> und <strong><u>Österreich</u></strong> ausgeben, sortiert nach <strong><u>Land</u></strong> und innerhalb des Landes nach <strong><u>Stadt</u></strong></p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Name%2C%20Stadt%20und%20Land%20aller%20Kunden%20aus%20Deutschland%20und%20%C3%96sterreich%20ausgeben%2C%20sortiert%20nach%20Land%20und%20innerhalb%20des%20Landes%20nach%20Stadt%0A--%20Tipp%3A%20Mehrere%20Spalten%20in%20ORDER%20BY%20mit%20Komma%20trennen%0A%0A&amp;loesung=SELECT%20CustomerName%2C%20City%2C%20Country%0AFROM%20Customers%0AWHERE%20Country%20%3D%20%27Germany%27%20OR%20Country%20%3D%20%27Austria%27%0AORDER%20BY%20Country%2C%20City" title="SQL-Editor für Aufgabe 3"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
 
       <section data-abschnitt="DISTINCT">
-        <section data-markdown>
+        <section id="distinct" data-markdown>
           <textarea data-template>
-            ## De-Duplizierung mit <code class="hljs-keyword">DISTINCT</code>
+            ## Doppelte Einträge entfernen<br>mit <code class="hljs-keyword">DISTINCT</code>
             * Entfernt doppelte Einträge aus dem Ergebnis: <!-- .element: class="fragment" -->
               ```sql
-              SELECT DISTINCT spalte1
+              SELECT DISTINCT spalte1, spalte2, ...
               FROM tabellenname
               WHERE bedingung
               ```
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">DISTINCT</code> steht direkt nach <code class="hljs-keyword">SELECT</code> und gilt für die Kombination aller ausgewählten Spalten
           </textarea>
+        </section>
+        <section id="distinct-1" data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">DISTINCT</code> Beispiel 1
+            * Alle <strong><u>Länder</u></strong> ausgeben, aus denen <strong><u>Kunden</u></strong> kommen:
+              ```sql
+              SELECT Country
+              FROM Customers
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 91 Zeilen, viele Länder mehrfach</em>
+              ```sql
+              SELECT DISTINCT Country
+              FROM Customers
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 21 Zeilen, jedes Land genau einmal</em>
+            * <!-- .element: class="fragment" --> Offene Frage: Wie viele Kunden pro Land? Dafür gibt es <code class="hljs-keyword">GROUP BY</code>.
+          </textarea>
+        </section>
+        <section id="distinct-2" data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">DISTINCT</code> Beispiel 2
+            * Alle <strong><u>Kunden</u></strong> ausgeben, die mindestens eine <strong><u>Bestellung</u></strong> aufgegeben haben:
+              ```sql
+              SELECT DISTINCT CustomerID
+              FROM Orders
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 74 Zeilen. 196 Bestellungen, aber nur 74 verschiedene Kunden</em>
+          </textarea>
+        </section>
+        <section data-state="no-header" id="distinct-uebung">
+          <h2>Übung: <code class="hljs-keyword">DISTINCT</code></h2>
+          <p class="exercise-task">Alle <strong><u>Länder</u></strong> ausgeben, in denen <strong><u>Lieferanten</u></strong> sitzen</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%3A%20Alle%20L%C3%A4nder%20ausgeben%2C%20in%20denen%20Lieferanten%20sitzen%0A%0A&amp;loesung=SELECT%20DISTINCT%20Country%0AFROM%20Suppliers" title="SQL-Editor für die Übung zu DISTINCT"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
 
       <section data-abschnitt="GROUP BY">
-        <section data-markdown>
+        <section id="group-by" data-markdown>
           <textarea data-template>
-            ## Gruppierung & Aggregatfunktionen
-            * <!-- .element: class="fragment" --> Gruppierung mit <code class="hljs-keyword">GROUP BY</code>: 
+            ## Zusammenfassen mit <code class="hljs-keyword">GROUP BY</code>
+            * Anzahl aller <strong><u>Kunden</u></strong>:
               ```sql
-              SELECT CategoryID
-              FROM Products
-              GROUP BY CategoryID
+              SELECT COUNT(*)
+              FROM Customers
               ```
               <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: eine Zeile, eine Zahl: 91</em>
+            * <!-- .element: class="fragment" --> Und wie viele <strong><u>Kunden</u></strong> pro <strong><u>Land</u></strong>?
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">GROUP BY</code> teilt die Zeilen in Gruppen und reduziert jede Gruppe auf <strong>genau eine Zeile</strong> mit der Kennzahl
           </textarea>
         </section>
-        <section data-markdown>
+        <section data-state="no-header" id="group-by-prinzip">
+          <h2>So funktioniert <code class="hljs-keyword">GROUP BY</code></h2>
+          <div class="r-stack diagram-steps">
+            <img data-src="assets/2-5-1-group-by-rows.svg" alt="Schritt 1: 15 Kunden aus Austria, Germany und Switzerland">
+            <img class="fragment" data-src="assets/2-5-2-group-by-groups.svg" alt="Schritt 2: Zeilen nach Land gruppiert">
+            <img class="fragment" data-src="assets/2-5-3-group-by-result.svg" alt="Schritt 3: eine Ergebniszeile pro Land mit der Anzahl der Kunden">
+          </div>
+        </section>
+        <section id="group-by-syntax" data-markdown>
           <textarea data-template>
-            ## Gruppierung & Aggregatfunktionen
-            * <!-- .element: class="fragment" --> Gruppierung mit <code class="hljs-keyword">GROUP BY</code> und<br>Aggregatfunktion <code class="hljs-keyword">COUNT()</code>: 
-              ```sql
-              SELECT CategoryID, COUNT(ProductID)
-              FROM Products
-              GROUP BY CategoryID
-              ```
-              <!-- .element: class="fragment" -->
+            ## Syntax von <code class="hljs-keyword">GROUP BY</code>
+            ```sql
+            SELECT spalte1, AGGREGATFUNKTION(spalte2) AS name
+            FROM tabellenname
+            WHERE bedingung
+            GROUP BY spalte1
+            ```
+            * <!-- .element: class="fragment" --> Ergebnis: <strong>eine Zeile pro Gruppe</strong>
+            * <!-- .element: class="fragment" --> Die Aggregatfunktion (z.&nbsp;B. <code class="hljs-keyword">COUNT</code>, <code class="hljs-keyword">AVG</code>) fasst die Werte jeder Gruppe zu einer Zahl zusammen
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">AS</code> gibt der Ergebnisspalte einen Namen
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">GROUP BY</code> steht nach <code class="hljs-keyword">WHERE</code> und vor <code class="hljs-keyword">ORDER BY</code>
           </textarea>
         </section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Aggregatfunktionen in SQL
-            | Funktion                   | Bedeutung                                                                                   |
-            |:--------------------------:|:-------------------------------------------------------------------------------------------:|
-            | <code>COUNT(*)</code>      | Anzahl aller Zeilen                                                                         |
-            | <code>COUNT(spalte)</code> | Anzahl nicht-null Werte in <code>spalte</code>                                              |
-            | <code>MIN(spalte)</code>   | Kleinster Wert in <code>spalte</code>.<br><code>spalte</code> muss numerisch sein.          |
-            | <code>MAX(spalte)</code>   | Größter Wert in <code>spalte</code>.<br><code>spalte</code> muss numerisch sein.            |
-            | <code>AVG(spalte)</code>   | Durchschnittlicher Wert in <code>spalte</code>.<br><code>spalte</code> muss numerisch sein. |
-            | <code>SUM(spalte)</code>   | Summe aller Werte in <code>spalte</code>.<br><code>spalte</code> muss numerisch sein.       |
-          </textarea>
-        </section>
-        <section data-markdown>
+        <section id="group-by-1" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">GROUP BY</code> Beispiel 1
-            * Gib den durchschnittlichen <code>Preis</code><br> pro <code>Produktkategorie</code> aus:
+            * Die Anzahl der <strong><u>Kunden</u></strong> pro <strong><u>Land</u></strong> ausgeben,<br>die meisten zuerst:
               ```sql
-              SELECT CategoryID, AVG(Price)
+              SELECT Country, COUNT(*) AS Kunden
+              FROM Customers
+              GROUP BY Country
+              ORDER BY Kunden DESC
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 21 Zeilen, z.&nbsp;B. USA 13, France 11, Germany 11, Brazil 9</em>
+          </textarea>
+        </section>
+        <section id="aggregatfunktionen" data-markdown>
+          <textarea data-template>
+            ## Aggregatfunktionen
+            | Funktion | Ergebnis |
+            |:--|:--|
+            | <code>COUNT(*)</code> | Anzahl der Zeilen |
+            | <code>COUNT(spalte)</code> | Anzahl der Werte in <code>spalte</code>, die nicht leer (<code>NULL</code>) sind |
+            | <code>COUNT(DISTINCT spalte)</code> | Anzahl der verschiedenen Werte in <code>spalte</code> |
+            | <code>SUM(spalte)</code> | Summe (nur Zahlen) |
+            | <code>AVG(spalte)</code> | Durchschnitt (nur Zahlen) |
+            | <code>MIN(spalte)</code> | Kleinster Wert (Zahl, Text oder Datum) |
+            | <code>MAX(spalte)</code> | Größter Wert (Zahl, Text oder Datum) |
+          </textarea>
+        </section>
+        <section id="group-by-2" data-markdown>
+          <textarea data-template>
+            ## <code class="hljs-keyword">GROUP BY</code> Beispiel 2
+            * Den durchschnittlichen <strong><u>Preis</u></strong> pro <strong><u>Kategorie</u></strong> ausgeben:
+              ```sql
+              SELECT CategoryID, AVG(Price) AS Durchschnittspreis
               FROM Products
               GROUP BY CategoryID
               ```
               <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 8 Zeilen, nur mit Kategorie-Nummern (1 bis 8)</em>
+            * <!-- .element: class="fragment" --> Die Namen stehen in der Tabelle <code>Categories</code>: dafür gibt es <code class="hljs-keyword">JOIN</code>
+          </textarea>
+        </section>
+        <section id="group-by-regel" data-markdown>
+          <textarea data-template>
+            ## Häufiger Fehler
+            * <code class="hljs-keyword">GROUP BY</code> liefert <strong>eine Zeile pro Gruppe</strong>. Daher steht jede Spalte im <code class="hljs-keyword">SELECT</code> entweder im <code class="hljs-keyword">GROUP BY</code> oder in einer Aggregatfunktion
+            * <!-- .element: class="fragment" --> Fehlerhaft:
+              ```sql
+              SELECT Country, City, COUNT(*)
+              FROM Customers
+              GROUP BY Country
+              ```
+            * <!-- .element: class="fragment" --> Germany hat 11 Kunden in 11 Städten, aber nur <strong>eine</strong> Ergebniszeile: Welche Stadt soll dort stehen?
+            * <!-- .element: class="fragment" --> SQL Server meldet einen Fehler, ebenso der SQL-Editor.<br>Achtung: SQLite (z.&nbsp;B. in Colab) zeigt stattdessen irgendeine Stadt an.
+          </textarea>
+        </section>
+        <section id="having" data-markdown>
+          <textarea data-template>
+            ## Gruppen filtern mit <code class="hljs-keyword">HAVING</code>
+            * <code class="hljs-keyword">WHERE</code> filtert Zeilen <em>vor</em> dem Gruppieren,<br><code class="hljs-keyword">HAVING</code> filtert Gruppen <em>danach</em>
+            * <!-- .element: class="fragment" --> Alle <strong><u>Länder</u></strong> mit mindestens <strong><u>10</u></strong> <strong><u>Kunden</u></strong> ausgeben:
+              ```sql
+              SELECT Country, COUNT(*) AS Kunden
+              FROM Customers
+              GROUP BY Country
+              HAVING COUNT(*) >= 10
+              ```
+            * <!-- .element: class="fragment" --> <em>Ergebnis: France 11, Germany 11, USA 13</em>
+          </textarea>
+        </section>
+        <section data-state="no-header" id="group-by-uebung-1">
+          <h2>Übung: <code class="hljs-keyword">GROUP BY</code> <span class="exercise-count">1/4</span></h2>
+          <p class="exercise-task">Die Anzahl der <strong><u>Bestellungen</u></strong> pro <strong><u>Versanddienstleister</u></strong> ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Die%20Anzahl%20der%20Bestellungen%20pro%20Versanddienstleister%20ausgeben%0A%0A&amp;loesung=SELECT%20ShipperID%2C%20COUNT%28%2A%29%20AS%20Bestellungen%0AFROM%20Orders%0AGROUP%20BY%20ShipperID" title="SQL-Editor für Aufgabe 1"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="group-by-uebung-2">
+          <h2>Übung: <code class="hljs-keyword">GROUP BY</code> <span class="exercise-count">2/4</span></h2>
+          <p class="exercise-task">Den höchsten <strong><u>Preis</u></strong> pro <strong><u>Kategorie</u></strong> ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Den%20h%C3%B6chsten%20Preis%20pro%20Kategorie%20ausgeben%0A%0A&amp;loesung=SELECT%20CategoryID%2C%20MAX%28Price%29%20AS%20HoechsterPreis%0AFROM%20Products%0AGROUP%20BY%20CategoryID" title="SQL-Editor für Aufgabe 2"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="group-by-uebung-3">
+          <h2>Übung: <code class="hljs-keyword">GROUP BY</code> <span class="exercise-count">3/4</span></h2>
+          <p class="exercise-task">Die Anzahl der <strong><u>Bestellungen</u></strong> pro <strong><u>Kunde</u></strong> ausgeben, die meisten zuerst</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Die%20Anzahl%20der%20Bestellungen%20pro%20Kunde%20ausgeben%2C%20die%20meisten%20zuerst%0A%0A&amp;loesung=SELECT%20CustomerID%2C%20COUNT%28%2A%29%20AS%20Bestellungen%0AFROM%20Orders%0AGROUP%20BY%20CustomerID%0AORDER%20BY%20Bestellungen%20DESC" title="SQL-Editor für Aufgabe 3"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="group-by-kampagnen" data-markdown>
+          <textarea data-template>
+            ## Zurück zu den Kampagnen
+            Die fiktiven Zahlen aus der Einführung als Tabelle <code>Kampagnen</code>:
+
+            | Kampagne | Geraet | Kontakte | Conversions |
+            |:--|:--|--:|--:|
+            | A | Desktop | 600 | 90 |
+            | A | Mobile | 2400 | 120 |
+            | B | Desktop | 2000 | 280 |
+            | B | Mobile | 500 | 20 |
+
+            ```sql
+            SELECT Kampagne,
+              SUM(Conversions) * 100.0 / SUM(Kontakte) AS Quote
+            FROM Kampagnen
+            GROUP BY Kampagne
+            ```
+            <!-- .element: class="fragment" -->
+
+            <em>Ergebnis: Conversion-Rate A 7&nbsp;%, B 12&nbsp;%</em>
+            <!-- .element: class="fragment" -->
+          </textarea>
+        </section>
+        <section data-state="no-header" id="group-by-uebung-4">
+          <h2>Übung: <code class="hljs-keyword">GROUP BY</code> <span class="exercise-count">4/4</span></h2>
+          <p class="exercise-task">Die Conversion-Rate pro <strong><u>Kampagne</u></strong> und <strong><u>Gerät</u></strong> ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%204%3A%20Die%20Conversion-Rate%20pro%20Kampagne%20und%20Geraet%20ausgeben%20%28Tabelle%20Kampagnen%29%0A--%20Tipp%3A%20Mehrere%20Spalten%20in%20GROUP%20BY%20mit%20Komma%20trennen%0A%0A&amp;loesung=SELECT%20Kampagne%2C%20Geraet%2C%20SUM%28Conversions%29%20%2A%20100.0%20%2F%20SUM%28Kontakte%29%20AS%20Quote%0AFROM%20Kampagnen%0AGROUP%20BY%20Kampagne%2C%20Geraet" title="SQL-Editor für Aufgabe 4"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section id="group-by-kampagnen-2" data-markdown>
+          <textarea data-template>
+            ## Kampagnen nach Gerät
+            ```sql
+            SELECT Kampagne, Geraet,
+              SUM(Conversions) * 100.0 / SUM(Kontakte) AS Quote
+            FROM Kampagnen
+            GROUP BY Kampagne, Geraet
+            ```
+
+            | Kampagne | Geraet | Quote |
+            |:--|:--|--:|
+            | A | Desktop | **15,0&nbsp;%** |
+            | A | Mobile | **5,0&nbsp;%** |
+            | B | Desktop | 14,0&nbsp;% |
+            | B | Mobile | 4,0&nbsp;% |
+            <!-- .element: class="fragment" -->
+
+            * <!-- .element: class="fragment" --> Mehrere Spalten im <code class="hljs-keyword">GROUP BY</code>: eine Gruppe pro Kombination
+            * <!-- .element: class="fragment" --> A ist in beiden Segmenten besser: Simpson-Paradoxon, mit einer Zeile SQL aufgedeckt
           </textarea>
         </section>
       </section>
 
       <section data-abschnitt="JOIN">
-        <section>
-          <h2>Normalisierung</h2>
-            <div style="display: flex; width: 100%; gap: 20px;">
-              <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                <img data-src="assets/2-1-4-er.svg" alt="ER-Diagramm der Beispieldatenbank" style="max-width: 100%; margin: 0;">
-              </div>
-              <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                  <img data-src="assets/2-1-2-products.png" style="max-width: 100%; margin: 0;">
-                </div>
-                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                  <img data-src="assets/2-5-1-categories.png" style="max-width: 100%; margin: 0;">
-                </div>
-              </div>
-            </div>
+        <section data-state="no-header" id="join-warum">
+          <h2>Warum mehrere Tabellen?</h2>
+          <ul>
+            <li>Jede Information nur einmal speichern (<strong>Normalisierung</strong>)</li>
+            <li>Tabellen verweisen über Schlüssel aufeinander</li>
+          </ul>
+          <img data-src="assets/2-1-3-keys.svg" alt="Tabellen der Beispieldatenbank, über Schlüssel verbunden" style="width: 82%; margin: 0.8em 0 0;">
         </section>
-        <section data-markdown>
+        <section id="join" data-markdown>
           <textarea data-template>
-            ## Joins von Tabellen
-            * <!-- .element: class="fragment" --> <code class="hljs-keyword">LEFT JOIN</code> der Tabellen <code>Products</code> und <code>Categories</code>: 
+            ## Tabellen verknüpfen mit <code class="hljs-keyword">JOIN</code>
+            * Durchschnittlicher <strong><u>Preis</u></strong> pro <strong><u>Kategorie</u></strong> (aus <code class="hljs-keyword">GROUP BY</code>):
               ```sql
-              SELECT * 
-              FROM Products 
-              LEFT JOIN Categories
-                ON Products.CategoryID = Categories.CategoryID
+              SELECT CategoryID, AVG(Price) AS Durchschnittspreis
+              FROM Products
+              GROUP BY CategoryID
               ```
-              <!-- .element: class="fragment" -->
-              <img data-src="assets/2-5-2-join.png" style="max-width: 100%; margin: 0;"><!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: nur Kategorie-Nummern (1 bis 8)</em>
+            * <!-- .element: class="fragment" --> Was ist Kategorie 6? Der Name steht in der Tabelle <code>Categories</code>
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">JOIN</code> führt die Zeilen beider Tabellen zusammen
           </textarea>
         </section>
-        <section data-state="no-header" data-markdown>
+        <section data-state="no-header" id="join-prinzip">
+          <h2>So funktioniert <code class="hljs-keyword">JOIN</code></h2>
+          <div class="r-stack diagram-steps">
+            <img data-src="assets/2-6-1-join-tables.svg" alt="Schritt 1: Tabellen Products und Categories">
+            <img class="fragment" data-src="assets/2-6-2-join-match.svg" alt="Schritt 2: passende Zeilen über gleiche CategoryID">
+            <img class="fragment" data-src="assets/2-6-3-join-result.svg" alt="Schritt 3: Ergebnis mit Produktname und Kategoriename">
+          </div>
+        </section>
+        <section id="join-syntax" data-markdown>
+          <textarea data-template>
+            ## Syntax von <code class="hljs-keyword">JOIN</code>
+            ```sql
+            SELECT spalten
+            FROM tabelle1
+            JOIN tabelle2
+              ON tabelle1.spalte = tabelle2.spalte
+            ```
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">ON</code>: über welche Spalten die Zeilen zusammenpassen,<br>meist Fremdschlüssel = Primärschlüssel
+            * <!-- .element: class="fragment" --> Gleichnamige Spalten mit Tabellennamen davor: <code>Products.CategoryID</code>
+          </textarea>
+        </section>
+        <section data-state="no-header" id="join-alias" data-markdown>
+          <textarea data-template>
+            ## Kurznamen für Tabellen (Aliase)
+            * Mit vollen Tabellennamen:
+              ```sql
+              SELECT Products.ProductName, Categories.CategoryName
+              FROM Products
+              JOIN Categories
+                ON Products.CategoryID = Categories.CategoryID
+              ```
+            * <!-- .element: class="fragment" --> Kürzer mit Aliasen:
+              ```sql
+              SELECT p.ProductName, c.CategoryName
+              FROM Products p
+              JOIN Categories c
+                ON p.CategoryID = c.CategoryID
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> Der Alias steht direkt nach dem Tabellennamen und gilt nur in dieser Abfrage
+          </textarea>
+        </section>
+        <section id="join-1" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">JOIN</code> Beispiel 1
-            * <!-- .element: class="fragment" --> Gib alle <code>Produkte</code> aus der <code>Produktkategorie Produce</code> aus: 
+            * Alle <strong><u>Produkte</u></strong> mit dem <strong><u>Namen</u></strong> ihrer <strong><u>Kategorie</u></strong> ausgeben:
               ```sql
-              SELECT *
-              FROM Products 
-              LEFT JOIN Categories
-                ON Products.CategoryID = Categories.CategoryID
-              WHERE CategoryName='Produce'
+              SELECT p.ProductName, c.CategoryName
+              FROM Products p
+              JOIN Categories c
+                ON p.CategoryID = c.CategoryID
               ```
               <!-- .element: class="fragment" -->
-              <img data-src="assets/2-5-3-join-produce.png" style="max-width: 100%; margin: 0;"><!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 77 Zeilen, eine pro Produkt</em>
           </textarea>
         </section>
-        <section data-state="no-header" data-markdown>
+        <section id="join-2" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">JOIN</code> Beispiel 2
-            * <!-- .element: class="fragment" --> Gib die Anzahl der <code>Produkte</code> pro <code>Produktkategorie</code> aus: 
+            * <strong><u>Name</u></strong> und <strong><u>Preis</u></strong> aller <strong><u>Produkte</u></strong> der <strong><u>Kategorie</u></strong> <strong><u>Produce</u></strong> ausgeben:
               ```sql
-              SELECT CategoryName, COUNT(ProductID) as ProductIDCount
-              FROM Products 
-              LEFT JOIN Categories
-                ON Products.CategoryID = Categories.CategoryID
-              GROUP BY CategoryName
+              SELECT p.ProductName, p.Price
+              FROM Products p
+              JOIN Categories c
+                ON p.CategoryID = c.CategoryID
+              WHERE c.CategoryName = 'Produce'
               ```
               <!-- .element: class="fragment" -->
-              <img data-src="assets/2-5-4-join-count.png" style="max-width: 100%; margin: 0;"><!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 5 Produkte, z.&nbsp;B. Tofu und Rössle Sauerkraut</em>
           </textarea>
         </section>
-        <section data-markdown>
+        <section id="join-3" data-markdown>
           <textarea data-template>
             ## <code class="hljs-keyword">JOIN</code> Beispiel 3
-            * <!-- .element: class="fragment" --> <code>JOIN</code> über mehrere Tabellen: Gib alle <code>Produkte</code> mit <code>Lieferantenname</code> und <code>Produktkategorie</code> aus: 
+            * Den durchschnittlichen <strong><u>Preis</u></strong> pro <strong><u>Kategorie</u></strong> mit <strong><u>Namen</u></strong><br>ausgeben, die teuerste zuerst:
               ```sql
-              SELECT *
+              SELECT c.CategoryName, AVG(p.Price) AS Durchschnittspreis
               FROM Products p
-              LEFT JOIN Categories c
-                ON p.CategoryID=c.CategoryID
-              LEFT JOIN Suppliers s 
-                ON p.SupplierID=s.SupplierID
+              JOIN Categories c
+                ON p.CategoryID = c.CategoryID
+              GROUP BY c.CategoryName
+              ORDER BY Durchschnittspreis DESC
               ```
               <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 8 Zeilen, Meat/Poultry (Kategorie 6) ist die teuerste (rund 54)</em>
           </textarea>
         </section>
-        <section data-markdown>
+        <section data-state="no-header" id="join-arten">
+          <h2><code class="hljs-keyword">JOIN</code> und <code class="hljs-keyword">LEFT JOIN</code></h2>
+          <img data-src="assets/2-6-4-join-types.svg" alt="JOIN liefert nur Kunden mit Bestellung, LEFT JOIN alle Kunden, Alfreds Futterkiste ohne Bestellung mit NULL" style="width: 88%; margin: 0;">
+          <div class="fragment diagram-captions">
+            <p><code class="hljs-keyword">JOIN</code> (= <code class="hljs-keyword">INNER JOIN</code>):<br>nur Zeilen mit Partner</p>
+            <p><code class="hljs-keyword">LEFT JOIN</code>:<br>alle Zeilen der linken Tabelle</p>
+          </div>
+        </section>
+        <section data-state="no-header" id="join-4" data-markdown>
           <textarea data-template>
-            ## <code class="hljs-keyword">LEFT JOIN</code> Bedeutung
-            <code class="hljs-keyword">LEFT JOIN</code> bedeutet, dass alle Zeilen der linken Tabelle im Ergebnis enthalten sind, Zeilen der rechten Tabelle aber nur, wenn es einen passenden Eintrag gibt.
-            <img data-src="assets/2-5-5-left-join.png" style="max-width: 100%; margin: 0;">
+            ## <code class="hljs-keyword">JOIN</code> Beispiel 4
+            * Alle <strong><u>Kunden</u></strong> ohne <strong><u>Bestellung</u></strong> ausgeben:
+              ```sql
+              SELECT c.CustomerName, c.Country
+              FROM Customers c
+              LEFT JOIN Orders o
+                ON c.CustomerID = o.CustomerID
+              WHERE o.OrderID IS NULL
+              ```
+              <!-- .element: class="fragment" -->
+            * <!-- .element: class="fragment" --> <code class="hljs-keyword">IS NULL</code>: das Feld ist leer (hier: kein Partner in <code>Orders</code>).<br>Ein Vergleich mit <code>= NULL</code> funktioniert nicht.
+            * <!-- .element: class="fragment" --> <em>Ergebnis: 17 Kunden, z.&nbsp;B. Alfreds Futterkiste und Blauer See Delikatessen</em>
           </textarea>
         </section>
-        <section data-markdown>
+        <section data-state="no-header" id="join-5" data-markdown>
           <textarea data-template>
-            ## <code class="hljs-keyword">INNER JOIN</code> Bedeutung
-            <code class="hljs-keyword">INNER JOIN</code> bedeutet, dass ausschließlich, die Zeilen der linken und rechten Tabelle im Ergebnis enthalten sind, die übereinstimmende Werte in den verbundenen Spalten haben.
-            <img data-src="assets/2-5-6-inner-join.png" style="max-width: 100%; margin: 0;">
+            ## <code class="hljs-keyword">JOIN</code> Beispiel 5
+            Den <strong><u>Umsatz</u></strong> pro <strong><u>Kategorie</u></strong> ausgeben (drei Tabellen):
+
+            <img data-src="assets/2-6-5-er-umsatz.svg" alt="Ausschnitt aus dem ER-Diagramm: OrderDetails, Products und Categories" style="width: 80%; margin: 0.1em 0 0.3em;">
+
+            ```sql
+            SELECT c.CategoryName, SUM(d.Quantity * p.Price) AS Umsatz
+            FROM OrderDetails d
+            JOIN Products p ON d.ProductID = p.ProductID
+            JOIN Categories c ON p.CategoryID = c.CategoryID
+            GROUP BY c.CategoryName
+            ORDER BY Umsatz DESC
+            ```
+            <!-- .element: class="fragment" -->
+
+            Umsatz einer Bestellposition: Menge mal Preis
+            <!-- .element: class="fragment" style="font-size: 0.7em; margin: 0.2em 0;" -->
+
+            <em>Ergebnis: Beverages vorne (99.464,50), dann Dairy Products und Confections</em>
+            <!-- .element: class="fragment" style="font-size: 0.7em; margin: 0.2em 0;" -->
           </textarea>
         </section>
-        <section data-markdown>
-          <textarea data-template>
-            ## <code class="hljs-keyword">OUTER JOIN</code> Bedeutung
-            <code class="hljs-keyword">OUTER JOIN</code> bedeutet, dass alle Zeilen der linken und rechten Tabelle im Ergebnis enthalten sind und übereinstimmende Werte im Ergebnis in einer Zeile zusammengeführt werden.
-            <img data-src="assets/2-5-7-outer-join.png" style="max-width: 100%; margin: 0;">
-          </textarea>
+        <section data-state="no-header" id="join-uebung-1">
+          <h2>Übung: <code class="hljs-keyword">JOIN</code> <span class="exercise-count">1/3</span></h2>
+          <p class="exercise-task">Die Anzahl der <strong><u>Bestellungen</u></strong> pro <strong><u>Versanddienstleister</u></strong> mit <strong><u>Namen</u></strong> ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%201%3A%20Die%20Anzahl%20der%20Bestellungen%20pro%20Versanddienstleister%20mit%20Namen%20ausgeben%0A--%20Tipp%3A%20Die%20Namen%20stehen%20in%20der%20Tabelle%20Shippers%0A%0A&amp;loesung=SELECT%20s.ShipperName%2C%20COUNT%28%2A%29%20AS%20Bestellungen%0AFROM%20Orders%20o%0AJOIN%20Shippers%20s%0A%20%20ON%20o.ShipperID%20%3D%20s.ShipperID%0AGROUP%20BY%20s.ShipperName" title="SQL-Editor für Aufgabe 1"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="join-uebung-2">
+          <h2>Übung: <code class="hljs-keyword">JOIN</code> <span class="exercise-count">2/3</span></h2>
+          <p class="exercise-task">Die Anzahl der <strong><u>Bestellungen</u></strong> pro <strong><u>Kunde</u></strong> mit <strong><u>Kundennamen</u></strong> ausgeben, die meisten zuerst</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%202%3A%20Die%20Anzahl%20der%20Bestellungen%20pro%20Kunde%20mit%20Kundennamen%20ausgeben%2C%20die%20meisten%20zuerst%0A%0A&amp;loesung=SELECT%20c.CustomerName%2C%20COUNT%28%2A%29%20AS%20Bestellungen%0AFROM%20Orders%20o%0AJOIN%20Customers%20c%0A%20%20ON%20o.CustomerID%20%3D%20c.CustomerID%0AGROUP%20BY%20c.CustomerName%0AORDER%20BY%20Bestellungen%20DESC" title="SQL-Editor für Aufgabe 2"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
+        </section>
+        <section data-state="no-header" id="join-uebung-3">
+          <h2>Übung: <code class="hljs-keyword">JOIN</code> <span class="exercise-count">3/3</span></h2>
+          <p class="exercise-task">Alle <strong><u>Mitarbeiter</u></strong> ohne <strong><u>Bestellung</u></strong> ausgeben</p>
+          <iframe class="sql-editor sql-editor-exercise" data-src="../sql-editor/index.html?er=0&amp;run=0&amp;q=--%20Aufgabe%203%3A%20Alle%20Mitarbeiter%20ohne%20Bestellung%20ausgeben%0A--%20Tipp%3A%20LEFT%20JOIN%20und%20IS%20NULL%0A%0A&amp;loesung=SELECT%20e.FirstName%2C%20e.LastName%0AFROM%20Employees%20e%0ALEFT%20JOIN%20Orders%20o%0A%20%20ON%20e.EmployeeID%20%3D%20o.EmployeeID%0AWHERE%20o.OrderID%20IS%20NULL" title="SQL-Editor für Aufgabe 3"></iframe>
+          <p class="editor-print-hint">Interaktiver SQL-Editor auf der Kursseite:<br><span class="nowrap">markusschanta.github.io/fhwien-dga-2026/sql-editor/</span></p>
         </section>
       </section>
-      
+
+      <section data-abschnitt="Zusammenfassung">
+        <section data-state="no-header" id="aufbau-abfrage">
+          <h2>Kochrezept: Aufbau einer Abfrage</h2>
+          <p class="recipe-intro">Geschrieben wird von oben nach unten,<br>ausgeführt in der Reihenfolge der Nummern:</p>
+          <div class="recipe">
+            <div class="recipe-row"><code><span class="recipe-kw">SELECT</span>spalten</code><span class="recipe-step">5</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">FROM</span>tabelle1</code><span class="recipe-step">1</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">JOIN</span>tabelle2 ON ...</code><span class="recipe-step">1</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">WHERE</span>bedingung</code><span class="recipe-step">2</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">GROUP BY</span>spalten</code><span class="recipe-step">3</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">HAVING</span>bedingung</code><span class="recipe-step">4</span></div>
+            <div class="recipe-row"><code><span class="recipe-kw">ORDER BY</span>spalten</code><span class="recipe-step">6</span></div>
+          </div>
+          <ul>
+            <li class="fragment">Im <code class="hljs-keyword">WHERE</code> keine Aggregatfunktionen (noch nicht gruppiert), dafür <code class="hljs-keyword">HAVING</code></li>
+            <li class="fragment">Ein Alias aus dem <code class="hljs-keyword">SELECT</code> geht im <code class="hljs-keyword">ORDER BY</code>, im <code class="hljs-keyword">WHERE</code> nicht</li>
+          </ul>
+        </section>
+      </section>
+
       <section data-abschnitt="Abschluss">
-        <section>
+        <section id="abschluss-fragen">
           <h2>Fragen?</h2>
         </section>
-        <section>
+        <section id="abschluss-naechste-schritte">
           <h2>Nächste Schritte</h2>
-            <ul>
-              <li>Folien & Materialien der heutigen Einheit auf Moodle</li>
-              <li>Nächste Einheit: Do. 4.12. 18:30</li>
-            </ul>
+          <ul>
+            <li>Folien, Skriptum und SQL-Editor auf der Kursseite</li>
+            <li>Beispiele und Übungen im SQL-Editor wiederholen</li>
+            <li>Nächster Termin: Mo. 30.11.2026, 18:30, B516<br>Teil 3: Python</li>
+            <li>Google-Konto erstellen, Colab aufrufen &amp; ausprobieren</li>
+          </ul>
         </section>
-        <section>
+        <section id="abschluss-danke">
           <h2>Danke und schönen Abend!</h2>
         </section>
       </section>

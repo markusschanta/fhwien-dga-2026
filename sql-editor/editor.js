@@ -277,6 +277,9 @@
     if (!db) return;
     var sql = editor.getSelection() || editor.getValue();
     if (!sql.trim()) { showMessage('Keine Abfrage eingegeben.'); return; }
+    // GROUP BY wie SQL Server prüfen (SQLite würde stillschweigend einen beliebigen Wert anzeigen)
+    var groupByError = window.DGA_checkGroupBy && window.DGA_checkGroupBy(sql);
+    if (groupByError) { statusEl.textContent = ''; showError(groupByError); return; }
     var t0 = performance.now();
     try {
       var results = db.exec(translateTop(sql));

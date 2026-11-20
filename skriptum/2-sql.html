@@ -38,11 +38,11 @@
         <li><a href="#select">Spalten auswählen: SELECT</a></li>
         <li><a href="#where">Zeilen filtern: WHERE</a></li>
         <li><a href="#order-by">Sortieren und begrenzen</a></li>
-        <li><a href="#distinct">Doppelte entfernen: DISTINCT</a></li>
+        <li><a href="#distinct">Doppelte Einträge entfernen mit DISTINCT</a></li>
         <li><a href="#group-by">Zusammenfassen: GROUP BY</a></li>
         <li><a href="#kampagnen">Praxisbeispiel: Kampagnen vergleichen</a></li>
         <li><a href="#join">Tabellen verknüpfen: JOIN</a></li>
-        <li><a href="#reihenfolge">Aufbau einer Abfrage</a></li>
+        <li><a href="#reihenfolge">Kochrezept: Aufbau einer Abfrage</a></li>
         <li><a href="#fehler">Typische Fehler</a></li>
         <li><a href="#ausprobieren">Zum Ausprobieren</a></li>
         <li><a href="#begriffe">Begriffe</a></li>
@@ -116,6 +116,10 @@
       <li>Ein <strong>Primärschlüssel</strong> (englisch <em>Primary Key</em>, PK) identifiziert jede Zeile einer Tabelle eindeutig. In <code>Products</code> ist das die Spalte <code>ProductID</code>: Kein Produkt hat dieselbe Nummer wie ein anderes.</li>
       <li>Ein <strong>Fremdschlüssel</strong> (englisch <em>Foreign Key</em>, FK) verweist auf den Primärschlüssel einer anderen Tabelle. Die Spalte <code>Products.CategoryID</code> enthält zum Beispiel die Nummer der Kategorie, zu der ein Produkt gehört. Den Namen der Kategorie findet man in <code>Categories.CategoryID</code>.</li>
     </ul>
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-1-3-keys.svg" alt="Tabellen Customers, Orders, OrderDetails und Products, über Schlüssel verbunden"></div>
+      <figcaption>Abbildung 3: Tabellen der Beispieldatenbank, über Schlüssel verbunden. Kunde 20 (Ernst Handel) hat die Bestellung 10258 aufgegeben; sie besteht aus drei Positionen, die auf drei Produkte verweisen. Primärschlüssel sind lila, Fremdschlüssel pink hinterlegt.</figcaption>
+    </figure>
 
     <h3>3.1. Warum Daten auf mehrere Tabellen verteilt werden</h3>
     <p>Man könnte den Kategorienamen auch direkt in jede Produktzeile schreiben. Dann stünde „Beverages“ zwölfmal in der Tabelle, nämlich bei jedem Getränk. Das hat Nachteile:</p>
@@ -131,7 +135,7 @@
 
     <figure>
       <div class="frame"><img src="../slides/assets/2-1-4-er.svg" alt="ER-Diagramm der Beispieldatenbank mit acht Tabellen"></div>
-      <figcaption>Abbildung 3: ER-Diagramm der Beispieldatenbank. PK markiert Primärschlüssel, FK Fremdschlüssel.</figcaption>
+      <figcaption>Abbildung 4: ER-Diagramm der Beispieldatenbank. PK markiert Primärschlüssel, FK Fremdschlüssel.</figcaption>
     </figure>
 
     <p>Die Linienenden zeigen, wie viele Datensätze miteinander verbunden sein können (Crow's-Foot-Notation):</p>
@@ -166,6 +170,10 @@
 FROM Customers
 WHERE Country = 'Austria'</code></pre>
     <p>Die Datenbank nimmt die Abfrage entgegen (<em>Request</em>) und liefert ein Ergebnis zurück (<em>Response</em>). Wichtig: <strong>Das Ergebnis einer Abfrage ist immer wieder eine Tabelle</strong>, auch wenn sie nur eine Zeile oder eine Zahl enthält.</p>
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-2-request-response.svg" alt="Abfrage als Request an die Datenbank, Ergebnis als Response wieder eine Tabelle"></div>
+      <figcaption>Abbildung 5: Request und Response: Die Abfrage geht an die Datenbank, zurück kommt wieder eine Tabelle.</figcaption>
+    </figure>
 
     <h3>4.2. Dialekte</h3>
     <p>Jedes Datenbanksystem spricht seinen eigenen <strong>Dialekt</strong> von SQL. Die Grundlagen sind überall gleich, in Details gibt es Unterschiede, zum Beispiel:</p>
@@ -189,7 +197,7 @@ WHERE Country = 'Austria'</code></pre>
       <li>Links unten wird die <strong>Abfrage</strong> geschrieben und mit „Ausführen“ oder Shift + Enter gestartet.</li>
       <li>Rechts unten erscheint das <strong>Ergebnis</strong>, bei einem Fehler eine Erklärung.</li>
     </ul>
-    <p>Über das Menü „Beispiele“ lassen sich alle Abfragen aus den Folien zu diesem Kapitel laden. „Zurücksetzen“ stellt die Datenbank wieder her, falls Daten verändert wurden. Alle Abfragen in diesem Skriptum funktionieren im Editor; die Abfrage im folgenden Fenster kann direkt hier geändert und ausgeführt werden:</p>
+    <p>Über das Menü „Beispiele“ lassen sich alle Abfragen aus den Folien zu diesem Kapitel laden. Fehlerhafte Abfragen mit <code>GROUP BY</code> meldet der Editor wie Microsoft SQL Server (Abschnitt <a href="#group-by">10.1</a>). Zusätzlich zur Beispieldatenbank enthält er die Tabelle <code>Kampagnen</code> für das Praxisbeispiel in Abschnitt <a href="#kampagnen">11</a>. „Zurücksetzen“ stellt die Datenbank wieder her, falls Daten verändert wurden. Alle Abfragen in diesem Skriptum funktionieren im Editor; die Abfrage im folgenden Fenster kann direkt hier geändert und ausgeführt werden:</p>
     <iframe class="editor-embed" src="../sql-editor/index.html?er=0&amp;q=SELECT%20*%0AFROM%20Customers" title="SQL-Editor" loading="lazy"></iframe>
 
     <!-- 6 -->
@@ -238,7 +246,7 @@ WHERE bedingung</code></pre>
 
     <figure>
       <div class="frame"><img src="../slides/assets/2-4-columns-rows.svg" alt="Tabelle Customers: SELECT wählt die Spalten CustomerName und City, WHERE die Zeilen mit Country = Germany"></div>
-      <figcaption>Abbildung 4: <code>SELECT</code> bestimmt die Spalten (lila), <code>WHERE</code> die Zeilen (pink).</figcaption>
+      <figcaption>Abbildung 6: <code>SELECT</code> bestimmt die Spalten (lila), <code>WHERE</code> die Zeilen (pink).</figcaption>
     </figure>
 
     <h3>7.1. Vergleichsoperatoren</h3>
@@ -365,13 +373,18 @@ LIMIT 5</code></pre>
     <p>Haben mehrere Zeilen denselben Wert, ist ihre Reihenfolge untereinander zufällig. Ein zweites Sortierkriterium schafft Klarheit, etwa <code>ORDER BY Price DESC, ProductName</code>.</p>
 
     <!-- 9 -->
-    <h2 id="distinct">9. Doppelte entfernen: DISTINCT</h2>
+    <h2 id="distinct">9. Doppelte Einträge entfernen mit DISTINCT</h2>
 
     <p><code>SELECT Country FROM Customers</code> liefert 91 Zeilen, eine pro Kunde, und damit viele Länder mehrfach. <code>DISTINCT</code> entfernt doppelte Zeilen aus dem Ergebnis:</p>
 <pre><code class="language-sql">SELECT DISTINCT Country
 FROM Customers
 ORDER BY Country</code></pre>
     <p>Das Ergebnis enthält 21 Länder, von Argentina bis Venezuela. Die Anzahl lässt sich auch direkt zählen: <code>SELECT COUNT(DISTINCT Country) FROM Customers</code> ergibt 21.</p>
+    <p><code>DISTINCT</code> steht direkt nach <code>SELECT</code> und gilt für die <strong>Kombination</strong> aller ausgewählten Spalten: <code>SELECT DISTINCT Country, City FROM Customers</code> liefert 69 Zeilen, weil es in vielen Ländern mehrere Städte gibt.</p>
+    <p>Eine typische Frage im Marketing lautet: Wie viele verschiedene Kunden haben schon bestellt? Die Tabelle <code>Orders</code> enthält 196 Bestellungen, aber manche Kunden haben mehrfach bestellt:</p>
+<pre><code class="language-sql">SELECT DISTINCT CustomerID
+FROM Orders</code></pre>
+    <p>Das Ergebnis enthält 74 Zeilen. Von den 91 Kunden haben also 17 noch nie bestellt. Wer das ist, zeigt Abschnitt <a href="#join">12.1</a>.</p>
 
     <!-- 10 -->
     <h2 id="group-by">10. Zusammenfassen: Aggregatfunktionen und GROUP BY</h2>
@@ -383,6 +396,7 @@ ORDER BY Country</code></pre>
         <tbody>
           <tr><td><code>COUNT(*)</code></td><td>Anzahl der Zeilen</td></tr>
           <tr><td><code>COUNT(spalte)</code></td><td>Anzahl der Werte in der Spalte, die nicht <code>NULL</code> sind</td></tr>
+          <tr><td><code>COUNT(DISTINCT spalte)</code></td><td>Anzahl der verschiedenen Werte in der Spalte</td></tr>
           <tr><td><code>SUM(spalte)</code></td><td>Summe (nur für Zahlen)</td></tr>
           <tr><td><code>AVG(spalte)</code></td><td>Durchschnitt (nur für Zahlen)</td></tr>
           <tr><td><code>MIN(spalte)</code>, <code>MAX(spalte)</code></td><td>kleinster bzw. größter Wert (für Zahlen, Text und Datum)</td></tr>
@@ -405,7 +419,11 @@ FROM Products</code></pre>
     <p>Mit <code>AS</code> erhält eine Ergebnisspalte einen eigenen Namen (<em>Alias</em>). Ohne Alias hieße die Spalte etwa <code>ROUND(AVG(Price), 2)</code> oder hätte gar keinen Namen.</p>
 
     <h3>10.1. Kennzahlen pro Gruppe</h3>
-    <p>Spannend wird es, wenn Kennzahlen <strong>pro Gruppe</strong> berechnet werden: pro Land, pro Kategorie, pro Monat. Dafür gibt es <code>GROUP BY</code>. Die Datenbank teilt die Zeilen zuerst in Gruppen mit gleichem Wert ein und wendet die Aggregatfunktion dann auf jede Gruppe einzeln an.</p>
+    <p>Spannend wird es, wenn Kennzahlen <strong>pro Gruppe</strong> berechnet werden: pro Land, pro Kategorie, pro Monat. Dafür gibt es <code>GROUP BY</code>. Die Datenbank teilt die Zeilen zuerst in Gruppen mit gleichem Wert ein und wendet die Aggregatfunktion dann auf jede Gruppe einzeln an. Das Ergebnis enthält <strong>genau eine Zeile pro Gruppe</strong>.</p>
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-5-3-group-by-result.svg" alt="GROUP BY: 15 Kunden aus Austria, Germany und Switzerland werden nach Land gruppiert und zu einer Zeile pro Land zusammengefasst"></div>
+      <figcaption>Abbildung 7: So funktioniert <code>GROUP BY</code>, am Beispiel der Kunden aus Österreich, Deutschland und der Schweiz: Zeilen nach Land gruppieren, dann jede Gruppe zu einer Zeile mit der Anzahl zusammenfassen.</figcaption>
+    </figure>
     <p>Anzahl der Kunden pro Land, die Länder mit den meisten Kunden zuerst:</p>
 <pre><code class="language-sql">SELECT Country, COUNT(*) AS Kunden
 FROM Customers
@@ -427,7 +445,8 @@ ORDER BY Kunden DESC</code></pre>
 
     <div class="box">
       <span class="box-title">Die wichtigste Regel bei GROUP BY</span>
-      <p>Jede Spalte im <code>SELECT</code> muss entweder im <code>GROUP BY</code> stehen oder in einer Aggregatfunktion. <code>SELECT Country, City, COUNT(*) … GROUP BY Country</code> ist fehlerhaft: Welche der vielen Städte eines Landes sollte die Datenbank anzeigen?</p>
+      <p>Jede Spalte im <code>SELECT</code> muss entweder im <code>GROUP BY</code> stehen oder in einer Aggregatfunktion. <code>SELECT Country, City, COUNT(*) … GROUP BY Country</code> ist fehlerhaft: <code>GROUP BY</code> liefert eine Zeile pro Land, aber welche der vielen Städte eines Landes sollte die Datenbank anzeigen? Microsoft SQL Server und der SQL-Editor des Kurses melden hier einen Fehler.</p>
+      <p><strong>Achtung bei SQLite</strong> (etwa in Google Colab): SQLite führt die Abfrage trotzdem aus und zeigt für jedes Land irgendeine Stadt an. Das Ergebnis sieht plausibel aus, ist aber sinnlos. Dasselbe gilt für <code>SELECT Country, COUNT(*) FROM Customers</code> ohne <code>GROUP BY</code>.</p>
     </div>
 
     <h3>10.2. Gruppen filtern: HAVING</h3>
@@ -441,10 +460,10 @@ HAVING COUNT(*) &gt;= 10</code></pre>
     <!-- 11 -->
     <h2 id="kampagnen">11. Praxisbeispiel: Kampagnen vergleichen</h2>
 
-    <p>In der Einführung wurde gefragt, welche von zwei Kampagnen erfolgreicher war. Die Zahlen sind fiktiv und stehen nicht in der Beispieldatenbank. Angenommen, sie lägen in einer Tabelle <code>kampagnen</code>:</p>
+    <p>In der Einführung wurde gefragt, welche von zwei Kampagnen erfolgreicher war. Die Zahlen sind fiktiv. Für den Kurs liegen sie im SQL-Editor zusätzlich in einer Tabelle <code>Kampagnen</code> (sie gehört nicht zur ursprünglichen W3Schools-Datenbank):</p>
     <div class="table-wrap">
       <table class="result">
-        <thead><tr><th>kampagne</th><th>geraet</th><th class="num">kontakte</th><th class="num">conversions</th></tr></thead>
+        <thead><tr><th>Kampagne</th><th>Geraet</th><th class="num">Kontakte</th><th class="num">Conversions</th></tr></thead>
         <tbody>
           <tr><td>A</td><td>Desktop</td><td class="num">600</td><td class="num">90</td></tr>
           <tr><td>A</td><td>Mobile</td><td class="num">2400</td><td class="num">120</td></tr>
@@ -455,20 +474,20 @@ HAVING COUNT(*) &gt;= 10</code></pre>
     </div>
 
     <p>Die Conversion-Rate pro Kampagne:</p>
-<pre><code class="language-sql">SELECT kampagne,
-       SUM(conversions) * 100.0 / SUM(kontakte) AS quote
-FROM kampagnen
-GROUP BY kampagne</code></pre>
+<pre><code class="language-sql">SELECT Kampagne,
+       SUM(Conversions) * 100.0 / SUM(Kontakte) AS Quote
+FROM Kampagnen
+GROUP BY Kampagne</code></pre>
     <p>Ergebnis: Kampagne A erreicht 7 %, Kampagne B 12 %. B scheint klar besser.</p>
     <p>Nun dieselbe Rechnung, aufgeschlüsselt nach Kampagne <em>und</em> Gerät. Dafür stehen im <code>GROUP BY</code> einfach zwei Spalten:</p>
-<pre><code class="language-sql">SELECT kampagne, geraet,
-       SUM(conversions) * 100.0 / SUM(kontakte) AS quote
-FROM kampagnen
-GROUP BY kampagne, geraet</code></pre>
+<pre><code class="language-sql">SELECT Kampagne, Geraet,
+       SUM(Conversions) * 100.0 / SUM(Kontakte) AS Quote
+FROM Kampagnen
+GROUP BY Kampagne, Geraet</code></pre>
     <p class="result-caption">Ergebnis:</p>
     <div class="table-wrap">
       <table class="result">
-        <thead><tr><th>kampagne</th><th>geraet</th><th class="num">quote</th></tr></thead>
+        <thead><tr><th>Kampagne</th><th>Geraet</th><th class="num">Quote</th></tr></thead>
         <tbody>
           <tr><td>A</td><td>Desktop</td><td class="num">15.0</td></tr>
           <tr><td>A</td><td>Mobile</td><td class="num">5.0</td></tr>
@@ -486,7 +505,12 @@ GROUP BY kampagne, geraet</code></pre>
     <!-- 12 -->
     <h2 id="join">12. Tabellen verknüpfen: JOIN</h2>
 
-    <p>Durch die Normalisierung (Abschnitt <a href="#beziehungen">3</a>) sind zusammengehörige Informationen auf mehrere Tabellen verteilt: Die Tabelle <code>Products</code> kennt nur die Nummer der Kategorie, ihren Namen kennt nur <code>Categories</code>. Mit <code>JOIN</code> werden Tabellen bei der Abfrage wieder zusammengeführt. Nach <code>ON</code> steht, über welche Spalten die Zeilen zusammenpassen, in der Regel Fremdschlüssel und Primärschlüssel:</p>
+    <p>Durch die Normalisierung (Abschnitt <a href="#beziehungen">3</a>) sind zusammengehörige Informationen auf mehrere Tabellen verteilt: Die Tabelle <code>Products</code> kennt nur die Nummer der Kategorie, ihren Namen kennt nur <code>Categories</code>. Mit <code>JOIN</code> werden Tabellen bei der Abfrage wieder zusammengeführt. Nach <code>ON</code> steht, über welche Spalten die Zeilen zusammenpassen, in der Regel Fremdschlüssel und Primärschlüssel.</p>
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-6-3-join-result.svg" alt="JOIN: Products und Categories werden über gleiche CategoryID zusammengeführt"></div>
+      <figcaption>Abbildung 8: So funktioniert <code>JOIN</code>: Zu jeder Zeile aus <code>Products</code> wird die Zeile aus <code>Categories</code> mit derselben <code>CategoryID</code> gesucht und daneben gestellt.</figcaption>
+    </figure>
+    <p>Als Abfrage mit allen 77 Produkten:</p>
 <pre><code class="language-sql">SELECT p.ProductName, c.CategoryName
 FROM Products p
 JOIN Categories c ON p.CategoryID = c.CategoryID</code></pre>
@@ -512,11 +536,9 @@ JOIN Categories c ON p.CategoryID = c.CategoryID</code></pre>
     </ul>
     <figure>
       <div class="frame">
-        <img src="../slides/assets/2-5-6-inner-join.png" alt="Inner Join: nur Zeilen mit Partner in beiden Tabellen">
-        <img src="../slides/assets/2-5-5-left-join.png" alt="Left Join: alle Zeilen der linken Tabelle">
-        <img src="../slides/assets/2-5-7-outer-join.png" alt="Full Outer Join: alle Zeilen beider Tabellen">
+        <img src="../slides/assets/2-6-4-join-types.svg" alt="JOIN liefert nur Kunden mit Bestellung, LEFT JOIN alle Kunden; Alfreds Futterkiste ohne Bestellung mit NULL">
       </div>
-      <figcaption>Abbildung 5: Inner Join, Left Join und Full Outer Join im Vergleich. Leere Felder entsprechen <code>NULL</code>.</figcaption>
+      <figcaption>Abbildung 9: <code>JOIN</code> und <code>LEFT JOIN</code> am Beispiel von vier Kunden und ihren Bestellungen. Alfreds Futterkiste hat keine Bestellung; im <code>LEFT JOIN</code> bleibt die Bestellnummer leer (<code>NULL</code>). Ein <code>FULL OUTER JOIN</code> würde zusätzlich Bestellungen ohne Kunden behalten; solche gibt es in der Beispieldatenbank nicht.</figcaption>
     </figure>
 
     <p>Den Unterschied zeigen Kunden und Bestellungen:</p>
@@ -530,6 +552,7 @@ FROM Customers c
 LEFT JOIN Orders o ON c.CustomerID = o.CustomerID
 WHERE o.OrderID IS NULL</code></pre>
     <p>Das Ergebnis enthält 17 Kunden, darunter Alfreds Futterkiste und Blauer See Delikatessen aus Deutschland, eine gute Zielgruppe für eine Reaktivierungskampagne.</p>
+    <p><code>NULL</code> bedeutet „kein Wert“. Beim <code>LEFT JOIN</code> stehen bei Kunden ohne Bestellung in allen Spalten von <code>Orders</code> leere Werte. Geprüft wird das mit <code>IS NULL</code>. Ein Vergleich mit <code>= NULL</code> liefert nie ein Ergebnis, weil sich „kein Wert“ mit nichts vergleichen lässt.</p>
 
     <h3>12.2. JOIN und GROUP BY kombinieren</h3>
     <p>Joins lassen sich mit allem kombinieren, was bisher behandelt wurde. Anzahl und Durchschnittspreis der Produkte pro Kategorie, diesmal mit dem Namen der Kategorie:</p>
@@ -557,7 +580,11 @@ ORDER BY Durchschnittspreis DESC</code></pre>
       </table>
     </div>
 
-    <p>Es können auch mehr als zwei Tabellen verknüpft werden, indem mehrere <code>JOIN</code> aufeinander folgen. Der Umsatz pro Kategorie ergibt sich aus Menge mal Preis jeder Bestellposition:</p>
+    <p>Es können auch mehr als zwei Tabellen verknüpft werden, indem mehrere <code>JOIN</code> aufeinander folgen. Der Umsatz pro Kategorie ergibt sich aus Menge mal Preis jeder Bestellposition. Der Weg führt über drei Tabellen:</p>
+    <figure>
+      <div class="frame"><img src="../slides/assets/2-6-5-er-umsatz.svg" alt="Ausschnitt aus dem ER-Diagramm: OrderDetails, Products und Categories"></div>
+      <figcaption>Abbildung 10: Ausschnitt aus dem ER-Diagramm. Hervorgehoben sind die Spalten, die für den Umsatz pro Kategorie gebraucht werden; die Buchstaben sind die Aliase in der Abfrage.</figcaption>
+    </figure>
 <pre><code class="language-sql">SELECT c.CategoryName,
        SUM(d.Quantity * p.Price) AS Umsatz
 FROM OrderDetails d
@@ -568,18 +595,22 @@ ORDER BY Umsatz DESC</code></pre>
     <p>Die umsatzstärksten Kategorien sind Beverages (99.464,50), Dairy Products (69.921,00) und Confections (54.909,16).</p>
 
     <!-- 13 -->
-    <h2 id="reihenfolge">13. Aufbau einer Abfrage</h2>
+    <h2 id="reihenfolge">13. Kochrezept: Aufbau einer Abfrage</h2>
 
-    <p>Die Klauseln einer Abfrage müssen in einer festen Reihenfolge stehen. Nicht jede Abfrage braucht alle Teile, aber die vorhandenen stehen immer in dieser Reihenfolge:</p>
-<pre><code class="language-sql">SELECT   spalten, Aggregatfunktionen       -- welche Spalten
-FROM     tabelle                            -- aus welcher Tabelle
-JOIN     andere_tabelle ON bedingung        -- verknüpft mit
-WHERE    bedingung                          -- welche Zeilen
-GROUP BY spalten                            -- pro Gruppe
-HAVING   bedingung                          -- welche Gruppen
-ORDER BY spalten                            -- in welcher Reihenfolge
-LIMIT    n                                  -- wie viele (SQL Server: TOP n nach SELECT)</code></pre>
-    <p>Ausgeführt wird die Abfrage allerdings in einer anderen Reihenfolge: zuerst <code>FROM</code> und <code>JOIN</code>, dann <code>WHERE</code>, dann <code>GROUP BY</code> und <code>HAVING</code>, dann erst <code>SELECT</code>, zuletzt <code>ORDER BY</code> und die Begrenzung. Daraus erklären sich zwei Regeln:</p>
+    <p>Die Klauseln einer Abfrage müssen in einer festen Reihenfolge stehen. Nicht jede Abfrage braucht alle Teile, aber die vorhandenen stehen immer in dieser Reihenfolge. <strong>Ausgeführt</strong> wird die Abfrage allerdings in der Reihenfolge der Nummern:</p>
+    <div class="recipe">
+      <ol>
+        <li><code><span class="recipe-kw">SELECT</span> spalten, Aggregatfunktionen</code><span class="recipe-step" aria-label="Schritt 5">5</span><span class="recipe-desc">welche Spalten</span></li>
+        <li><code><span class="recipe-kw">FROM</span> tabelle</code><span class="recipe-step" aria-label="Schritt 1">1</span><span class="recipe-desc">aus welcher Tabelle</span></li>
+        <li><code><span class="recipe-kw">JOIN</span> andere_tabelle ON bedingung</code><span class="recipe-step" aria-label="Schritt 1">1</span><span class="recipe-desc">verknüpft mit</span></li>
+        <li><code><span class="recipe-kw">WHERE</span> bedingung</code><span class="recipe-step" aria-label="Schritt 2">2</span><span class="recipe-desc">welche Zeilen</span></li>
+        <li><code><span class="recipe-kw">GROUP BY</span> spalten</code><span class="recipe-step" aria-label="Schritt 3">3</span><span class="recipe-desc">pro Gruppe</span></li>
+        <li><code><span class="recipe-kw">HAVING</span> bedingung</code><span class="recipe-step" aria-label="Schritt 4">4</span><span class="recipe-desc">welche Gruppen</span></li>
+        <li><code><span class="recipe-kw">ORDER BY</span> spalten</code><span class="recipe-step" aria-label="Schritt 6">6</span><span class="recipe-desc">in welcher Reihenfolge</span></li>
+        <li><code><span class="recipe-kw">LIMIT</span> n</code><span class="recipe-step" aria-label="Schritt 7">7</span><span class="recipe-desc">wie viele (SQL Server: TOP n nach SELECT)</span></li>
+      </ol>
+    </div>
+    <p>Zuerst bestimmen <code>FROM</code> und <code>JOIN</code>, mit welchen Daten gearbeitet wird, dann filtert <code>WHERE</code> die Zeilen, dann bilden <code>GROUP BY</code> und <code>HAVING</code> die Gruppen, erst dann wählt <code>SELECT</code> die Spalten, zuletzt wird sortiert und begrenzt. Daraus erklären sich zwei Regeln:</p>
     <ul>
       <li>In <code>WHERE</code> sind keine Aggregatfunktionen erlaubt, weil zu diesem Zeitpunkt noch nicht gruppiert wurde. Dafür gibt es <code>HAVING</code>.</li>
       <li>Ein Alias aus dem <code>SELECT</code> kann in <code>ORDER BY</code> verwendet werden, in <code>WHERE</code> aber nicht.</li>
@@ -597,6 +628,8 @@ LIMIT    n                                  -- wie viele (SQL Server: TOP n nach
           <tr><td><code>WHERE PostalCode = NULL</code></td><td><code>WHERE PostalCode IS NULL</code></td></tr>
           <tr><td><code>WHERE COUNT(*) &gt;= 10</code></td><td><code>HAVING COUNT(*) &gt;= 10</code> nach <code>GROUP BY</code></td></tr>
           <tr><td>Spalte im <code>SELECT</code>, die weder gruppiert noch aggregiert ist</td><td>Spalte in <code>GROUP BY</code> aufnehmen oder aggregieren</td></tr>
+          <tr><td><code>SELECT *</code> zusammen mit <code>GROUP BY</code></td><td>Gruppierungsspalten und Aggregatfunktionen einzeln angeben; <code>GROUP BY</code> liefert eine Zeile pro Gruppe</td></tr>
+          <tr><td><code>JOIN</code>, wenn Zeilen ohne Partner gesucht sind (z.&nbsp;B. Kunden ohne Bestellung)</td><td><code>LEFT JOIN</code> und <code>WHERE … IS NULL</code>; mit <code>JOIN</code> ist das Ergebnis leer</td></tr>
           <tr><td>fehlende oder falsche <code>ON</code>-Bedingung beim <code>JOIN</code></td><td>Die Zeilenzahl explodiert, weil jede Zeile mit vielen anderen kombiniert wird. Die <code>ON</code>-Bedingung muss Fremdschlüssel und Primärschlüssel verbinden.</td></tr>
           <tr><td><code>TOP</code> in MySQL, PostgreSQL oder SQLite, <code>LIMIT</code> in SQL Server</td><td>auf den Dialekt achten (Abschnitt <a href="#sql">4</a>); der SQL-Editor des Kurses versteht beides</td></tr>
         </tbody>
@@ -610,11 +643,12 @@ LIMIT    n                                  -- wie viele (SQL Server: TOP n nach
       <li>Name und Telefonnummer aller Lieferanten ausgeben.</li>
       <li>Alle Produkte mit einem Preis zwischen 20 und 30 ausgeben, die teuersten zuerst.</li>
       <li>Alle Kunden aus Städten ausgeben, deren Name mit „S“ beginnt.</li>
-      <li>Aus welchen Ländern kommen die Lieferanten? Jedes Land nur einmal ausgeben.</li>
+      <li>In welchen Städten in den USA gibt es Kunden? Jede Stadt nur einmal ausgeben.</li>
       <li>Wie viele Produkte liefert jeder Lieferant? Die Lieferantennummer genügt.</li>
       <li>Dieselbe Frage mit dem Namen des Lieferanten (Tipp: <code>JOIN</code>).</li>
       <li>Durchschnittspreis pro Kategorie mit Kategoriename, nur Kategorien mit einem Durchschnitt über 30.</li>
       <li>Wie viele Bestellungen hat jede Mitarbeiterin bzw. jeder Mitarbeiter bearbeitet? Nachname und Anzahl ausgeben, sortiert nach Anzahl.</li>
+      <li>Welche Kunden aus Deutschland haben noch nie bestellt?</li>
     </ol>
 
     <!-- 16 -->

@@ -961,6 +961,18 @@ INSERT INTO `Shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
 (1, 'Speedy Express', '(503) 555-9831'),
 (2, 'United Package', '(503) 555-3199'),
 (3, 'Federal Shipping', '(503) 555-9931');
+-- Zusatztabelle der LV (nicht in W3Schools): fiktive Kampagnendaten aus der Intro (Simpson-Paradoxon)
+CREATE TABLE `Kampagnen` (
+  `Kampagne` varchar(255) COLLATE NOCASE DEFAULT NULL
+,  `Geraet` varchar(255) COLLATE NOCASE DEFAULT NULL
+,  `Kontakte` integer DEFAULT NULL
+,  `Conversions` integer DEFAULT NULL
+);
+INSERT INTO `Kampagnen` (`Kampagne`, `Geraet`, `Kontakte`, `Conversions`) VALUES
+('A', 'Desktop', 600, 90),
+('A', 'Mobile', 2400, 120),
+('B', 'Desktop', 2000, 280),
+('B', 'Mobile', 500, 20);
 CREATE TABLE `Suppliers` (
   `SupplierID` integer NOT NULL
 ,  `SupplierName` varchar(255) COLLATE NOCASE DEFAULT NULL
