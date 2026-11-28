@@ -597,7 +597,7 @@ ORDER BY Umsatz DESC</code></pre>
     <!-- 13 -->
     <h2 id="reihenfolge">13. Kochrezept: Aufbau einer Abfrage</h2>
 
-    <p>Die Klauseln einer Abfrage müssen in einer festen Reihenfolge stehen. Nicht jede Abfrage braucht alle Teile, aber die vorhandenen stehen immer in dieser Reihenfolge. <strong>Ausgeführt</strong> wird die Abfrage allerdings in der Reihenfolge der Nummern:</p>
+    <p>Die Klauseln einer Abfrage müssen in einer festen Reihenfolge stehen. Nicht jede Abfrage braucht alle Teile, aber die vorhandenen stehen im fertigen Code immer in dieser Reihenfolge. Die Nummern zeigen dagegen die Reihenfolge beim <strong>Aufbau</strong>, also beim Schreiben der Abfrage:</p>
     <div class="recipe">
       <ol>
         <li><code><span class="recipe-kw">SELECT</span> spalten, Aggregatfunktionen</code><span class="recipe-step" aria-label="Schritt 5">5</span><span class="recipe-desc">welche Spalten</span></li>
@@ -610,10 +610,10 @@ ORDER BY Umsatz DESC</code></pre>
         <li><code><span class="recipe-kw">LIMIT</span> n</code><span class="recipe-step" aria-label="Schritt 7">7</span><span class="recipe-desc">wie viele (SQL Server: TOP n nach SELECT)</span></li>
       </ol>
     </div>
-    <p>Zuerst bestimmen <code>FROM</code> und <code>JOIN</code>, mit welchen Daten gearbeitet wird, dann filtert <code>WHERE</code> die Zeilen, dann bilden <code>GROUP BY</code> und <code>HAVING</code> die Gruppen, erst dann wählt <code>SELECT</code> die Spalten, zuletzt wird sortiert und begrenzt. Daraus erklären sich zwei Regeln:</p>
+    <p>Zuerst legen <code>FROM</code> und <code>JOIN</code> fest, mit welchen Daten gearbeitet wird, dann filtert <code>WHERE</code> die Zeilen, dann bilden <code>GROUP BY</code> und <code>HAVING</code> die Gruppen, erst dann wählt <code>SELECT</code> die Spalten, zuletzt wird sortiert und begrenzt. Im fertigen Code steht <code>SELECT</code> trotzdem oben. Aus der Reihenfolge der Schritte erklären sich zwei Regeln:</p>
     <ul>
-      <li>In <code>WHERE</code> sind keine Aggregatfunktionen erlaubt, weil zu diesem Zeitpunkt noch nicht gruppiert wurde. Dafür gibt es <code>HAVING</code>.</li>
-      <li>Ein Alias aus dem <code>SELECT</code> kann in <code>ORDER BY</code> verwendet werden, in <code>WHERE</code> aber nicht.</li>
+      <li>In <code>WHERE</code> (Schritt 2) sind keine Aggregatfunktionen erlaubt, weil erst in Schritt 3 gruppiert wird. Dafür gibt es <code>HAVING</code> (Schritt 4).</li>
+      <li>Ein Alias aus dem <code>SELECT</code> (Schritt 5) kann in <code>ORDER BY</code> (Schritt 6) verwendet werden, in <code>WHERE</code> (Schritt 2) aber nicht.</li>
     </ul>
 
     <!-- 14 -->
