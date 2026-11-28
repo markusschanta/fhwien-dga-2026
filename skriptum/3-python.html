@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kapitel 3: Programmieren mit Python · Skriptum</title>
+  <meta name="description" content="Skriptum zur Lehrveranstaltung Datengewinnung &amp; -aufbereitung, FH Wien der WKW: Kapitel 3, Programmieren mit Python.">
+  <link rel="icon" type="image/png" href="../slides/assets/0-logo-fh.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="skriptum.css">
+</head>
+
+<body>
+  <div class="page">
+  <main>
+    <a class="back" href="../index.html">← Zur Kursseite</a>
+
+    <p class="eyebrow">Skriptum · Datengewinnung &amp; -aufbereitung · WS 2026/27</p>
+    <h1>Kapitel 3: Programmieren mit Python</h1>
+
+    <div class="box lead">
+      <p>Mit SQL lassen sich gezielt Fragen an eine Datenbank richten. Analysen im Marketing umfassen jedoch häufig mehrere Arbeitsschritte: das Zusammenführen und Bereinigen von Daten, die Berechnung von Kennzahlen, die Aufbereitung der Ergebnisse sowie deren regelmäßige Wiederholung. Dieses Kapitel führt in die Grundelemente der Programmiersprache Python ein, mit denen sich derartige Abläufe eigenständig umsetzen lassen.</p>
+    </div>
+
+
+    <nav class="toc" aria-label="Inhalt">
+      <h2>Inhalt</h2>
+      <ol>
+        <li><a href="#ueberblick">Python im Überblick</a></li>
+        <li><a href="#warum">Warum Python?</a></li>
+        <li><a href="#colab">Notebooks in Google Colab</a></li>
+        <li><a href="#variablen">Variablen</a></li>
+        <li><a href="#datentypen">Datentypen</a></li>
+        <li><a href="#vergleiche">Vergleiche und logische Operatoren</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#dictionaries">Dictionaries</a></li>
+        <li><a href="#verzweigungen">Verzweigungen: if, elif, else</a></li>
+        <li><a href="#schleifen">Schleifen: for</a></li>
+        <li><a href="#funktionen">Funktionen</a></li>
+        <li><a href="#fehler">Fehlermeldungen lesen</a></li>
+        <li><a href="#sql">SQL aus Python</a></li>
+        <li><a href="#praxis">Praxisbeispiel: Newsletter vorbereiten</a></li>
+        <li><a href="#bausteine">Die Bausteine im Überblick</a></li>
+        <li><a href="#typische-fehler">Typische Fehler</a></li>
+        <li><a href="#ausprobieren">Zum Ausprobieren</a></li>
+        <li><a href="#begriffe">Begriffe</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 -->
+    <h2 id="ueberblick">1. Python im Überblick</h2>
+    <p>Python ist eine universell einsetzbare Programmiersprache. Die erste Version veröffentlichte der niederländische Informatiker Guido van Rossum im Jahr 1991; der Name geht auf die britische Comedy-Gruppe Monty Python zurück, nicht auf die Schlange. Python ist Open Source und kostenlos verfügbar und wird von der gemeinnützigen Python Software Foundation betreut.</p>
+    <p>Die heute verwendete Hauptversion Python 3 existiert seit 2008; jährlich erscheint eine neue Unterversion. Die frühere Version Python 2 wird seit 2020 nicht mehr unterstützt. Python ist eine <strong>interpretierte</strong> Sprache: Der Code wird Anweisung für Anweisung ausgeführt, ohne zuvor vollständig übersetzt zu werden.</p>
+    <p>Eingesetzt wird Python vor allem in der Datenanalyse, in der künstlichen Intelligenz und im maschinellen Lernen, zur Automatisierung von Arbeitsabläufen sowie für Webanwendungen. Seit Jahren zählt Python zu den meistverwendeten Programmiersprachen weltweit.</p>
+    <p>Dass Python interpretiert wird, ist für die Arbeit in Notebooks von Bedeutung: Jede Codezelle wird unmittelbar ausgeführt, und ihr Ergebnis steht sofort zur Verfügung (Abschnitt <a href="#variablen">4.1</a>).</p>
+
+    <!-- 2 -->
+    <h2 id="warum">2. Warum Python?</h2>
+    <p>Kapitel 2 behandelte die Abfrage von Datenbanken mit SQL. Eine Abfrage beantwortet jeweils eine konkrete Frage. In der Praxis umfasst eine Analyse jedoch häufig mehrere Arbeitsschritte: Daten aus einer Datenbank und einer Excel-Datei werden zusammengeführt, Fehler bereinigt, Kennzahlen berechnet und Diagramme erstellt, und dieser Ablauf wiederholt sich oft in regelmäßigen Abständen. Für derartige Abläufe eignet sich eine Programmiersprache.</p>
+    <p><strong>Python</strong> ist hierfür besonders verbreitet, und zwar aus folgenden Gründen:</p>
+    <ul>
+      <li>Python gilt als <strong>gut lesbar</strong>; der Code ähnelt einer Beschreibung in natürlicher Sprache.</li>
+      <li>Für Python steht ein umfangreiches Angebot an <strong>Bibliotheken</strong> zur Verfügung, also an vorgefertigten Erweiterungen, etwa <code>pandas</code> für Tabellen (Kapitel 4) und <code>altair</code> für Diagramme (Kapitel 5).</li>
+      <li>Python ist plattformunabhängig und läuft auf Arbeitsplatzrechnern, auf Servern und im Browser.</li>
+      <li>Einmal programmierte Abläufe lassen sich <strong>beliebig oft ausführen</strong>. Wiederkehrende Arbeitsschritte, die sonst manuell in Excel erfolgen, werden durch das erneute Ausführen des Codes ersetzt.</li>
+    </ul>
+    <p>Ziel dieses Kapitels ist keine Ausbildung in Softwareentwicklung. Vermittelt werden die Grundbausteine, mit denen sich kleinere Aufgaben eigenständig lösen lassen und mit denen sich Code aus IT- und BI-Abteilungen lesen und nachvollziehen lässt.</p>
+
+    <!-- 3 -->
+    <h2 id="colab">3. Notebooks in Google Colab</h2>
+    <p>In der Lehrveranstaltung wird Python in <strong>Google Colab</strong> verwendet, einer kostenlosen Entwicklungsumgebung im Browser. Erforderlich ist lediglich ein Google-Konto; eine Installation ist nicht notwendig. Colab arbeitet mit <strong>Notebooks</strong>, also Dokumenten, in denen sich Text, Code und Ergebnisse abwechseln.</p>
+    <ul>
+      <li>Eine <strong>Textzelle</strong> enthält Erläuterungen, Überschriften und Aufgabenstellungen.</li>
+      <li>Eine <strong>Codezelle</strong> enthält Python-Code. Sie wird mit <strong>Shift + Enter</strong> oder über die Schaltfläche ▶ ausgeführt; das Ergebnis erscheint unmittelbar darunter.</li>
+      <li>Maßgeblich ist die <strong>Reihenfolge der Ausführung</strong>, nicht die Reihenfolge im Dokument. Eine Variable existiert erst, nachdem die Zelle mit ihrer Zuweisung ausgeführt wurde.</li>
+      <li>Damit eigene Änderungen erhalten bleiben, ist das Notebook über <strong>Datei, Kopie in Drive speichern</strong> im eigenen Google Drive abzulegen.</li>
+      <li>Bei unerwartetem Verhalten empfiehlt es sich, die Sitzung über <strong>Laufzeit, Sitzung neu starten</strong> zurückzusetzen und die Zellen in der Reihenfolge des Dokuments erneut auszuführen.</li>
+    </ul>
+    <p>Zu diesem Kapitel steht ein <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/3-python.ipynb" target="_blank" rel="noopener">Übungsnotebook in Colab</a> zur Verfügung. Es folgt dem Aufbau dieses Skriptums und enthält Aufgaben mit Testzellen, die die Richtigkeit einer Lösung unmittelbar überprüfen, sowie die Lösungen in eingeklappten Zellen. Sämtliche Beispiele dieses Skriptums lassen sich in eine Codezelle übernehmen und ausführen.</p>
+    <p>Text nach dem Zeichen <code>#</code> ist ein <strong>Kommentar</strong>. Python ignoriert Kommentare; sie dienen ausschließlich der Erläuterung des Codes. Die Funktion <code>print()</code> gibt Werte aus:</p>
+<pre><code class="language-python"># Das ist ein Kommentar
+print(&quot;Hallo, Colab!&quot;)
+print(3 + 4)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Hallo, Colab!
+7</pre>
+
+    <!-- 4 -->
+    <h2 id="variablen">4. Variablen</h2>
+    <p>Eine <strong>Variable</strong> speichert einen Wert unter einem Namen. Das Gleichheitszeichen bezeichnet eine <strong>Zuweisung</strong>: Zunächst wird der Ausdruck auf der rechten Seite ausgewertet, anschließend wird das Ergebnis unter dem Namen auf der linken Seite gespeichert.</p>
+<pre><code class="language-python">preis = 19.50
+menge = 3
+umsatz = preis * menge
+print(umsatz)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">58.5</pre>
+    <p>Einer Variable kann jederzeit ein neuer Wert zugewiesen werden. Daher ist auch <code>summe = summe + 1</code> zulässig, obwohl der Ausdruck als mathematische Gleichung keinen Sinn ergäbe: Auf der rechten Seite wird mit dem bisherigen Wert gerechnet, auf der linken Seite wird der neue Wert gespeichert.</p>
+<pre><code class="language-python">bestellungen = 9
+bestellungen = bestellungen + 1
+print(bestellungen)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">10</pre>
+    <h3>4.1. Reihenfolge der Anweisungen</h3>
+    <p>Python führt Anweisungen <strong>der Reihe nach</strong> aus und speichert dabei den aktuellen Wert jeder Variable. Dieser Zustand verändert sich mit jeder Zuweisung. Eine Variable behält ihren Wert so lange, bis ihr ein neuer Wert zugewiesen wird; sie wird <strong>nicht</strong> automatisch neu berechnet, wenn sich eine andere Variable ändert:</p>
+<pre><code class="language-python">preis = 20
+menge = 3
+umsatz = preis * menge
+menge = 5
+print(umsatz)
+
+umsatz = preis * menge
+print(umsatz)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">60
+100</pre>
+    <p>Die folgende Darstellung zeigt den Inhalt der Variablen nach jeder Anweisung. Lila hervorgehoben ist jeweils der neu zugewiesene Wert, grau die Werte, die unverändert bestehen bleiben; ein leeres Feld bedeutet, dass die Variable noch nicht existiert.</p>
+    <div class="state-viz"><div class="sv-row sv-head"><span class="sv-code"></span><span class="sv-state"><span>preis</span><span>menge</span><span>umsatz</span></span></div><div class="sv-row"><code class="sv-code"><span class="sv-var">preis</span> = 20</code><span class="sv-state"><span class="sv-chip new">20</span><span class="sv-chip empty"></span><span class="sv-chip empty"></span></span></div><div class="sv-row"><code class="sv-code"><span class="sv-var">menge</span> = 3</code><span class="sv-state"><span class="sv-chip kept">20</span><span class="sv-chip new">3</span><span class="sv-chip empty"></span></span></div><div class="sv-row"><code class="sv-code"><span class="sv-var">umsatz</span> = preis * menge</code><span class="sv-state"><span class="sv-chip kept">20</span><span class="sv-chip kept">3</span><span class="sv-chip new">60</span></span></div><div class="sv-row"><code class="sv-code"><span class="sv-var">menge</span> = 5</code><span class="sv-state"><span class="sv-chip kept">20</span><span class="sv-chip new">5</span><span class="sv-chip kept">60</span></span></div><div class="sv-row"><code class="sv-code"><span class="sv-var">umsatz</span> = preis * menge</code><span class="sv-state"><span class="sv-chip kept">20</span><span class="sv-chip kept">5</span><span class="sv-chip new">100</span></span></div></div><p class="sv-legend-line"><span class="sv-legend new">neuer Wert</span><span class="sv-legend kept">bleibt erhalten</span></p>
+    <p>Nach Schritt 4 enthält <code>umsatz</code> weiterhin den Wert 60, obwohl sich <code>menge</code> geändert hat. Erst die erneute Zuweisung in Schritt 5 berechnet den Umsatz mit dem neuen Wert. In Tabellenkalkulationen wie Excel werden Formeln dagegen automatisch neu berechnet; in Python ist dafür eine eigene Anweisung erforderlich.</p>
+    <p>In Colab gilt dasselbe Prinzip für Zellen: Maßgeblich ist die Reihenfolge, in der die Zellen <strong>ausgeführt</strong> werden, nicht ihre Position im Notebook. Wird eine Zelle weiter oben nachträglich geändert und erneut ausgeführt, ändern sich die Ergebnisse darunterliegender Zellen erst, wenn auch diese erneut ausgeführt werden.</p>
+    <div class="box">
+      <span class="box-title">Regeln für Namen</span>
+      <ul><li>Zulässig sind Buchstaben, Ziffern und der Unterstrich <code>_</code>; ein Name darf nicht mit einer Ziffer beginnen.</li><li>Python unterscheidet zwischen Groß- und Kleinschreibung: <code>umsatz</code> und <code>Umsatz</code> bezeichnen zwei verschiedene Variablen.</li><li>Gebräuchlich sind Kleinbuchstaben, Wörter werden durch Unterstriche getrennt, etwa <code>umsatz_gesamt</code>.</li><li>Aussagekräftige Namen beschreiben den Inhalt: <code>bestellwert</code> ist verständlicher als <code>x</code>.</li><li>Schlüsselwörter wie <code>if</code>, <code>for</code> oder <code>def</code> dürfen nicht als Namen verwendet werden.</li></ul>
+    </div>
+
+    <!-- 5 -->
+    <h2 id="datentypen">5. Datentypen</h2>
+    <p>Jeder Wert besitzt einen <strong>Datentyp</strong>, der festlegt, welche Operationen mit ihm möglich sind. Die vier grundlegenden Datentypen sind:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Typ</th><th>Bedeutung</th><th>Beispiele</th></tr></thead>
+        <tbody><tr><td><code>int</code></td><td>ganze Zahl (integer)</td><td><code>3</code>, <code>-12</code>, <code>2026</code></td></tr><tr><td><code>float</code></td><td>Kommazahl (floating point), mit Punkt geschrieben</td><td><code>19.90</code>, <code>0.2</code></td></tr><tr><td><code>str</code></td><td>Text (string), in Anführungszeichen</td><td><code>"Graz"</code>, <code>'Chang'</code></td></tr><tr><td><code>bool</code></td><td>Wahrheitswert (boolean)</td><td><code>True</code>, <code>False</code></td></tr></tbody>
+      </table>
+    </div>
+    <p>Die Funktion <code>type()</code> gibt den Datentyp eines Werts zurück:</p>
+<pre><code class="language-python">print(type(3), type(19.90), type(&quot;Graz&quot;), type(True))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">&lt;class &#x27;int&#x27;&gt; &lt;class &#x27;float&#x27;&gt; &lt;class &#x27;str&#x27;&gt; &lt;class &#x27;bool&#x27;&gt;</pre>
+    <h3>5.1. Rechnen</h3>
+    <p>Für Zahlen stehen die üblichen arithmetischen Operatoren zur Verfügung. Eine Division mit <code>/</code> ergibt stets eine Kommazahl.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th><th>Beispiel</th><th>Ergebnis</th></tr></thead>
+        <tbody><tr><td><code>+</code></td><td>Addition</td><td><code>10 + 4</code></td><td><code>14</code></td></tr><tr><td><code>-</code></td><td>Subtraktion</td><td><code>10 - 4</code></td><td><code>6</code></td></tr><tr><td><code>*</code></td><td>Multiplikation</td><td><code>10 * 4</code></td><td><code>40</code></td></tr><tr><td><code>/</code></td><td>Division</td><td><code>10 / 4</code></td><td><code>2.5</code></td></tr><tr><td><code>//</code></td><td>ganzzahlige Division</td><td><code>10 // 4</code></td><td><code>2</code></td></tr><tr><td><code>%</code></td><td>Rest der Division</td><td><code>10 % 4</code></td><td><code>2</code></td></tr><tr><td><code>**</code></td><td>Potenz</td><td><code>10 ** 2</code></td><td><code>100</code></td></tr></tbody>
+      </table>
+    </div>
+    <p>Kommazahlen werden intern im Binärsystem gespeichert; dadurch können geringfügige Rundungsfehler entstehen. Mit <code>round(wert, stellen)</code> wird auf die angegebene Anzahl von Nachkommastellen gerundet:</p>
+<pre><code class="language-python">print(0.1 + 0.2)
+print(round(0.1 + 0.2, 2))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">0.30000000000000004
+0.3</pre>
+    <h3>5.2. Text</h3>
+    <p>Texte lassen sich mit <code>+</code> verketten. <code>len()</code> ermittelt die Anzahl der Zeichen, <code>.upper()</code> und <code>.lower()</code> wandeln in Groß- bzw. Kleinbuchstaben um:</p>
+<pre><code class="language-python">stadt = &quot;Graz&quot;
+land = &quot;Austria&quot;
+print(stadt + &quot;, &quot; + land)
+print(len(land), land.upper(), land.lower())</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Graz, Austria
+7 AUSTRIA austria</pre>
+    <h3>5.3. Umwandeln</h3>
+    <p>Daten aus Formularen oder Dateien liegen häufig als <strong>Text</strong> vor, auch wenn sie Zahlen darstellen. Mit <code>int()</code>, <code>float()</code> und <code>str()</code> werden Werte in den jeweiligen Datentyp umgewandelt:</p>
+<pre><code class="language-python">budget_text = &quot;1250&quot;          # Text, z. B. aus einem Webformular
+budget = int(budget_text)      # jetzt eine Zahl
+print(budget + 250)
+print(float(&quot;19.90&quot;) * 2)
+print(&quot;Jahr &quot; + str(2026))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">1500
+39.8
+Jahr 2026</pre>
+    <h3>5.4. Ausgabe mit print</h3>
+    <p>Texte werden mit <code>+</code> verbunden; Zahlen sind dafür zuvor mit <code>str()</code> in Text umzuwandeln. Alternativ gibt <code>print()</code> mehrere Werte, durch Kommas getrennt, nebeneinander aus. Für eine übersichtliche Ausgabe von Kommazahlen empfiehlt sich <code>round()</code>:</p>
+<pre><code class="language-python">kunde = &quot;Ernst Handel&quot;
+anzahl = 10
+umsatz = 4235.456
+print(kunde + &quot; hat &quot; + str(anzahl) + &quot; Bestellungen.&quot;)
+print(&quot;Umsatz:&quot;, round(umsatz, 2), &quot;EUR&quot;)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Ernst Handel hat 10 Bestellungen.
+Umsatz: 4235.46 EUR</pre>
+
+    <!-- 6 -->
+    <h2 id="vergleiche">6. Vergleiche und logische Operatoren</h2>
+    <p>Ein <strong>Vergleich</strong> liefert <code>True</code> oder <code>False</code>. Die Operatoren entsprechen weitgehend jenen der <code>WHERE</code>-Bedingung in SQL, werden jedoch teilweise anders geschrieben:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>SQL</th><th>Python</th><th>Bedeutung</th></tr></thead>
+        <tbody><tr><td><code>=</code></td><td><code>==</code></td><td>gleich</td></tr><tr><td><code>&lt;&gt;</code></td><td><code>!=</code></td><td>ungleich</td></tr><tr><td><code>&lt; &gt; &lt;= &gt;=</code></td><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>kleiner, größer, kleiner gleich, größer gleich</td></tr><tr><td><code>AND</code></td><td><code>and</code></td><td>beide Bedingungen erfüllt</td></tr><tr><td><code>OR</code></td><td><code>or</code></td><td>mindestens eine Bedingung erfüllt</td></tr><tr><td><code>NOT</code></td><td><code>not</code></td><td>Bedingung nicht erfüllt</td></tr><tr><td><code>IN (&#x27;A&#x27;, &#x27;B&#x27;)</code></td><td><code>in [&quot;A&quot;, &quot;B&quot;]</code></td><td>Wert ist in einer Liste</td></tr></tbody>
+      </table>
+    </div>
+<pre><code class="language-python">preis = 53
+land = &quot;Austria&quot;
+print(preis &gt; 50)
+print(land == &quot;Germany&quot;, land != &quot;Germany&quot;)
+print(preis &gt; 50 and land == &quot;Austria&quot;)
+print(land in [&quot;Austria&quot;, &quot;Germany&quot;, &quot;Switzerland&quot;])</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">True
+False True
+True
+True</pre>
+    <div class="box">
+      <span class="box-title">Zwei Unterschiede zu SQL</span>
+      <ul><li>Ein einfaches <code>=</code> bezeichnet in Python eine Zuweisung; verglichen wird mit <code>==</code>.</li><li>Bei Text wird zwischen Groß- und Kleinschreibung unterschieden: <code>"Austria" == "austria"</code> ergibt <code>False</code>. Der SQL-Editor der Lehrveranstaltung ignoriert diesen Unterschied hingegen, ebenso wie Microsoft SQL Server.</li></ul>
+    </div>
+
+    <!-- 7 -->
+    <h2 id="listen">7. Listen</h2>
+    <p>Eine <strong>Liste</strong> speichert mehrere Werte in einer festgelegten Reihenfolge. Sie wird in eckigen Klammern notiert, die Werte werden durch Kommas getrennt. Der Zugriff auf einzelne Werte erfolgt über den <strong>Index</strong> in eckigen Klammern. Der erste Wert besitzt den Index <strong>0</strong>; negative Indizes zählen vom Ende der Liste.</p>
+<pre><code class="language-python">bestellwerte = [120.5, 89.9, 230.0, 45.0]
+print(bestellwerte[0])     # erster Wert
+print(bestellwerte[-1])    # letzter Wert
+print(bestellwerte[1:3])   # Ausschnitt: Index 1 bis vor 3
+print(len(bestellwerte))   # Anzahl der Werte</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">120.5
+45.0
+[89.9, 230.0]
+4</pre>
+    <p>Für Listen mit Zahlen stehen vordefinierte Funktionen zur Verfügung. <code>sorted()</code> liefert eine sortierte Kopie, mit <code>reverse=True</code> in absteigender Reihenfolge:</p>
+<pre><code class="language-python">print(sum(bestellwerte), min(bestellwerte), max(bestellwerte))
+print(sorted(bestellwerte))
+print(sorted(bestellwerte, reverse=True))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">485.4 45.0 230.0
+[45.0, 89.9, 120.5, 230.0]
+[230.0, 120.5, 89.9, 45.0]</pre>
+    <p><code>.append()</code> fügt einen Wert am Ende der Liste hinzu, <code>in</code> prüft, ob ein Wert in der Liste enthalten ist:</p>
+<pre><code class="language-python">warenkorb = [&quot;Chai&quot;, &quot;Chang&quot;]
+warenkorb.append(&quot;Tofu&quot;)
+print(warenkorb)
+print(&quot;Tofu&quot; in warenkorb)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">[&#x27;Chai&#x27;, &#x27;Chang&#x27;, &#x27;Tofu&#x27;]
+True</pre>
+    <div class="box">
+      <span class="box-title">Hinweis zum Index</span>
+      <p>Da der Index bei 0 beginnt, umfasst eine Liste mit vier Werten die Indizes 0 bis 3. Ein Zugriff auf <code>bestellwerte[4]</code> führt daher zu einem <code>IndexError</code>.</p>
+    </div>
+
+    <!-- 8 -->
+    <h2 id="dictionaries">8. Dictionaries</h2>
+    <p>Ein <strong>Dictionary</strong> speichert <strong>Schlüssel-Wert-Paare</strong>. Es wird in geschweiften Klammern notiert, Schlüssel und Wert sind jeweils durch einen Doppelpunkt getrennt. Der Zugriff erfolgt nicht über eine Position, sondern über den Schlüssel:</p>
+<pre><code class="language-python">kunde = {&quot;name&quot;: &quot;Ernst Handel&quot;, &quot;stadt&quot;: &quot;Graz&quot;, &quot;land&quot;: &quot;Austria&quot;}
+print(kunde[&quot;stadt&quot;])</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Graz</pre>
+    <p>Über den Schlüssel lassen sich Werte ändern und neue Paare hinzufügen:</p>
+<pre><code class="language-python">kunde[&quot;bestellungen&quot;] = 10       # neues Paar
+kunde[&quot;stadt&quot;] = &quot;Graz-Puntigam&quot;  # Wert ändern
+print(kunde)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">{&#x27;name&#x27;: &#x27;Ernst Handel&#x27;, &#x27;stadt&#x27;: &#x27;Graz-Puntigam&#x27;, &#x27;land&#x27;: &#x27;Austria&#x27;, &#x27;bestellungen&#x27;: 10}</pre>
+    <p>Ein Dictionary entspricht einer <strong>Zeile einer Tabelle</strong>, die Schlüssel entsprechen den Spaltennamen. Eine <strong>Liste von Dictionaries</strong> entspricht folglich einer vollständigen Tabelle:</p>
+<pre><code class="language-python">kunden = [
+    {&quot;name&quot;: &quot;Ernst Handel&quot;, &quot;stadt&quot;: &quot;Graz&quot;, &quot;land&quot;: &quot;Austria&quot;},
+    {&quot;name&quot;: &quot;Piccolo und mehr&quot;, &quot;stadt&quot;: &quot;Salzburg&quot;, &quot;land&quot;: &quot;Austria&quot;},
+    {&quot;name&quot;: &quot;Alfreds Futterkiste&quot;, &quot;stadt&quot;: &quot;Berlin&quot;, &quot;land&quot;: &quot;Germany&quot;},
+]
+print(kunden[1][&quot;stadt&quot;])</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Salzburg</pre>
+    <p>Dieselben Daten in tabellarischer Darstellung:</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>name</th><th>stadt</th><th>land</th></tr></thead>
+        <tbody><tr><td>Ernst Handel</td><td>Graz</td><td>Austria</td></tr><tr><td>Piccolo und mehr</td><td>Salzburg</td><td>Austria</td></tr><tr><td>Alfreds Futterkiste</td><td>Berlin</td><td>Germany</td></tr></tbody>
+      </table>
+    </div>
+    <p>Auf derartigen Strukturen baut die Bibliothek <code>pandas</code> auf, die in Kapitel 4 behandelt wird und den Umgang mit Tabellen wesentlich vereinfacht.</p>
+
+    <!-- 9 -->
+    <h2 id="verzweigungen">9. Verzweigungen: if, elif, else</h2>
+    <p>Eine <strong>Verzweigung</strong> bewirkt, dass Code nur ausgeführt wird, wenn eine Bedingung erfüllt ist. <code>elif</code> („else if“) prüft weitere Bedingungen, <code>else</code> kommt zur Anwendung, wenn keine der Bedingungen zutrifft. Die Bedingungen werden von oben nach unten geprüft; ausgeführt wird ausschließlich der Block der <strong>ersten</strong> zutreffenden Bedingung.</p>
+<pre><code class="language-python">bestellwert = 180
+
+if bestellwert &gt;= 200:
+    rabatt = 0.10
+elif bestellwert &gt;= 100:
+    rabatt = 0.05
+else:
+    rabatt = 0
+
+print(&quot;Rabatt:&quot;, rabatt * 100, &quot;%&quot;)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Rabatt: 5.0 %</pre>
+    <div class="box">
+      <span class="box-title">Doppelpunkt und Einrückung</span>
+      <p>Nach jeder Bedingung sowie nach <code>else</code> steht ein <strong>Doppelpunkt</strong>. Der davon abhängige Code wird <strong>eingerückt</strong>, üblicherweise um vier Leerzeichen. Die Einrückung ist in Python Bestandteil der Syntax: Sie legt fest, welcher Code zu welcher Bedingung gehört. Colab rückt nach einem Doppelpunkt automatisch ein.</p>
+    </div>
+    <p>Die Reihenfolge der Bedingungen ist daher von Bedeutung. Stünde <code>bestellwert &gt;= 100</code> an erster Stelle, erhielte auch eine Bestellung über 250 lediglich 5 % Rabatt, da der Block der ersten zutreffenden Bedingung ausgeführt wird.</p>
+    <p>Mehrere Bedingungen lassen sich mit <code>and</code> und <code>or</code> verknüpfen:</p>
+<pre><code class="language-python">land = &quot;Austria&quot;
+bestellwert = 120
+
+if land == &quot;Austria&quot; and bestellwert &gt; 100:
+    print(&quot;Gutschein über 10 EUR&quot;)
+else:
+    print(&quot;kein Gutschein&quot;)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Gutschein über 10 EUR</pre>
+
+    <!-- 10 -->
+    <h2 id="schleifen">10. Schleifen: for</h2>
+    <p>Eine <code>for</code>-<strong>Schleife</strong> führt einen Codeblock <strong>für jedes Element</strong> einer Liste einmal aus. Die Variable nach <code>for</code> nimmt dabei nacheinander den Wert jedes Elements an. Auch hier sind Doppelpunkt und Einrückung erforderlich.</p>
+<pre><code class="language-python">bestellwerte = [120.5, 89.9, 230.0, 45.0]
+
+for wert in bestellwerte:
+    print(&quot;Bestellung über&quot;, wert, &quot;EUR&quot;)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Bestellung über 120.5 EUR
+Bestellung über 89.9 EUR
+Bestellung über 230.0 EUR
+Bestellung über 45.0 EUR</pre>
+    <p>Der Name dieser Variable ist frei wählbar. Gebräuchlich ist die Einzahl des Listennamens, etwa <code>for kunde in kunden</code> oder <code>for preis in preise</code>.</p>
+    <h3>10.1. Grundmuster: Aufsummieren und Zählen</h3>
+    <p>Vor der Schleife wird eine Variable mit dem Wert 0 angelegt; innerhalb der Schleife wird der jeweilige Wert hinzugezählt:</p>
+<pre><code class="language-python">summe = 0
+anzahl_gross = 0
+for wert in bestellwerte:
+    summe = summe + wert
+    if wert &gt; 100:
+        anzahl_gross = anzahl_gross + 1
+print(summe, anzahl_gross)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">485.4 2</pre>
+    <h3>10.2. Grundmuster: Filtern</h3>
+    <p>Vor der Schleife wird eine leere Liste angelegt. Innerhalb der Schleife prüft eine <code>if</code>-Anweisung jedes Element; zutreffende Elemente werden der Liste hinzugefügt:</p>
+<pre><code class="language-python">grosse_bestellungen = []
+for wert in bestellwerte:
+    if wert &gt; 100:
+        grosse_bestellungen.append(wert)
+print(grosse_bestellungen)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">[120.5, 230.0]</pre>
+    <p>Angewendet auf eine Liste von Dictionaries entspricht dieses Muster einer <code>WHERE</code>-Bedingung in SQL:</p>
+<pre><code class="language-python">namen_at = []
+for kunde in kunden:
+    if kunde[&quot;land&quot;] == &quot;Austria&quot;:
+        namen_at.append(kunde[&quot;name&quot;])
+print(namen_at)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">[&#x27;Ernst Handel&#x27;, &#x27;Piccolo und mehr&#x27;]</pre>
+    <h3>10.3. Zahlenfolgen mit range</h3>
+    <p><code>range(n)</code> erzeugt die Zahlen von 0 bis n minus 1, <code>range(a, b)</code> die Zahlen von a bis b minus 1. Damit lässt sich ein Codeblock eine festgelegte Anzahl von Malen wiederholen:</p>
+<pre><code class="language-python">for monat in range(1, 4):
+    print(&quot;Report für Monat&quot;, monat)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Report für Monat 1
+Report für Monat 2
+Report für Monat 3</pre>
+    <p>Daneben existiert die <code>while</code>-Schleife, die ausgeführt wird, solange eine Bedingung erfüllt ist. Für die Aufgaben dieser Lehrveranstaltung ist die <code>for</code>-Schleife ausreichend.</p>
+
+    <!-- 11 -->
+    <h2 id="funktionen">11. Funktionen</h2>
+    <p>Eine <strong>Funktion</strong> fasst Code unter einem Namen zusammen, sodass er mehrfach verwendet werden kann. Einige Funktionen wie <code>print()</code>, <code>len()</code> oder <code>sum()</code> sind in Python bereits enthalten. Eigene Funktionen werden mit <code>def</code> definiert:</p>
+<pre><code class="language-python">def brutto(netto):
+    return netto * 1.2
+
+print(brutto(100))
+print(brutto(250))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">120.0
+300.0</pre>
+    <ul>
+      <li>Auf <code>def</code> folgen der <strong>Name</strong> der Funktion und in Klammern die <strong>Parameter</strong>, also die Eingabewerte, anschließend ein Doppelpunkt und der eingerückte Codeblock.</li>
+      <li>Mit <code>return</code> gibt die Funktion ein <strong>Ergebnis</strong> zurück; die Ausführung der Funktion endet an dieser Stelle.</li>
+      <li>Beim <strong>Aufruf</strong> werden den Parametern konkrete Werte übergeben, etwa <code>brutto(100)</code>.</li>
+    </ul>
+    <p>Eine Funktion kann mehrere Parameter besitzen sowie Verzweigungen und Schleifen enthalten:</p>
+<pre><code class="language-python">def versandkosten(bestellwert, land):
+    if land == &quot;Austria&quot; and bestellwert &gt;= 50:
+        return 0
+    elif land == &quot;Austria&quot;:
+        return 4.90
+    else:
+        return 9.90
+
+print(versandkosten(35, &quot;Austria&quot;))
+print(versandkosten(80, &quot;Austria&quot;))
+print(versandkosten(80, &quot;Germany&quot;))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">4.9
+0
+9.9</pre>
+    <h3>11.1. return und print</h3>
+    <p>Ein häufiger Fehler besteht darin, <code>print</code> anstelle von <code>return</code> zu verwenden. <code>print</code> gibt einen Wert lediglich aus; das Ergebnis der Funktion ist dann <code>None</code> („kein Wert“) und kann nicht weiterverwendet werden:</p>
+<pre><code class="language-python">def brutto_falsch(netto):
+    print(netto * 1.2)
+
+ergebnis = brutto_falsch(100)
+print(ergebnis)</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">120.0
+None</pre>
+    <h3>11.2. Funktionen testen</h3>
+    <p>Die Korrektheit einer Funktion wird mit <strong>Testfällen</strong> überprüft: Für eine bestimmte Eingabe ist das erwartete Ergebnis bekannt und wird mit dem tatsächlichen Ergebnis verglichen. Die folgende Funktion <code>check_result</code> wird auch in den Gruppenübungen verwendet:</p>
+<pre><code class="language-python">def check_result(i, expected_result, actual_result):
+  print(&quot;Input: &quot; + str(i))
+  print(&quot;Expected result: &quot; + str(expected_result))
+  print(&quot;Actual result: &quot; + str(actual_result))
+  if expected_result == actual_result:
+    print(&quot;✅ OK! (actual result == expected result)&quot;)
+  else:
+    print(&quot;❌ ERROR! (actual result != expected result)&quot;)
+  print()
+
+check_result(80, 0, versandkosten(80, &quot;Austria&quot;))
+check_result(50, 0, versandkosten(50, &quot;Austria&quot;))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Input: 80
+Expected result: 0
+Actual result: 0
+✅ OK! (actual result == expected result)
+
+Input: 50
+Expected result: 0
+Actual result: 0
+✅ OK! (actual result == expected result)</pre>
+    <p>Aussagekräftige Testfälle berücksichtigen auch <strong>Grenzfälle</strong>, etwa einen Wert genau an einer Grenze (hier 50), eine leere Liste, den Wert 0 oder unerwartete Eingaben.</p>
+
+    <!-- 12 -->
+    <h2 id="fehler">12. Fehlermeldungen lesen</h2>
+    <p>Fehlermeldungen geben Aufschluss über die Ursache eines Problems. Sie umfassen häufig mehrere Zeilen; entscheidend ist die <strong>letzte Zeile</strong>, die die Art des Fehlers und in der Regel auch dessen Ursache angibt. Drei Fehlerarten treten besonders häufig auf:</p>
+<pre><code class="language-python">umsatz_gesamt = 1500
+print(umsatz_gesammt)</code></pre>
+    <p class="result-caption">Fehlermeldung (letzte Zeile):</p>
+<pre class="output error">NameError: name &#x27;umsatz_gesammt&#x27; is not defined. Did you mean: &#x27;umsatz_gesamt&#x27;?</pre>
+    <p>Ein <code>NameError</code> zeigt an, dass ein Name nicht bekannt ist, etwa aufgrund eines Tippfehlers oder weil die Zelle mit der Zuweisung noch nicht ausgeführt wurde.</p>
+<pre><code class="language-python">bestellungen = 10
+print(&quot;Anzahl Bestellungen: &quot; + bestellungen)</code></pre>
+    <p class="result-caption">Fehlermeldung (letzte Zeile):</p>
+<pre class="output error">TypeError: can only concatenate str (not &quot;int&quot;) to str</pre>
+    <p>Ein <code>TypeError</code> zeigt an, dass die verwendeten Werte nicht kompatibel sind, hier Text und Zahl. Abhilfe schafft die Umwandlung mit <code>str(bestellungen)</code> oder die Ausgabe mehrerer Werte mit Komma: <code>print("Anzahl Bestellungen:", bestellungen)</code>.</p>
+<pre><code class="language-python">bestellwert = 80
+if bestellwert &gt; 50
+    print(&quot;Gratisversand&quot;)</code></pre>
+    <p class="result-caption">Fehlermeldung (letzte Zeile):</p>
+<pre class="output error">SyntaxError: expected &#x27;:&#x27;</pre>
+    <p>Ein <code>SyntaxError</code> zeigt an, dass die Schreibweise nicht den Regeln der Sprache entspricht; im Beispiel fehlt der Doppelpunkt. Fehlt die Einrückung, meldet Python einen <code>IndentationError</code>.</p>
+
+    <!-- 13 -->
+    <h2 id="sql">13. SQL aus Python</h2>
+    <p>Python kann unmittelbar auf Datenbanken zugreifen. In den Gruppenübungen wird die Beispieldatenbank aus Kapitel 2 in Colab geladen. Die folgende Zelle lädt die Daten aus dem Internet und stellt die Datenbank in der Variable <code>db</code> bereit:</p>
+<pre><code class="language-python">from urllib.request import urlopen
+import sqlite3
+
+GITHUB_URL = &quot;https://raw.githubusercontent.com/markusschanta/w3schools-database/refs/heads/master/w3schools.sqllite.sql&quot;
+create_sql = urlopen(GITHUB_URL).read().decode()
+
+db = sqlite3.connect(&quot;:memory:&quot;)
+db.executescript(create_sql)</code></pre>
+    <p><code>import</code> lädt eine Bibliothek. Die Funktion <code>pd.read_sql_query</code> der Bibliothek <code>pandas</code> führt eine Abfrage aus und liefert das Ergebnis als Tabelle, als sogenannten <strong>DataFrame</strong>. Dreifache Anführungszeichen ermöglichen Texte über mehrere Zeilen:</p>
+<pre><code class="language-python">import pandas as pd
+
+SQL = &quot;&quot;&quot;
+SELECT Country, COUNT(*) AS Kunden
+FROM customers
+GROUP BY Country
+ORDER BY Kunden DESC
+&quot;&quot;&quot;
+ergebnis = pd.read_sql_query(SQL, db)</code></pre>
+    <p class="result-caption">Ergebnis (21 Zeilen, hier die ersten fünf):</p>
+    <div class="table-wrap">
+      <table class="result">
+        <thead><tr><th>Country</th><th class="num">Kunden</th></tr></thead>
+        <tbody><tr><td>USA</td><td class="num">13</td></tr><tr><td>Germany</td><td class="num">11</td></tr><tr><td>France</td><td class="num">11</td></tr><tr><td>Brazil</td><td class="num">9</td></tr><tr><td>UK</td><td class="num">7</td></tr></tbody>
+      </table>
+    </div>
+    <p>Die Datenbank in Colab entspricht dem unveränderten SQLite-Original. Im Unterschied zum SQL-Editor der Lehrveranstaltung gilt:</p>
+    <ul>
+      <li>Die Tabellennamen werden klein geschrieben; die Bestellpositionen heißen <code>order_details</code> statt <code>OrderDetails</code>.</li>
+      <li>Bei Text wird zwischen Groß- und Kleinschreibung unterschieden: <code>WHERE Country = 'Austria'</code> liefert 2 Kunden, <code>'austria'</code> liefert 0.</li>
+      <li>Anstelle von <code>TOP</code> wird <code>LIMIT</code> am Ende der Abfrage verwendet.</li>
+      <li>Eine Spalte, die weder im <code>GROUP BY</code> steht noch aggregiert wird, führt nicht zu einem Fehler, sondern zu einem beliebigen Wert (Kapitel 2, Abschnitt 10.1). Diese Regel ist daher eigenverantwortlich zu beachten.</li>
+    </ul>
+    <p>Kapitel 4 setzt mit <code>pandas</code> fort: Tabellen werden geladen, gefiltert, gruppiert und verknüpft, analog zu SQL, jedoch in Python.</p>
+
+    <!-- 14 -->
+    <h2 id="praxis">14. Praxisbeispiel: Newsletter vorbereiten</h2>
+    <p>Das folgende Beispiel verbindet die behandelten Bausteine. Ein Newsletter soll an Kunden in Österreich und Deutschland versendet werden, jeweils mit einem passenden Betreff: Kunden ohne bisherige Bestellung erhalten ein Willkommensangebot, Stammkunden mit mindestens zehn Bestellungen ein Dankeschön, alle übrigen einen Hinweis auf neue Produkte. Die Daten stammen aus der Beispieldatenbank.</p>
+<pre><code class="language-python">kunden = [
+    {&quot;name&quot;: &quot;Ernst Handel&quot;, &quot;kontakt&quot;: &quot;Roland Mendel&quot;, &quot;land&quot;: &quot;Austria&quot;, &quot;bestellungen&quot;: 10},
+    {&quot;name&quot;: &quot;Piccolo und mehr&quot;, &quot;kontakt&quot;: &quot;Georg Pipps&quot;, &quot;land&quot;: &quot;Austria&quot;, &quot;bestellungen&quot;: 3},
+    {&quot;name&quot;: &quot;Alfreds Futterkiste&quot;, &quot;kontakt&quot;: &quot;Maria Anders&quot;, &quot;land&quot;: &quot;Germany&quot;, &quot;bestellungen&quot;: 0},
+    {&quot;name&quot;: &quot;Around the Horn&quot;, &quot;kontakt&quot;: &quot;Thomas Hardy&quot;, &quot;land&quot;: &quot;UK&quot;, &quot;bestellungen&quot;: 2},
+]
+
+def betreff(kunde):
+    if kunde[&quot;bestellungen&quot;] == 0:
+        return &quot;Willkommen, &quot; + kunde[&quot;kontakt&quot;] + &quot;: 10 % auf die erste Bestellung&quot;
+    elif kunde[&quot;bestellungen&quot;] &gt;= 10:
+        return &quot;Danke für Ihre Treue, &quot; + kunde[&quot;kontakt&quot;] + &quot;!&quot;
+    else:
+        return &quot;Neu im Sortiment, &quot; + kunde[&quot;kontakt&quot;]
+
+for kunde in kunden:
+    if kunde[&quot;land&quot;] in [&quot;Austria&quot;, &quot;Germany&quot;]:
+        print(betreff(kunde))</code></pre>
+    <p class="result-caption">Ausgabe:</p>
+<pre class="output">Danke für Ihre Treue, Roland Mendel!
+Neu im Sortiment, Georg Pipps
+Willkommen, Maria Anders: 10 % auf die erste Bestellung</pre>
+    <p>Die Liste von Dictionaries enthält die Daten, die Funktion bestimmt mit einer Verzweigung den Betreff, und die Schleife durchläuft alle Kunden und filtert nach Land. Around the Horn aus Großbritannien erhält daher keinen Newsletter. In der Praxis würden die Kundendaten per SQL aus der Datenbank abgefragt und die Texte an ein Newsletter-System übergeben; der Aufbau bliebe derselbe.</p>
+
+    <!-- 15 -->
+    <h2 id="bausteine">15. Die Bausteine im Überblick</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Baustein</th><th>Zweck</th><th>Beispiel</th></tr></thead>
+        <tbody><tr><td>Variable, Datentyp</td><td>einen Wert speichern</td><td><code>preis = 19.90</code></td></tr><tr><td>Vergleich</td><td>eine Bedingung prüfen</td><td><code>land == &quot;Austria&quot;</code></td></tr><tr><td>Liste</td><td>viele Werte in Reihenfolge sammeln</td><td><code>[120.5, 89.9]</code></td></tr><tr><td>Dictionary</td><td>Werte unter Namen speichern</td><td><code>{&quot;stadt&quot;: &quot;Graz&quot;}</code></td></tr><tr><td><code>if</code>, <code>elif</code>, <code>else</code></td><td>entscheiden</td><td><code>if wert &gt; 100:</code></td></tr><tr><td><code>for</code></td><td>wiederholen</td><td><code>for wert in werte:</code></td></tr><tr><td><code>def</code>, <code>return</code></td><td>zusammenfassen und wiederverwenden</td><td><code>def brutto(netto):</code></td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- 16 -->
+    <h2 id="typische-fehler">16. Typische Fehler</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Fehler</th><th>Richtig</th></tr></thead>
+        <tbody><tr><td><code>if land = &quot;Austria&quot;:</code></td><td><code>if land == "Austria":</code><br>Vergleich mit zwei Gleichheitszeichen</td></tr><tr><td><code>if wert &gt; 100</code><br><code>for wert in werte</code></td><td>Doppelpunkt am Ende der Zeile</td></tr><tr><td>Code nach <code>if</code> oder <code>for</code> nicht eingerückt</td><td>Einrückung um vier Leerzeichen</td></tr><tr><td><code>&quot;Anzahl: &quot; + 10</code></td><td><code>"Anzahl: " + str(10)</code> oder <code>print("Anzahl:", 10)</code></td></tr><tr><td><code>preis = 19,90</code></td><td><code>preis = 19.90</code><br>Dezimalpunkt statt Komma</td></tr><tr><td><code>print</code> statt <code>return</code> in einer Funktion</td><td><code>return</code> verwenden, andernfalls ist das Ergebnis <code>None</code></td></tr><tr><td><code>bestellwerte[4]</code> bei vier Werten</td><td>Der Index beginnt bei 0; der letzte Wert ist <code>[3]</code> bzw. <code>[-1]</code></td></tr><tr><td><code>summe = 0</code> innerhalb der Schleife</td><td>Startwert vor der Schleife festlegen, andernfalls beginnt jeder Durchlauf erneut bei 0</td></tr><tr><td><code>NameError</code> nach dem Öffnen des Notebooks</td><td>Zellen in der Reihenfolge des Notebooks ausführen, damit alle Variablen definiert sind</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- 17 -->
+    <h2 id="ausprobieren">17. Zum Ausprobieren</h2>
+    <p>Die folgenden Aufgaben lassen sich in einer neuen Codezelle im <a href="https://colab.research.google.com/github/markusschanta/fhwien-dga-2026/blob/main/notebooks/3-python.ipynb" target="_blank" rel="noopener">Übungsnotebook</a> bearbeiten.</p>
+    <ol>
+      <li>Den Bruttopreis für einen Nettopreis von 49,90 EUR bei 20 % Umsatzsteuer berechnen und auf zwei Nachkommastellen gerundet ausgeben.</li>
+      <li>Für die Preise <code>[18.0, 19.0, 10.0, 22.0, 21.35]</code> den niedrigsten und den höchsten Preis ausgeben sowie die Differenz der beiden.</li>
+      <li>In einer Variable <code>land</code> steht ein Land. Ausgeben, ob es zu den Zielmärkten Austria, Germany und Switzerland gehört.</li>
+      <li>Eine Funktion <code>lieferzeit(land)</code> schreiben: Austria 2 Tage, Germany und Switzerland 3 Tage, alle anderen Länder 7 Tage.</li>
+      <li>Für die Funktion aus Aufgabe 4 drei Testfälle mit <code>check_result</code> schreiben.</li>
+      <li>Den Durchschnitt aller Bestellwerte über 100 aus der Liste <code>[120.5, 89.9, 230.0, 45.0, 310.0]</code> berechnen.</li>
+      <li>Aus der Liste <code>kunden</code> im Praxisbeispiel die Namen aller Kunden mit mindestens drei Bestellungen in einer neuen Liste sammeln.</li>
+      <li>Mit <code>pd.read_sql_query</code> die fünf teuersten Produkte mit Name und Preis abfragen.</li>
+    </ol>
+
+    <!-- 18 -->
+    <h2 id="begriffe">18. Begriffe</h2>
+    <dl class="glossary">
+      <dt>Bibliothek (Library)</dt><dd>Fertige Sammlung von Funktionen, die mit <code>import</code> geladen wird, etwa <code>pandas</code>.</dd>
+      <dt>Codezelle</dt><dd>Bereich in einem Notebook mit ausführbarem Python-Code; das Ergebnis erscheint darunter.</dd>
+      <dt>DataFrame</dt><dd>Tabelle in der Bibliothek pandas; Ergebnis von <code>pd.read_sql_query</code>.</dd>
+      <dt>Datentyp</dt><dd>Art eines Werts, etwa <code>int</code>, <code>float</code>, <code>str</code> oder <code>bool</code>.</dd>
+      <dt>Dictionary</dt><dd>Sammlung von Schlüssel-Wert-Paaren in geschweiften Klammern; entspricht einer Tabellenzeile.</dd>
+      <dt>Einrückung</dt><dd>Leerzeichen am Zeilenanfang; legt fest, welcher Code zu einer Bedingung, Schleife oder Funktion gehört.</dd>
+      <dt>Funktion</dt><dd>Benannter Codeblock mit Parametern, der mit <code>return</code> ein Ergebnis liefert.</dd>
+      <dt>Index</dt><dd>Position eines Werts in einer Liste, beginnend bei 0.</dd>
+      <dt>Liste</dt><dd>Geordnete Sammlung von Werten in eckigen Klammern.</dd>
+      <dt>Notebook</dt><dd>Dokument aus Text- und Codezellen, etwa in Google Colab.</dd>
+      <dt>Parameter</dt><dd>Eingabe einer Funktion, in Klammern nach dem Funktionsnamen.</dd>
+      <dt>Schleife</dt><dd>Code, der für jedes Element einer Liste (<code>for</code>) wiederholt wird.</dd>
+      <dt>Testfall</dt><dd>Eingabe mit bekanntem erwarteten Ergebnis, um eine Funktion zu prüfen.</dd>
+      <dt>Variable</dt><dd>Name, unter dem ein Wert gespeichert wird.</dd>
+      <dt>Verzweigung</dt><dd>Code, der nur unter einer Bedingung ausgeführt wird (<code>if</code>, <code>elif</code>, <code>else</code>).</dd>
+    </dl>
+    <h3>18.1. Weiterführend</h3>
+    <ul>
+      <li><a href="https://docs.python.org/de/3/tutorial/" target="_blank" rel="noopener">Das offizielle Python-Tutorial</a> in deutscher Sprache: umfassende Einführung, für den Einstieg eignen sich die Kapitel 3 bis 5</li>
+      <li><a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">W3Schools Python Tutorial</a>: knappe Erläuterungen mit interaktiven Beispielen</li>
+      <li><a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colab</a>: Startseite mit einer Einführung in die Arbeit mit Notebooks</li>
+    </ul>
+
+    <footer>
+      Skriptum zur Lehrveranstaltung Datengewinnung &amp; -aufbereitung, FH Wien der WKW, Wintersemester 2026/27 · Markus Schanta · <a href="../index.html">Zur Kursseite</a>
+    </footer>
+  </main>
+
+  <aside class="sidetoc" aria-label="Inhalt dieses Kapitels"></aside>
+  </div>
+
+  <script src="skriptum.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+
+</html>

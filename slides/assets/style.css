@@ -595,3 +595,237 @@ html.has-dga-header.dga-header-hidden .reveal {
   font-size: 0.8em;
   font-weight: 700;
 }
+
+/* Teil 3: Folien zu den Notebook-Abschnitten */
+.reveal ul.nb-tasks {
+  display: inline-block;
+  list-style: none;
+  margin: 0.4em 0 0;
+  text-align: left;
+}
+.reveal ul.nb-tasks li {
+  margin: 0.35em 0;
+}
+.reveal .nb-nr {
+  display: inline-block;
+  min-width: 2.6em;
+  margin-right: 0.6em;
+  padding: 0.05em 0.4em;
+  border-radius: 999px;
+  background: #ddd4f0;
+  color: #503795;
+  font-size: 0.8em;
+  font-weight: 700;
+  text-align: center;
+}
+.reveal p.nb-time {
+  margin-top: 1em;
+  color: #8f889e;
+  font-size: 0.7em;
+}
+.reveal .two-code {
+  display: flex;
+  gap: 1em;
+}
+.reveal .two-code > div {
+  flex: 1;
+  min-width: 0;
+}
+.reveal .two-code pre {
+  width: 100%;
+  font-size: 0.62em;
+}
+.reveal pre.nb-output {
+  width: 80%;
+  padding: 0.6em 1em;
+  border-left: 4px solid #a89bc9;
+  border-radius: 0 10px 10px 0;
+  background: #faf9fc;
+  color: #4d4d4d;
+  font-size: 0.55em;
+  text-align: left;
+}
+
+/* Teil 3: größerer Code (kurze Beispiele, viel Platz) */
+.reveal.python-deck pre {
+  font-size: 0.66em;
+}
+
+/* Teil 3: Screenshot neben Text */
+.reveal .shot-layout {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.reveal .shot-layout > ul,
+.reveal .shot-layout > ol {
+  flex: 1;
+  margin: 0;
+  font-size: 0.68em;
+}
+.reveal .shot-layout li { margin: 0.4em 0; }
+.reveal img.shot {
+  flex: 0 0 62%;
+  width: 62%;
+  margin: 0;
+  border: 1px solid #ddd4f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(80, 55, 149, 0.12);
+}
+.reveal img.shot.shot-small { flex: 0 0 50%; width: 50%; }
+
+/* Teil 3: Reihenfolge der Anweisungen, Code mit Zustand der Variablen */
+.reveal .state-viz {
+  display: inline-block;
+  margin: 0.2em auto 0.5em;
+  padding: 0.5em 0.9em;
+  border-radius: 15px;
+  background: #f5f5f7;
+  text-align: left;
+}
+.reveal .sv-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  margin: 0.18em 0;
+}
+.reveal .sv-code {
+  width: 12.5em;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.6em;
+  color: #3b2a70;
+  white-space: pre;
+}
+.reveal .sv-var { color: #503795; font-weight: 700; }
+.reveal .sv-state {
+  display: flex;
+  gap: 0.35em;
+}
+.reveal .sv-head .sv-state span {
+  width: 3.6em;
+  color: #8f889e;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.45em;
+  font-weight: 700;
+  text-align: center;
+}
+.reveal .sv-chip {
+  display: inline-block;
+  width: 2.6em;
+  padding: 0.15em 0;
+  border-radius: 6px;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.62em;
+  font-weight: 700;
+  text-align: center;
+}
+.reveal .sv-chip.new { background: #503795; color: #ffffff; }
+.reveal .sv-chip.kept { background: #e6e3ec; color: #8f889e; }
+.reveal .sv-chip.empty { background: transparent; border: 1px dashed #ddd4f0; }
+.reveal .sv-legend {
+  display: inline-block;
+  margin-left: 0.3em;
+  padding: 0 0.5em;
+  border-radius: 6px;
+  font-size: 0.8em;
+}
+.reveal .sv-legend.new { background: #503795; color: #ffffff; }
+.reveal .sv-legend.kept { background: #e6e3ec; color: #8f889e; }
+.reveal p.sv-legend-line {
+  margin: 0 0 0.3em;
+  font-size: 0.75em;
+}
+.reveal p.sv-legend-line .sv-legend { margin: 0 0.4em; }
+
+/* Teil 3: Anatomie eines Funktionsaufrufs */
+.reveal .call-anatomy { margin: 0.3em 0 0.4em; }
+.reveal code.call-line {
+  display: inline-block;
+  padding: 0.35em 0.8em;
+  border-radius: 12px;
+  background: #f5f5f7;
+  color: #3b2a70;
+  font-size: 1.05em;
+}
+.reveal .ca-name { color: #c2185b; font-weight: 700; }
+.reveal .ca-paren { color: #2f6f8f; font-weight: 700; }
+.reveal .ca-args { color: #503795; background: #e6dff5; border-radius: 4px; padding: 0 0.15em; }
+.reveal .ca-ret { color: #503795; font-weight: 700; text-decoration: underline; text-underline-offset: 0.15em; }
+.reveal .call-legend {
+  display: grid;
+  gap: 0.2em;
+  width: fit-content;
+  margin: 0.5em auto 0;
+  font-size: 0.62em;
+  text-align: left;
+}
+.reveal .call-legend .ca-name,
+.reveal .call-legend .ca-paren,
+.reveal .call-legend .ca-args,
+.reveal .call-legend .ca-ret {
+  display: inline-block;
+  min-width: 6.5em;
+  margin-right: 0.6em;
+  font-family: Menlo, Consolas, monospace;
+}
+
+/* Teil 3: Liste mit Indizes von vorne und hinten */
+.reveal .list-viz {
+  display: inline-block;
+  padding: 0.5em 0.9em;
+  border-radius: 15px;
+  background: #f5f5f7;
+  text-align: left;
+}
+.reveal .lv-row { display: flex; align-items: center; gap: 1em; margin: 0.12em 0; }
+.reveal .lv-code {
+  flex: none;
+  width: 25.5em;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.52em;
+  color: #3b2a70;
+  white-space: pre;
+}
+.reveal .lv-list { flex: none; display: flex; align-items: center; gap: 0.2em; }
+.reveal .lv-box {
+  position: relative;
+  display: inline-block;
+  width: 3.2em;
+  padding: 0.55em 0;
+  border-radius: 6px;
+  background: #e6e3ec;
+  color: #6b6479;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.56em;
+  font-weight: 700;
+  text-align: center;
+}
+.reveal .lv-box.hl { background: #503795; color: #ffffff; }
+.reveal .lv-box.new { background: #c2185b; color: #ffffff; }
+.reveal .lv-i, .reveal .lv-j {
+  position: absolute;
+  left: 0.35em;
+  font-size: 0.62em;
+  font-weight: 400;
+  line-height: 1;
+}
+.reveal .lv-i { top: 0.15em; }
+.reveal .lv-j { bottom: 0.15em; opacity: 0.75; }
+.reveal .lv-res {
+  white-space: nowrap;
+  margin-left: 0.5em;
+  color: #503795;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.55em;
+  font-weight: 700;
+}
+.reveal p.lv-legend-line { margin: 0.3em 0 0; font-size: 0.55em; }
+.reveal .lv-key {
+  display: inline-block;
+  padding: 0 0.4em;
+  border-radius: 4px;
+  background: #e6e3ec;
+  font-family: Menlo, Consolas, monospace;
+}
+.reveal .sv-legend.added { background: #c2185b; color: #ffffff; }
+.reveal pre.shared-code { width: fit-content; padding: 0 1em; margin: 0 auto 0.3em; }

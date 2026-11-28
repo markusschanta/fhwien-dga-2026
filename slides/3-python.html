@@ -2,6 +2,7 @@
 
 <head>
   <meta charset="utf-8">
+  <title>3. Programmieren mit Python</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" integrity="sha512-0AUO8B5ll9y1ERV/55xq3HeccBGnvAJQsVGitNac/iQCLyDTGLUBMPqlupIWp/rJg0hV3WWHusXchEIdqFAv1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" integrity="sha512-NJYOiL4HPnu7QvvGcvHAnVVz2X6qWcTDAH4x3fmUOW/SGUbK46IbzHhQ1KoKDfK2trs5RwUu03Ax9sxjqz1iQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,12 +15,12 @@
 </head>
 
 <body>
-  <div class="reveal">
+  <div class="reveal python-deck">
     <div class="slides">
-      <section data-state="no-header" data-markdown>
+      <section data-state="no-header" id="titel" data-markdown>
         <textarea data-template>
           ##### Datengewinnung &amp; -aufbereitung
-          # 3. Programmierung mit Python
+          # 3. Programmieren mit Python
 
           <p style="text-align: right; padding-top: 3em;">Markus Schanta</p>
           <p style="text-align: right">
@@ -28,294 +29,419 @@
 
         </textarea>
       </section>
-
-      <section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Agenda
-            1. __Theorie & Motivation:__ Vorteile von Python
-            2. __Zuweisungen:__ Werte in Variablen abspeichern
-            3. __Datentypen:__ Einfache & Container-Datentypen
-            4. __Verzweigungen:__ Bedingte Anweisungen
-            5. __Schleifen:__ Wiederholte Ausführung von Code
-            6. __Funktionen:__ Wiederverwendbare Codeblöcke
-
-          </textarea>
+      <section data-abschnitt="Einstieg">
+        <section id="python-ueberblick">
+          <h2>Python im Überblick</h2>
+          <ul>
+            <li>1991 von Guido van Rossum veröffentlicht</li>
+            <li>Name nach der Comedy-Gruppe Monty Python</li>
+            <li>Open Source und kostenlos</li>
+            <li>Python 3 seit 2008, jährlich eine neue Unterversion</li>
+            <li>Interpretiert: Anweisung für Anweisung</li>
+            <li>Einsatz: Datenanalyse, KI, Automatisierung, Web</li>
+            <li>Eine der meistverwendeten Programmiersprachen</li>
+          </ul>
         </section>
-        <section>
-          <h2>Python: ein Überblick</h2>
-          <div style="display: flex; width: 100%; gap: 20px;">
-            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-              <img data-src="assets/3-1-python.png" style="max-width: 100%; margin: 0;">
-            </div>
-            <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start;">
-              <ul>
-                <li style="margin-bottom: 1em;">Interpretierte, universelle Programmiersprache</li>
-                <li style="margin-bottom: 1em;">1991 erstmals von Guido von Rossum veröffentlicht</li>
-                <li style="margin-bottom: 1em;"><span>Aktuelle (02.12.2025) Version: 3.14.1</span>
-                  <ul>
-                    <li>Python 2.0 veröffentlicht 2000</li>
-                    <li>Python 3.0 veröffentlicht 2008</li>
-                    <li>Python 2.7 end of life: 2015, 2020</li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <section id="tiobe">
+          <h2>TIOBE-Index</h2>
+          <p class="chart-subtitle">Beliebtheit von Programmiersprachen in %, monatlich 2001 bis November 2026:<br><strong style="color:#503795">Python</strong> im Vergleich zu C, C++, Java, C# und JavaScript (grau)</p>
+          <div id="tiobe-chart" class="chart"></div>
+          <p class="source">Quelle: TIOBE Programming Community Index, Daten über github.com/toUpperCase78/tiobe-index-ratings</p>
         </section>
-        <section>
-          <h2>Vorteile von Python</h2>
-          <div style="display: flex; width: 100%; gap: 20px;">
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Universell</h5>
-                  <p style="font-size: 0.5em;">Python ist geeignet, um für unterschiedliche Problemstellungen eingesetzt zu werden</p>
-                </div>
-              </div>
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Interpretiert</h5>
-                  <p style="font-size: 0.5em;">Interaktive Ausführungsmodi möglich</p>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Erweiterbar</h5>
-                  <p style="font-size: 0.5em;">Python bietet ein riesiges Ökosystem an Erweiterungen (Libraries) für diverseste Zwecke</p>
-                </div>
-              </div>
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Leicht zugänglich</h5>
-                  <p style="font-size: 0.5em;">Leicht zu erlernen, sehr viele Ressourcen</p>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Prägnante Syntax</h5>
-                  <p style="font-size: 0.5em;">Die Syntax von Python ist einfach zu verstehen und auf das Wesentliche reduziert</p>
-                </div>
-              </div>
-              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
-                <div style="text-align: left;">
-                  <h5>Verbreitet</h5>
-                  <p style="font-size: 0.5em;">In vielen Organisationen verbreitet, große Community</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h2>Python TIBOE Index</h2>
-          <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-          <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-          <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
-          <p>Der TIOBE Programming Community Index ist ein Ranking von Programmiersprachen nach ihrer Popularität.</p>
-
-          <div id="vis" style="width: 100%; height: 300px;"></div>
-
-          <script type="text/javascript">
-            var spec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "TIOBE Index Ratings im Zeitverlauf",
-            "width": "container",
-            "height": 400,
-            "data": {
-              "url": "https://raw.githubusercontent.com/toUpperCase78/tiobe-index-ratings/refs/heads/master/Tiobe_Index_All_Ratings_November2025.csv",
-              "format": {
-              "type": "csv"
-              }
-            },
-            "transform": [{
-              "fold": ["Python", "C", "C++", "Java", "C#", "JavaScript", "SQL", "Go", "Visual Basic", "PHP"],
-              "as": ["Language", "Rating"]
-            }],
-            "mark": "line",
-            "encoding": {
-              "x": {
-              "field": "DATE",
-              "type": "temporal",
-              "title": "Date"
-              },
-              "y": {
-              "field": "Rating",
-              "type": "quantitative",
-              "title": "Rating (%)"
-              },
-              "color": {
-              "field": "Language",
-              "type": "nominal",
-              "title": "Language",
-              "scale": {
-                "domain": ["Python", "C", "C++", "Java", "C#", "JavaScript", "SQL", "Go", "Visual Basic", "PHP"],
-                "range": ["darkblue", "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"]
-              }
-              },
-              "strokeWidth": {
-              "condition": {
-                "test": "datum.Language === 'Python'",
-                "value": 3
-              },
-              "value": 1
-              },
-            }
-            };
-          vegaEmbed('#vis', spec);
-          </script>
-        </section>
-      </section>
-
-      <section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Zuweisungen
-            * Grundstruktur einer Zuweisung: <!-- .element: class="fragment" -->
-              ```python
-              area = 3 * 5
-              ```
-            * <!-- .element: class="fragment" --> Der Variable <code>area</code> wird der Wert <code>3 * 5</code> zugewiesen. 
-            * <!-- .element: class="fragment" --> Der Wert kann eine Konstante, eine Berechnung, das Ergebnis eines Funktionsaufrufs oder das Ergebnis einer anderen Zuweisung sein.
-            * <!-- .element: class="fragment" --> Der zugewiesene Wert kann später im Programm durch den Variablennamen abgerufen werden.
-          </textarea>
-        </section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Variablennamen (1/3)
-            1. <!-- .element: class="fragment" --> <strong>Zeichen</strong>
-                * Variablennamen dürfen Buchstaben (<code>a-z</code>, <code>A-Z</code>), Zahlen (<code>0-9</code>) oder Unterstriche (<code>_</code>) enthalten.
-            2. <!-- .element: class="fragment" --> <strong>Länge</strong>
-                * Es gibt keine festgelegte maximale Länge für Variablennamen, aber es ist ratsam, sie kurz und prägnant zu halten, um die Lesbarkeit zu erhöhen.
-            3. <!-- .element: class="fragment" --> <strong>Groß- und Kleinschreibung</strong>
-                * Python unterscheidet zwischen Groß- und Kleinschreibung.
-                * Beispiel: <code>variable</code>, <code>Variable</code> und <code>VARIABLE</code> sind drei verschiedene Variablen.
-          </textarea>
-        </section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Variablennamen (2/3)
-            4. <!-- .element: class="fragment" --> <strong>Schlüsselwörter</strong>
-                * Variablennamen dürfen keine reservierten Schlüsselwörter (z.B. <code>if</code>, <code>for</code>, <code>while</code>, <code>def</code>, etc.) sein, die eine besondere Bedeutung in Python haben.
-            5. <!-- .element: class="fragment" --> <strong>Konventionen</strong>
-                * Es ist ratsam, aussagekräftige Namen zu verwenden, die den Zweck einer Variable widerspiegeln (z.B. <code>total_price</code> statt <code>tp</code>).
-                * Es ist üblich, Variablennamen in Kleinbuchstaben zu schreiben und Wörter durch Unterstriche zu trennen (z.B. <code>my_variable</code>).
-          </textarea>
-        </section>
-        <section data-markdown>
-          <textarea data-template>
-            ## Variablennamen (3/3)
-            <p style="font-size: 0.75em;">In Python müssen Variablennamen mit einem Buchstaben oder Unterstrich beginnen, dürfen nur Buchstaben, Zahlen und Unterstriche enthalten und dürfen keine reservierten Schlüsselwörter verwenden.</p>
-            <div style="display: flex; width: 100%; gap: 20px; font-size: 0.8em;">
-              <div style="flex: 1; text-align: left;">
-                <h5>Gültige Variablennamen</h5>
-                <ul>
-                  <li><code>user_age</code></li>
-                  <li><code>age</code></li>
-                  <li><code>user_name</code></li>
-                  <li><code>total3</code></li>
-                  <li><code>_value</code></li>
-                  <li><code>myVariable</code></li>
-                </ul>
-              </div>
-              <div style="flex: 2; text-align: left;">
-                <h5>Ungültige Variablennamen</h5>
-                <ul>
-                  <li><code>3total</code> (beginnt mit einer Zahl)</li>
-                  <li><code>user-name</code> (Bindestrich ist nicht erlaubt)</li>
-                  <li><code>if</code> (Schlüsselwort)</li>
-                  <li><code>my variable</code> (Leerzeichen nicht erlaubt)</li>
-                </ul>
-              </div>
-            </div>
-          </textarea>
-        </section>
-      </section>
-
-      <section>
-        <section>
-          <h2>Python Datentypen</h2>
-          <ul style="font-size: 0.8em;">
-            <li class="fragment">
-              <strong><code>int</code></strong>
-              <p style="font-size: 0.8em;">repräsentiert <strong>ganze Zahlen</strong> beliebiger Größe und unterstützt gängige arithmetische Operationen wie Addition, Subtraktion, Multiplikation und Division.</p>
-            </li>
-            <li class="fragment">
-              <strong><code>float</code></strong>
-              <p style="font-size: 0.8em;">repräsentiert <strong>Gleitkomma-Zahlen</strong> (=reelle Zahlen mit Dezimalstellen) und wird für präzise Berechnungen mit Brüchen, Exponentialnotation und großen oder kleinen Zahlen verwendet.</p>
-            </li>
-            <li class="fragment">
-              <strong><code>str</code></strong>
-              <p style="font-size: 0.8em;">repräsentiert <strong>Zeichenketten</strong> (Text) und unterstützt Operationen wie Verkettung und Wiederholung.</p>
-            </li>
-            <li class="fragment">
-              <strong><code>bool</code></strong>
-              <p style="font-size: 0.8em;">repräsentiert <strong>Wahrheitswerte</strong> (<code>True</code> oder <code>False</code>) und wird für logische Operationen verwendet.</p>
-            </li>
+        <section id="warum-python">
+          <h2>Warum Python,<br>wenn es SQL gibt?</h2>
+          <ul>
+            <li class="fragment">SQL fragt Daten ab, Python verarbeitet sie weiter</li>
+            <li class="fragment">Daten aus Datenbanken, CSV, Excel und Web</li>
+            <li class="fragment">Einmal schreiben, beliebig oft ausführen</li>
+            <li class="fragment">Gut lesbar, viele fertige Bibliotheken</li>
+            <li class="fragment">Danach: pandas (Teil 4) und Altair (Teil 5)</li>
           </ul>
         </section>
       </section>
 
-      <section>
-        <section>
-          <h2>Python Sammeltypen / Collections</h2>
-          <ul style="font-size: 0.8em;">
-            <li class="fragment">
-              <strong><code>list</code></strong>
-              <p style="font-size: 0.8em;">ist ein geordneter Sammeltyp, der eine beliebig lange <strong>Folge von Elementen</strong> speichern kann und durch eckige Klammern <strong><code>[]</code></strong> dargestellt wird</p>
-            </li>
-            <li class="fragment">
-              <strong><code>dict</code></strong>
-              <p style="font-size: 0.8em;">ist ein ungeordneter Sammeltyp, der <strong>Schlüssel-Wert-Paare</strong> speichert und durch geschweifte Klammern <strong><code>{}</code></strong> dargestellt wird, wobei jeder Schlüssel eindeutig sein muss und auf einen Wert zugreifen kann.</p>
-            </li>
-            <li class="fragment">
-              <strong><code>set</code></strong>
-              <p style="font-size: 0.8em;">ist ein ungeordneter Sammeltyp, der eine <strong>Sammlung einzigartiger Elemente</strong> speichert und durch geschweifte Klammern <strong><code>{}</code></strong> dargestellt wird, wobei doppelte Werte automatisch entfernt werden.</p>
-            </li>
+      <section data-abschnitt="Google Colab">
+        <section data-state="no-header" id="colab">
+          <h2>Notebooks in Google Colab</h2>
+          <div class="shot-layout">
+            <img class="shot" data-src="assets/3-1-1-colab-notebook.png" alt="Notebook in Google Colab mit Menüleiste, Textzelle und Codezellen mit Ausgabe">
+            <ul>
+              <li><strong>Textzellen</strong> und <strong>Codezellen</strong></li>
+              <li class="fragment"><strong>Shift + Enter</strong> führt eine Zelle aus, die Ausgabe steht darunter</li>
+              <li class="fragment">Die <strong>Reihenfolge der Ausführung</strong> zählt</li>
+              <li class="fragment">Läuft im Browser, ein Google-Konto genügt</li>
+            </ul>
+          </div>
+        </section>
+        <section data-state="no-header" id="notebook-oeffnen">
+          <h2>Notebook öffnen</h2>
+          <div class="shot-layout">
+            <ol>
+              <li>Kursseite, Teil 3: <strong>Notebook (Colab)</strong></li>
+              <li>Datei, <strong>Kopie in Drive speichern</strong></li>
+              <li>Vor den ersten Aufgaben: Zelle <strong>Tests vorbereiten</strong> ausführen</li>
+              <li>Lösungen: eingeklappte Zellen <strong>💡 Lösung</strong>, Doppelklick zeigt den Code</li>
+            </ol>
+            <img class="shot shot-small" data-src="assets/3-1-2-colab-datei.png" alt="Menü Datei in Colab mit dem Eintrag Kopie in Drive speichern">
+          </div>
+        </section>
+      </section>
+
+      <section data-abschnitt="Variablen und Datentypen">
+        <section id="variablen">
+          <h2>Variablen</h2>
+          <pre><code class="python" data-trim data-noescape>
+preis = 20
+menge = 3
+umsatz = preis * menge
+</code></pre>
+          <ul>
+            <li class="fragment"><code>=</code> ist eine <strong>Zuweisung</strong>: rechts berechnen, links unter einem Namen speichern</li>
+            <li class="fragment">Namen aus Kleinbuchstaben, Ziffern und <code>_</code>, nicht mit einer Ziffer beginnen: <code>total_price</code></li>
+            <li class="fragment">Groß-/Kleinschreibung zählt: <code>umsatz</code> und <code>Umsatz</code> sind verschieden</li>
           </ul>
         </section>
-      </section>
-
-
-
-      <section>
-        <section>
-          <h2>Python Built-in-Funktionen</h2>
-            <p style="font-size: 0.8em;">Python bietet eine Vielzahl von Built-in-Funktionen, die vordefiniert sind und häufige Programmieraufgaben erleichtern, darunter Funktionen zur Typumwandlung, zur mathematischen Berechnung oder zur Datenbearbeitung.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; width: 100%; font-size: 0.8em;">
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>print()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>type()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>len()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>abs()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>min()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>max()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>sum()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>mean()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>sorted()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>reversed()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>round()</code></strong></div>
-              <div style="flex: 1 1 20%; padding: 10px; box-sizing: border-box;"><strong><code>chr()</code></strong></div>
+        <section data-state="no-header" id="reihenfolge">
+          <h2>Reihenfolge der Anweisungen</h2>
+          <div class="state-viz">
+              <div class="sv-row sv-head"><span class="sv-code"></span><span class="sv-state"><span>preis</span><span>menge</span><span>umsatz</span></span></div>
+              <div class="sv-row"><code class="sv-code"><span class="sv-var">preis</span> = 20</code><span class="sv-state fragment"><span class="sv-chip new">20</span><span class="sv-chip empty"></span><span class="sv-chip empty"></span></span></div>
+              <div class="sv-row"><code class="sv-code"><span class="sv-var">menge</span> = 3</code><span class="sv-state fragment"><span class="sv-chip kept">20</span><span class="sv-chip new">3</span><span class="sv-chip empty"></span></span></div>
+              <div class="sv-row"><code class="sv-code"><span class="sv-var">umsatz</span> = preis * menge</code><span class="sv-state fragment"><span class="sv-chip kept">20</span><span class="sv-chip kept">3</span><span class="sv-chip new">60</span></span></div>
+              <div class="sv-row"><code class="sv-code"><span class="sv-var">menge</span> = 5</code><span class="sv-state fragment"><span class="sv-chip kept">20</span><span class="sv-chip new">5</span><span class="sv-chip kept">60</span></span></div>
+              <div class="sv-row"><code class="sv-code"><span class="sv-var">umsatz</span> = preis * menge</code><span class="sv-state fragment"><span class="sv-chip kept">20</span><span class="sv-chip kept">5</span><span class="sv-chip new">100</span></span></div>
             </div>
+          <p class="sv-legend-line"><span class="sv-legend new">neuer Wert</span><span class="sv-legend kept">bleibt erhalten</span></p>
+          <ul>
+            <li class="fragment">Anweisungen laufen <strong>der Reihe nach</strong> und verändern den Zustand</li>
+            <li class="fragment"><code>umsatz</code> rechnet sich <strong>nicht</strong> von selbst neu (Schritt 4)</li>
+          </ul>
+        </section>
+        <section id="datentypen">
+          <h2>Datentypen</h2>
+          <table class="compare">
+            <thead><tr><th>Typ</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+            <tbody>
+              <tr><td><code>int</code></td><td>ganze Zahl</td><td><code>3</code></td></tr>
+              <tr><td><code>float</code></td><td>Kommazahl (mit Punkt)</td><td><code>19.90</code></td></tr>
+              <tr><td><code>str</code></td><td>Text</td><td><code>&quot;Graz&quot;</code></td></tr>
+              <tr><td><code>bool</code></td><td>Wahrheitswert</td><td><code>True</code>, <code>False</code></td></tr>
+            </tbody>
+          </table>
+          <p class="fragment"><code>type(wert)</code> zeigt den Typ eines Werts</p>
+        </section>
+        <section id="funktionsaufruf">
+          <h2>Funktionen aufrufen</h2>
+          <div class="call-anatomy">
+            <code class="call-line"><span class="ca-ret">ergebnis</span> = <span class="ca-name">round</span><span class="ca-paren">(</span><span class="ca-args">19.567, 2</span><span class="ca-paren">)</span></code>
+            <div class="call-legend">
+              <span class="fragment"><span class="ca-name">round</span> Funktionsname</span>
+              <span class="fragment"><span class="ca-paren">( )</span> Klammern: hier beginnt der Aufruf</span>
+              <span class="fragment"><span class="ca-args">19.567, 2</span> Argumente: die Eingaben, durch Kommas getrennt</span>
+              <span class="fragment"><span class="ca-ret">ergebnis</span> erhält den Rückgabewert <code>19.57</code></span>
+            </div>
+          </div>
+          <pre class="fragment"><code class="python" data-trim data-noescape>
+len(&quot;Graz&quot;)     # 4
+type(3)         # int
+print(&quot;Hallo&quot;)  # zeigt Hallo an
+</code></pre>
+        </section>
+        <section id="umwandeln">
+          <h2>Text und Zahlen umwandeln</h2>
+          <pre><code class="python" data-trim data-noescape>
+budget = int(&quot;1250&quot;)        # Text in Zahl
+preis = float(&quot;19.90&quot;)      # Text in Kommazahl
+text = &quot;Jahr &quot; + str(2026)  # Zahl in Text
+print(&quot;Budget:&quot;, budget)    # mehrere Werte ausgeben
+</code></pre>
+          <ul>
+            <li class="fragment">Daten aus Formularen oder Dateien kommen oft als Text</li>
+            <li class="fragment"><code>print()</code> gibt mehrere Werte, durch Kommas getrennt, nebeneinander aus</li>
+          </ul>
+        </section>
+        <section id="nb-1">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 1: Variablen und Datentypen</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">1.1</span>Bruttobetrag berechnen</li><li><span class="nb-nr">1.2</span>Text in Zahl umwandeln</li><li><span class="nb-nr">1.3</span>Satz aus Texten zusammensetzen</li></ul>
+          <p class="nb-time">ca. 10 Min.</p>
         </section>
       </section>
-      
-      <section>
-        <section>
+
+      <section data-abschnitt="Vergleiche">
+        <section id="vergleiche">
+          <h2>Vergleiche:<br>von SQL zu Python</h2>
+          <table class="compare">
+            <thead><tr><th>SQL</th><th>Python</th><th>Bedeutung</th></tr></thead>
+            <tbody>
+              <tr><td><code>=</code></td><td><code>==</code></td><td>gleich</td></tr>
+              <tr><td><code>&lt;&gt;</code></td><td><code>!=</code></td><td>ungleich</td></tr>
+              <tr><td><code>&lt; &gt; &lt;= &gt;=</code></td><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>kleiner, größer</td></tr>
+              <tr><td><code>AND OR NOT</code></td><td><code>and or not</code></td><td>verknüpfen</td></tr>
+              <tr><td><code>IN (&#x27;A&#x27;, &#x27;B&#x27;)</code></td><td><code>in [&quot;A&quot;, &quot;B&quot;]</code></td><td>ist in der Liste</td></tr>
+            </tbody>
+          </table>
+          <ul>
+            <li class="fragment">Ergebnis eines Vergleichs: <code>True</code> oder <code>False</code></li>
+            <li class="fragment">In Python zählt die Groß-/Kleinschreibung: <code>&quot;Austria&quot; == &quot;austria&quot;</code> ist <code>False</code></li>
+          </ul>
+        </section>
+        <section id="nb-2">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 2: Vergleiche und Logik</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">2.1</span>Teures Produkt erkennen</li><li><span class="nb-nr">2.2</span>DACH-Land erkennen</li><li><span class="nb-nr">2.3</span>Zielkunden erkennen</li></ul>
+          <p class="nb-time">ca. 10 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Listen und Dictionaries">
+        <section id="listen">
+          <h2>Listen</h2>
+          <pre><code class="python" data-trim data-noescape>
+bestellwerte = [120.5, 89.9, 230.0, 45.0]
+
+bestellwerte[0]            # 120.5 (Index ab 0)
+bestellwerte[-1]           # 45.0 (vom Ende)
+len(bestellwerte)          # 4
+bestellwerte.append(99.0)  # hinten anhängen
+max(bestellwerte)          # auch sum, min, sorted
+</code></pre>
+          <p class="fragment">Eine Liste speichert mehrere Werte in fester Reihenfolge</p>
+        </section>
+        <section data-state="no-header" id="listen-index">
+          <h2>Zugriff über den Index</h2>
+          <div class="list-viz">
+              <div class="lv-row"><code class="lv-code">bestellwerte = [120.5, 89.9, 230.0, 45.0]</code><span class="lv-list fragment"><span class="lv-box"><span class="lv-i">0</span>120.5<span class="lv-j">-4</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">2</span>230.0<span class="lv-j">-2</span></span><span class="lv-box"><span class="lv-i">3</span>45.0<span class="lv-j">-1</span></span><span class="lv-res"></span></span></div>
+              <div class="lv-row"><code class="lv-code">bestellwerte[0]</code><span class="lv-list fragment"><span class="lv-box hl"><span class="lv-i">0</span>120.5<span class="lv-j">-4</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">2</span>230.0<span class="lv-j">-2</span></span><span class="lv-box"><span class="lv-i">3</span>45.0<span class="lv-j">-1</span></span><span class="lv-res">→ 120.5</span></span></div>
+              <div class="lv-row"><code class="lv-code">bestellwerte[-1]</code><span class="lv-list fragment"><span class="lv-box"><span class="lv-i">0</span>120.5<span class="lv-j">-4</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">2</span>230.0<span class="lv-j">-2</span></span><span class="lv-box hl"><span class="lv-i">3</span>45.0<span class="lv-j">-1</span></span><span class="lv-res">→ 45.0</span></span></div>
+              <div class="lv-row"><code class="lv-code">len(bestellwerte)</code><span class="lv-list fragment"><span class="lv-box"><span class="lv-i">0</span>120.5<span class="lv-j">-4</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">2</span>230.0<span class="lv-j">-2</span></span><span class="lv-box"><span class="lv-i">3</span>45.0<span class="lv-j">-1</span></span><span class="lv-res">→ 4</span></span></div>
+              <div class="lv-row"><code class="lv-code">bestellwerte.append(99.0)</code><span class="lv-list fragment"><span class="lv-box"><span class="lv-i">0</span>120.5<span class="lv-j">-5</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-4</span></span><span class="lv-box"><span class="lv-i">2</span>230.0<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">3</span>45.0<span class="lv-j">-2</span></span><span class="lv-box new"><span class="lv-i">4</span>99.0<span class="lv-j">-1</span></span><span class="lv-res"></span></span></div>
+              <div class="lv-row"><code class="lv-code">max(bestellwerte)</code><span class="lv-list fragment"><span class="lv-box"><span class="lv-i">0</span>120.5<span class="lv-j">-5</span></span><span class="lv-box"><span class="lv-i">1</span>89.9<span class="lv-j">-4</span></span><span class="lv-box hl"><span class="lv-i">2</span>230.0<span class="lv-j">-3</span></span><span class="lv-box"><span class="lv-i">3</span>45.0<span class="lv-j">-2</span></span><span class="lv-box"><span class="lv-i">4</span>99.0<span class="lv-j">-1</span></span><span class="lv-res">→ 230.0</span></span></div>
+          </div>
+          <p class="lv-legend-line"><span class="lv-key">0</span> Index von vorne &nbsp; <span class="lv-key back">-1</span> Index von hinten &nbsp; <span class="sv-legend new">gelesen</span> <span class="sv-legend added">angehängt</span></p>
+        </section>
+        <section id="dictionaries">
+          <h2>Dictionaries</h2>
+          <pre><code class="python" data-trim data-noescape>
+kunde = {&quot;name&quot;: &quot;Ernst Handel&quot;, &quot;stadt&quot;: &quot;Graz&quot;}
+
+kunde[&quot;stadt&quot;]              # &quot;Graz&quot;
+kunde[&quot;bestellungen&quot;] = 10  # neues Paar hinzufügen
+</code></pre>
+          <ul>
+            <li class="fragment">Ein Dictionary speichert <strong>Schlüssel-Wert-Paare</strong></li>
+            <li class="fragment">Ein Dictionary entspricht einer <strong>Tabellenzeile</strong>,<br>eine Liste von Dictionaries einer <strong>Tabelle</strong></li>
+          </ul>
+        </section>
+        <section id="nb-3">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 3: Listen und Dictionaries</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">3.1</span>Durchschnitt berechnen</li><li><span class="nb-nr">3.2</span>Zweithöchsten Wert finden</li><li><span class="nb-nr">3.3</span>Dictionary lesen und ergänzen</li></ul>
+          <p class="nb-time">ca. 15 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Verzweigungen">
+        <section id="verzweigungen">
+          <h2>Verzweigungen:<br>if, elif, else</h2>
+          <pre><code class="python" data-trim data-noescape>
+if bestellwert &gt;= 200:
+    rabatt = 0.10
+elif bestellwert &gt;= 100:
+    rabatt = 0.05
+else:
+    rabatt = 0
+</code></pre>
+          <ul>
+            <li class="fragment">Geprüft wird von oben nach unten, die erste zutreffende Bedingung gewinnt</li>
+            <li class="fragment"><strong>Doppelpunkt</strong> und <strong>Einrückung</strong> (4 Leerzeichen) gehören zur Syntax</li>
+          </ul>
+        </section>
+        <section id="nb-4">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 4: Verzweigungen</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">4.1</span>Versandkosten</li><li><span class="nb-nr">4.2</span>Kundensegment</li><li><span class="nb-nr">4.3</span>Gutschein für Zielkunden</li></ul>
+          <p class="nb-time">ca. 15 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Schleifen">
+        <section id="schleifen">
+          <h2>Schleifen: for</h2>
+          <pre><code class="python" data-trim data-noescape>
+bestellwerte = [120.5, 89.9, 230.0, 45.0]
+
+for wert in bestellwerte:
+    print(&quot;Bestellung über&quot;, wert)
+</code></pre>
+          <ul>
+            <li class="fragment">Der eingerückte Block läuft <strong>für jedes Element</strong> einmal</li>
+            <li class="fragment"><code>wert</code> enthält dabei nacheinander jedes Element der Liste</li>
+          </ul>
+        </section>
+        <section id="schleifen-muster">
+          <h2>Zwei Grundmuster</h2>
+          <pre class="shared-code"><code class="python" data-trim data-noescape>
+bestellwerte = [120.5, 89.9, 230.0, 45.0]
+</code></pre>
+          <div class="two-code">
+            <div>
+              <p class="subtitle">Aufsummieren</p>
+              <pre><code class="python" data-trim data-noescape>
+summe = 0
+for wert in bestellwerte:
+    summe = summe + wert
+</code></pre>
+            </div>
+            <div class="fragment">
+              <p class="subtitle">Filtern</p>
+              <pre><code class="python" data-trim data-noescape>
+grosse = []
+for wert in bestellwerte:
+    if wert &gt; 100:
+        grosse.append(wert)
+</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="nb-5">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 5: Schleifen</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">5.1</span>Große Bestellungen zählen</li><li><span class="nb-nr">5.2</span>Rabattpreise berechnen</li><li><span class="nb-nr">5.3</span>Kunden aus Austria sammeln</li></ul>
+          <p class="nb-time">ca. 15 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Funktionen">
+        <section id="funktionen">
+          <h2>Funktionen</h2>
+          <pre><code class="python" data-trim data-noescape>
+def brutto(netto):
+    return netto * 1.2
+
+brutto(100)   # 120.0
+</code></pre>
+          <ul>
+            <li class="fragment"><code class="hljs-keyword">def</code>, Name, <strong>Parameter</strong> in Klammern, Doppelpunkt, eingerückter Block</li>
+            <li class="fragment"><code class="hljs-keyword">return</code> gibt das Ergebnis zurück, <code>print</code> zeigt es nur an</li>
+          </ul>
+        </section>
+        <section id="funktionen-testen">
+          <h2>Funktionen testen</h2>
+          <pre><code class="python" data-trim data-noescape>
+check_result(35, 4.90, versandkosten(35))
+</code></pre>
+          <pre class="nb-output fragment">Input: 35
+Expected result: 4.9
+Actual result: 4.9
+✅ OK! (actual result == expected result)</pre>
+          <ul>
+            <li class="fragment">Eingabe, erwartetes und tatsächliches Ergebnis vergleichen</li>
+            <li class="fragment">Mehrere Testfälle, auch Grenzfälle: genau 50, leere Liste</li>
+          </ul>
+        </section>
+        <section id="nb-6">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 6: Funktionen</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">6.1</span>Versandkosten als Funktion</li><li><span class="nb-nr">6.2</span>Kundensegment als Funktion</li><li><span class="nb-nr">6.3</span>Summe über einer Grenze</li></ul>
+          <p class="nb-time">ca. 20 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Fehlermeldungen">
+        <section id="fehler">
+          <h2>Fehlermeldungen lesen</h2>
+          <table class="compare">
+            <thead><tr><th>Fehler</th><th>typische Ursache</th></tr></thead>
+            <tbody>
+              <tr><td><code>NameError</code></td><td>Tippfehler im Namen oder Zelle nicht ausgeführt</td></tr>
+              <tr><td><code>TypeError</code></td><td>Werte passen nicht zusammen, z.&nbsp;B. Text + Zahl</td></tr>
+              <tr><td><code>SyntaxError</code><br><code>IndentationError</code></td><td>Doppelpunkt, Klammer oder Einrückung fehlt</td></tr>
+            </tbody>
+          </table>
+          <p class="fragment">Die <strong>letzte Zeile</strong> der Meldung zuerst lesen</p>
+        </section>
+        <section id="nb-7">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 7: Fehlermeldungen</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">7.1</span>NameError beheben</li><li><span class="nb-nr">7.2</span>TypeError beheben</li><li><span class="nb-nr">7.3</span>SyntaxError beheben</li></ul>
+          <p class="nb-time">ca. 5 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="SQL aus Python">
+        <section id="sql-python">
+          <h2>SQL aus Python</h2>
+          <pre><code class="python" data-trim data-noescape>
+import pandas as pd
+
+SQL = &quot;&quot;&quot;
+SELECT Country, COUNT(*) AS Kunden
+FROM customers
+GROUP BY Country
+&quot;&quot;&quot;
+pd.read_sql_query(SQL, db)
+</code></pre>
+          <ul>
+            <li class="fragment">Die Datenbank lädt eine vorbereitete Zelle (wie in der Gruppenübung)</li>
+            <li class="fragment">Ergebnis: eine Tabelle (pandas DataFrame, mehr in Teil 4)</li>
+          </ul>
+        </section>
+        <section id="sql-python-unterschiede">
+          <h2>Unterschiede<br>zum SQL-Editor</h2>
+          <ul>
+            <li class="fragment">Tabellennamen klein: <code>customers</code>, <code>order_details</code></li>
+            <li class="fragment">Groß-/Kleinschreibung zählt: <code>&#x27;Austria&#x27;</code>, nicht <code>&#x27;austria&#x27;</code></li>
+            <li class="fragment">Nur <code>LIMIT</code>, kein <code>TOP</code></li>
+            <li class="fragment">Spalten weder im <code class="hljs-keyword">GROUP BY</code> noch aggregiert: <strong>kein Fehler</strong>, sondern ein beliebiger Wert</li>
+          </ul>
+        </section>
+        <section id="nb-8">
+          <h2>Notebook</h2>
+          <p class="subtitle">Abschnitt 8: SQL aus Python</p>
+          <ul class="nb-tasks"><li><span class="nb-nr">8.1</span>Teure Produkte abfragen</li><li><span class="nb-nr">8.2</span>Kunden ohne Bestellung abfragen</li></ul>
+          <p class="nb-time">ca. 10 Min.</p>
+        </section>
+      </section>
+
+      <section data-abschnitt="Zusammenfassung">
+        <section id="bausteine">
+          <h2>Die Bausteine im Überblick</h2>
+          <table class="compare">
+            <thead><tr><th>Baustein</th><th>Zweck</th></tr></thead>
+            <tbody>
+              <tr><td>Variable, Datentyp</td><td>einen Wert speichern</td></tr>
+              <tr><td>Liste, Dictionary</td><td>viele Werte sammeln</td></tr>
+              <tr><td><code class="hljs-keyword">if</code>, <code class="hljs-keyword">elif</code>, <code class="hljs-keyword">else</code></td><td>entscheiden</td></tr>
+              <tr><td><code class="hljs-keyword">for</code></td><td>wiederholen</td></tr>
+              <tr><td><code class="hljs-keyword">def</code>, <code class="hljs-keyword">return</code></td><td>zusammenfassen und wiederverwenden</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+
+      <section data-abschnitt="Abschluss">
+        <section id="abschluss-fragen">
           <h2>Fragen?</h2>
         </section>
-        <section>
-          <h2>Nächste Schritte</h2>
-            <ul>
-              <li>Review Folien & Materialien der heutigen Einheit (bereits auf Moodle verfügbar)</li>
-              <li>Angabe 1. Gruppenübung ab nächster Woche auf Moodle verfügbar</li>
-              <li>Nächste Einheit: Mo. 15.12. 18:30</li>
-            </ul>
+        <section id="abschluss-gruppenuebung">
+          <h2>Gruppenübung 1</h2>
+          <ul>
+            <li>SQL-Abfragen und Python-Funktionen in einem Colab-Notebook</li>
+            <li>Testfälle wie im Übungsnotebook</li>
+            <li>Angabe und Abgabe über Moodle</li>
+          </ul>
         </section>
-        <section>
+        <section id="abschluss-naechste-schritte">
+          <h2>Nächste Schritte</h2>
+          <ul>
+            <li>Folien, Skriptum und Notebook auf der Kursseite</li>
+            <li>Offene Abschnitte im Notebook abschließen</li>
+            <li>Gruppenübung 1 in den Gruppen beginnen</li>
+            <li>Nächster Termin: Fr. 04.12.2026, 16:35, B516<br>Teil 4: Daten mit pandas</li>
+          </ul>
+        </section>
+        <section id="abschluss-danke">
           <h2>Danke und schönen Abend!</h2>
         </section>
       </section>
@@ -331,6 +457,10 @@
       hash: true
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0/build/vega.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0/build/vega-lite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0/build/vega-embed.min.js"></script>
+  <script src="assets/3-tiobe-chart.js"></script>
   <script src="assets/header.js"></script>
   <script src="assets/notes.js"></script>
 </body>
