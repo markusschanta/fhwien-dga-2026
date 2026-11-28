@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>SQL Cheat Sheet · Datengewinnung &amp; -aufbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --purple: #503795; --light: #a89bc9; --pale: #ddd4f0; --soft: #f3f0f9;
+    --pink: #c2185b; --pinkbg: #fbe4ed; --ink: #333; --muted: #75727d; --code: #3b2a70; --rule: #e2deea;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; }
+  body {
+    width: 210mm; height: 297mm; padding: 8mm 9mm 7mm;
+    font-family: "Noto Sans", Arial, sans-serif; font-size: 7.8pt; line-height: 1.33; color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  header {
+    display: flex; align-items: last baseline; justify-content: space-between;
+    padding-bottom: 2.2mm; margin-bottom: 3mm; border-bottom: 1.2mm solid var(--purple);
+  }
+  header h1 { margin: 0; font-size: 17pt; color: var(--purple); letter-spacing: -0.01em; }
+  header h1 span { color: var(--pink); }
+  header p { margin: 0; text-align: right; color: var(--muted); font-size: 8pt; line-height: 1.35; }
+  header .course { color: var(--purple); font-size: 12.5pt; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; }
+  .cols > div { min-width: 0; }
+  .cols > div:first-child { padding-right: 2.5mm; border-right: 0.25mm solid var(--rule); }
+  .cols > div:last-child { padding-left: 2.5mm; }
+  section { margin-bottom: 1.8mm; break-inside: avoid; }
+  section + section { padding-top: 1.8mm; border-top: 0.25mm solid var(--rule); }
+  h2 {
+    display: flex; align-items: center; gap: 1.6mm;
+    margin: 0 0 1.4mm; font-size: 10pt; color: var(--purple);
+  }
+  h2 .n {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 4.2mm; height: 4.2mm; border-radius: 50%; background: var(--purple); color: #fff; font-size: 6.8pt;
+  }
+  p { margin: 0.8mm 0; color: var(--muted); }
+  section > :is(table, pre, .recipe, .fig, svg, .note) + p { margin-top: 1.5mm; }
+  .note p, .note { color: var(--ink); }
+  code, pre, .mono { font-family: "Noto Sans Mono", Menlo, Consolas, monospace; }
+  code { font-size: 7.2pt; color: var(--code); }
+  pre {
+    margin: 1mm 0; padding: 1.4mm 2.2mm; border-radius: 1.6mm; background: #f5f5f7;
+    font-size: 7.2pt; line-height: 1.38; color: var(--code); white-space: pre;
+  }
+  .k { color: var(--pink); font-weight: 700; }
+  .s { color: #6d4fb3; }
+  .c { color: var(--muted); font-style: italic; }
+  table { width: 100%; border-collapse: collapse; }
+  td, th { padding: 0.55mm 1.2mm; border-bottom: 0.2mm solid #e8e4f0; text-align: left; vertical-align: top; }
+  th { color: var(--purple); border-bottom: 0.35mm solid var(--purple); font-size: 7.6pt; }
+  td:first-child { white-space: nowrap; }
+  table.where td:nth-child(2) { white-space: nowrap; }
+  .note {
+    margin: 1mm 0; padding: 1.2mm 2mm; border-left: 0.8mm solid var(--purple); border-radius: 0 1.4mm 1.4mm 0;
+    background: var(--soft);
+  }
+  .note.warn { border-left-color: var(--pink); background: var(--pinkbg); }
+  .note b { color: var(--purple); }
+  .note.warn b { color: var(--pink); }
+  .recipe { display: grid; grid-template-columns: auto auto 1fr auto; gap: 0.5mm 2.4mm; align-items: center;
+    padding: 1.4mm 2.2mm; border-radius: 1.6mm; background: #f5f5f7; }
+  .recipe .kw { font-family: "Noto Sans Mono", monospace; font-size: 7.2pt; font-weight: 700; color: var(--pink); }
+  .recipe .what { font-family: "Noto Sans Mono", monospace; font-size: 7.2pt; color: var(--code); }
+  .recipe i { font-style: normal; color: var(--muted); }
+  .step { display: inline-flex; align-items: center; justify-content: center; width: 4mm; height: 4mm;
+    border: 0.35mm solid var(--pink); border-radius: 50%; background: #fff; color: var(--pink);
+    font-size: 6.4pt; font-weight: 700; line-height: 1; vertical-align: middle; }
+  p .step { width: 3.5mm; height: 3.5mm; font-size: 5.8pt; margin: 0 0.3mm; position: relative; top: -0.16em; }
+  svg.er { display: block; width: 100%; height: auto; margin: 0.6mm 0 0.4mm; }
+  .fig { display: flex; align-items: center; gap: 2.5mm; }
+  .fig svg { flex: none; }
+  .fig .txt { flex: 1; }
+  .muted { color: var(--muted); }
+  footer { position: absolute; left: 9mm; right: 9mm; bottom: 5mm; display: flex; justify-content: space-between;
+    color: var(--muted); font-size: 6.4pt; }
+  body { position: relative; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SQL <span>Cheat Sheet</span></h1>
+  <p><b class="course">Datengewinnung &amp; -aufbereitung</b><br>Teil 2: Datenbanken und SQL · WS 2026/27</p>
+</header>
+
+<div class="cols">
+<div>
+
+  <section>
+    <h2><span class="n">1</span>Aufbau einer Abfrage</h2>
+    <div class="recipe">
+      <span class="kw">SELECT</span><span class="what">spalten</span><i>welche Spalten</i><span class="step">5</span>
+      <span class="kw">FROM</span><span class="what">tabelle</span><i>aus welcher Tabelle</i><span class="step">1</span>
+      <span class="kw">JOIN</span><span class="what">tabelle2 <b class="k">ON</b> …</span><i>verknüpft mit</i><span class="step">1</span>
+      <span class="kw">WHERE</span><span class="what">bedingung</span><i>welche Zeilen</i><span class="step">2</span>
+      <span class="kw">GROUP BY</span><span class="what">spalten</span><i>pro Gruppe</i><span class="step">3</span>
+      <span class="kw">HAVING</span><span class="what">bedingung</span><i>welche Gruppen</i><span class="step">4</span>
+      <span class="kw">ORDER BY</span><span class="what">spalten</span><i>in welcher Reihenfolge</i><span class="step">6</span>
+      <span class="kw">LIMIT</span><span class="what">n</span><i>wie viele (SQL Server: <code class="k">TOP</code>)</i><span class="step">7</span>
+    </div>
+    <p><b>Reihenfolge beim Schreiben:</b> Schritte <span class="step">1</span> bis <span class="step">7</span>, also zuerst die Tabellen, <code class="k">SELECT</code> erst in Schritt <span class="step">5</span>. Im fertigen Code stehen die Klauseln wie oben. Das Ergebnis ist immer eine Tabelle.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>Spalten und Zeilen</h2>
+    <div class="fig">
+      <svg width="150" height="102" viewBox="0 0 132 90" aria-label="SELECT wählt Spalten, WHERE wählt Zeilen">
+        <g shape-rendering="crispEdges">
+          <rect x="20" y="26" width="112" height="60" fill="#fff"/>
+          <rect x="36" y="26" width="16" height="60" fill="#e6dff5"/>
+          <rect x="84" y="26" width="16" height="60" fill="#e6dff5"/>
+          <rect x="20" y="36" width="112" height="10" fill="#c2185b" fill-opacity="0.16"/>
+          <rect x="20" y="66" width="112" height="10" fill="#c2185b" fill-opacity="0.16"/>
+          <g stroke="#cfc8df" stroke-width="1"><line x1="20" y1="36" x2="132" y2="36"/><line x1="20" y1="46" x2="132" y2="46"/><line x1="20" y1="56" x2="132" y2="56"/><line x1="20" y1="66" x2="132" y2="66"/><line x1="20" y1="76" x2="132" y2="76"/><line x1="36" y1="26" x2="36" y2="86"/><line x1="52" y1="26" x2="52" y2="86"/><line x1="68" y1="26" x2="68" y2="86"/><line x1="84" y1="26" x2="84" y2="86"/><line x1="100" y1="26" x2="100" y2="86"/><line x1="116" y1="26" x2="116" y2="86"/></g>
+          <rect x="20.5" y="26.5" width="111" height="59" fill="none" stroke="#cfc8df" stroke-width="1"/>
+          <rect x="20" y="16" width="112" height="10" fill="#503795"/>
+        </g>
+        <g fill="#503795">
+          <rect x="39" y="39" width="10" height="4" rx="1"/><rect x="87" y="39" width="10" height="4" rx="1"/>
+          <rect x="39" y="69" width="10" height="4" rx="1"/><rect x="87" y="69" width="10" height="4" rx="1"/>
+        </g>
+        <g font-family="Noto Sans Mono, monospace" font-size="7" font-weight="700" text-anchor="middle">
+          <line x1="22" y1="7" x2="130" y2="7" stroke="#503795" stroke-width="1.4"/>
+          <path d="M20 7 l4.5 -2.8 v5.6 z M132 7 l-4.5 -2.8 v5.6 z" fill="#503795"/>
+          <rect x="59" y="2.5" width="34" height="9" rx="4.5" fill="#fff" stroke="#503795"/>
+          <text x="76" y="9.5" fill="#503795">SELECT</text>
+          <line x1="8" y1="29" x2="8" y2="83" stroke="#c2185b" stroke-width="1.4"/>
+          <path d="M8 26 l-2.8 4.5 h5.6 z M8 86 l-2.8 -4.5 h5.6 z" fill="#c2185b"/>
+          <rect x="3.5" y="41" width="9" height="30" rx="4.5" fill="#fff" stroke="#c2185b"/>
+          <text transform="translate(8 56) rotate(-90)" x="0" y="2.5" fill="#c2185b">WHERE</text>
+        </g>
+      </svg>
+      <div class="txt">
+        <p><span class="k mono">SELECT</span> bestimmt die <b>Spalten</b>, <span class="k mono" style="color:#c2185b">WHERE</span> die <b>Zeilen</b>. Das Ergebnis ist die Schnittmenge.</p>
+<pre><span class="k">SELECT</span> CustomerName, City
+<span class="k">FROM</span> Customers
+<span class="k">WHERE</span> Country = <span class="s">'Germany'</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>SELECT</h2>
+    <table>
+      <tr><td><code><span class="k">SELECT</span> * <span class="k">FROM</span> Customers</code></td><td>alle Spalten</td></tr>
+      <tr><td><code><span class="k">SELECT DISTINCT</span> Country</code></td><td>ohne Doppelte (21 statt 91 Zeilen)</td></tr>
+      <tr><td><code>Price * 1.2 <span class="k">AS</span> Brutto</code></td><td>berechnete Spalte mit Namen (Alias)</td></tr>
+    </table>
+    <p><code class="k">DISTINCT</code> gilt für die Kombination aller ausgewählten Spalten.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>WHERE: Bedingungen</h2>
+    <table class="where">
+      <tr><th>Operator</th><th>Beispiel</th><th>Bedeutung</th></tr>
+      <tr><td><code>= &lt;&gt; &lt; &gt; &lt;= &gt;=</code></td><td><code>Price &gt; 50</code></td><td>Vergleich</td></tr>
+      <tr><td><code class="k">BETWEEN</code></td><td><code>Price <span class="k">BETWEEN</span> 10 <span class="k">AND</span> 13</code></td><td>Grenzen inklusive</td></tr>
+      <tr><td><code class="k">IN</code></td><td><code>Country <span class="k">IN</span> (<span class="s">'UK'</span>, <span class="s">'USA'</span>)</code></td><td>einer der Werte</td></tr>
+      <tr><td><code class="k">LIKE</code></td><td><code>Country <span class="k">LIKE</span> <span class="s">'%land'</span></code></td><td><code>%</code> beliebig viele</td></tr>
+      <tr><td></td><td><code>PostalCode <span class="k">LIKE</span> <span class="s">'____'</span></code></td><td><code>_</code> genau ein Zeichen</td></tr>
+      <tr><td><code class="k">IS NULL</code></td><td><code>o.OrderID <span class="k">IS NULL</span></code></td><td>kein Wert (nie <code>= <span class="k">NULL</span></code>)</td></tr>
+      <tr><td><code class="k">AND OR NOT</code></td><td><code>(A <span class="k">OR</span> B) <span class="k">AND NOT</span> C</code></td><td>verknüpfen, Klammern setzen</td></tr>
+    </table>
+    <p>Text in <b>einfachen</b> Anführungszeichen (<code><span class="s">'Germany'</span></code>), Zahlen ohne (<code>50</code>).</p>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>Sortieren und begrenzen</h2>
+<pre><span class="k">SELECT TOP</span> 5 ProductName, Price  <span class="c">-- SQL Server</span>
+<span class="k">FROM</span> Products
+<span class="k">ORDER BY</span> Price <span class="k">DESC</span>
+<span class="k">LIMIT</span> 5                          <span class="c">-- MySQL, SQLite</span></pre>
+    <p><code class="k">ASC</code> aufsteigend (Standard), <code class="k">DESC</code> absteigend. Mehrere Spalten mit Komma: <code><span class="k">ORDER BY</span> Country, City</code> sortiert nach Land, darin nach Stadt.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>Schreibweise</h2>
+<pre><span class="c">-- Kommentar bis zum Zeilenende</span>
+<span class="k">SELECT</span> ProductName, Price
+<span class="k">FROM</span> Products;           <span class="c">-- Semikolon optional</span></pre>
+    <p>Schlüsselwörter üblicherweise groß, Zeilenumbrüche nur für die Lesbarkeit. Im SQL-Editor zählt Groß-/Kleinschreibung bei Text nicht.</p>
+  </section>
+
+</div>
+<div>
+
+  <section>
+    <h2><span class="n">7</span>Aggregatfunktionen</h2>
+    <table>
+      <tr><td><code><span class="k">COUNT</span>(*)</code></td><td>Anzahl der Zeilen</td></tr>
+      <tr><td><code><span class="k">COUNT</span>(spalte)</code></td><td>Anzahl der Werte, die nicht <code class="k">NULL</code> sind</td></tr>
+      <tr><td><code><span class="k">COUNT</span>(<span class="k">DISTINCT</span> spalte)</code></td><td>Anzahl der verschiedenen Werte</td></tr>
+      <tr><td><code><span class="k">SUM</span>(spalte)</code>, <code><span class="k">AVG</span>(spalte)</code></td><td>Summe, Durchschnitt (nur Zahlen)</td></tr>
+      <tr><td><code><span class="k">MIN</span>(spalte)</code>, <code><span class="k">MAX</span>(spalte)</code></td><td>kleinster, größter Wert (auch Text, Datum)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="n">8</span>GROUP BY: eine Zeile pro Gruppe</h2>
+    <div class="fig">
+      <svg width="200" height="76" viewBox="0 0 174 66" aria-label="GROUP BY: Zeilen werden nach Land gruppiert und zu einer Zeile pro Gruppe zusammengefasst">
+        <g font-family="Noto Sans, Arial" font-size="5.4" font-weight="700">
+          <rect x="0" y="3" width="39" height="8" rx="1.5" fill="#fbe4ed"/><text x="3" y="8.8" fill="#c2185b">Germany</text>
+          <rect x="0" y="13" width="39" height="8" rx="1.5" fill="#e6dff5"/><text x="3" y="18.8" fill="#503795">Austria</text>
+          <rect x="0" y="23" width="39" height="8" rx="1.5" fill="#fbe4ed"/><text x="3" y="28.8" fill="#c2185b">Germany</text>
+          <rect x="0" y="33" width="39" height="8" rx="1.5" fill="#dcecf5"/><text x="3" y="38.8" fill="#2f6f8f">Switzerland</text>
+          <rect x="0" y="43" width="39" height="8" rx="1.5" fill="#fbe4ed"/><text x="3" y="48.8" fill="#c2185b">Germany</text>
+          <rect x="0" y="53" width="39" height="8" rx="1.5" fill="#e6dff5"/><text x="3" y="58.8" fill="#503795">Austria</text>
+          <path d="M43 32 h16" stroke="#503795" stroke-width="1.2"/><path d="M61 32 l-3.5 -2.4 v4.8 z" fill="#503795"/>
+          <text x="52" y="27" text-anchor="middle" font-family="Noto Sans Mono, monospace" font-size="4.4" fill="#c2185b">GROUP BY</text>
+          <rect x="65" y="3" width="41" height="18" rx="2" fill="#e6dff5" stroke="#503795" stroke-width="0.8"/>
+          <text x="68" y="10" fill="#503795">Austria</text><text x="68" y="18" fill="#503795">Austria</text>
+          <rect x="65" y="23.5" width="41" height="26" rx="2" fill="#fbe4ed" stroke="#c2185b" stroke-width="0.8"/>
+          <text x="68" y="30.5" fill="#c2185b">Germany</text><text x="68" y="38.5" fill="#c2185b">Germany</text><text x="68" y="46.5" fill="#c2185b">Germany</text>
+          <rect x="65" y="52" width="41" height="10" rx="2" fill="#dcecf5" stroke="#2f6f8f" stroke-width="0.8"/>
+          <text x="68" y="59" fill="#2f6f8f">Switzerland</text>
+          <path d="M109 32 h12" stroke="#503795" stroke-width="1.2"/><path d="M123 32 l-3.5 -2.4 v4.8 z" fill="#503795"/>
+          <text x="116" y="27" text-anchor="middle" font-family="Noto Sans Mono, monospace" font-size="4.4" fill="#c2185b">COUNT</text>
+          <rect x="126" y="18" width="48" height="9" rx="1.5" fill="#e6dff5"/><text x="129" y="24.2" fill="#503795">Austria</text><text x="171" y="24.2" text-anchor="end" fill="#333">2</text>
+          <rect x="126" y="28.5" width="48" height="9" rx="1.5" fill="#fbe4ed"/><text x="129" y="34.7" fill="#c2185b">Germany</text><text x="171" y="34.7" text-anchor="end" fill="#333">3</text>
+          <rect x="126" y="39" width="48" height="9" rx="1.5" fill="#dcecf5"/><text x="129" y="45.2" fill="#2f6f8f">Switzerland</text><text x="171" y="45.2" text-anchor="end" fill="#333">1</text>
+        </g>
+      </svg>
+      <div class="txt">
+<pre><span class="k">SELECT</span> Country,
+  <span class="k">COUNT</span>(*) <span class="k">AS</span> Kunden
+<span class="k">FROM</span> Customers
+<span class="k">GROUP BY</span> Country
+<span class="k">HAVING</span> <span class="k">COUNT</span>(*) &gt;= 10</pre>
+      </div>
+    </div>
+    <div class="note"><b>Regeln:</b> Jede Spalte im <code class="k">SELECT</code> steht im <code class="k">GROUP BY</code> oder in einer Aggregatfunktion. Mehrere Spalten im <code class="k">GROUP BY</code>: eine Gruppe pro Kombination.</div>
+    <p><code class="k">WHERE</code> filtert <b>Zeilen</b> vor dem Gruppieren, <code class="k">HAVING</code> filtert <b>Gruppen</b> danach (Bedingung mit Aggregatfunktion).</p>
+  </section>
+
+  <section>
+    <h2><span class="n">9</span>JOIN: Tabellen verknüpfen</h2>
+    <div class="fig">
+      <svg width="160" height="68" viewBox="0 0 122 52" aria-label="JOIN liefert nur Zeilen mit Partner, LEFT JOIN alle Zeilen der linken Tabelle">
+        <defs>
+          <clipPath id="cl1"><circle cx="24" cy="22" r="15"/></clipPath>
+          <clipPath id="cl2"><circle cx="85" cy="22" r="15"/></clipPath>
+        </defs>
+        <g font-family="Noto Sans Mono, monospace" font-size="5.6" font-weight="700">
+          <!-- INNER -->
+          <circle cx="36" cy="22" r="15" clip-path="url(#cl1)" fill="#503795"/>
+          <circle cx="24" cy="22" r="15" fill="none" stroke="#a89bc9" stroke-width="1"/>
+          <circle cx="36" cy="22" r="15" fill="none" stroke="#a89bc9" stroke-width="1"/>
+          <text x="30" y="47" text-anchor="middle" fill="#c2185b">JOIN</text>
+          <!-- LEFT -->
+          <circle cx="85" cy="22" r="15" fill="#503795" stroke="#a89bc9" stroke-width="1"/>
+          <circle cx="97" cy="22" r="15" fill="none" stroke="#a89bc9" stroke-width="1"/>
+          <text x="91" y="47" text-anchor="middle" fill="#c2185b">LEFT JOIN</text>
+        </g>
+        <g font-family="Noto Sans, Arial" font-size="4.4" fill="#75727d">
+          <text x="12" y="4" text-anchor="middle">links</text><text x="48" y="4" text-anchor="middle">rechts</text>
+          <text x="73" y="4" text-anchor="middle">links</text><text x="109" y="4" text-anchor="middle">rechts</text>
+        </g>
+      </svg>
+      <div class="txt">
+        <p><code class="k">JOIN</code> (= <code class="k">INNER JOIN</code>): nur Zeilen mit Partner in beiden Tabellen.</p>
+        <p><code class="k">LEFT JOIN</code>: alle Zeilen der linken Tabelle (nach <code class="k">FROM</code>), ohne Partner mit <code class="k">NULL</code>.</p>
+      </div>
+    </div>
+<pre><span class="k">SELECT</span> c.CustomerName, o.OrderID
+<span class="k">FROM</span> Customers c                  <span class="c">-- c, o: Aliase</span>
+<span class="k">LEFT JOIN</span> Orders o
+  <span class="k">ON</span> c.CustomerID = o.CustomerID  <span class="c">-- FK = PK</span>
+<span class="k">WHERE</span> o.OrderID <span class="k">IS NULL</span>           <span class="c">-- ohne Bestellung</span></pre>
+  </section>
+
+  <section>
+    <h2><span class="n">10</span>Beispieldatenbank (Ausschnitt)</h2>
+    <svg class="er" viewBox="0 0 352 52" aria-label="Ausschnitt der Beispieldatenbank: Customers, Orders, OrderDetails und Products mit Primär- und Fremdschlüsseln">
+      <g font-family="Noto Sans, Arial">
+        <rect x="0.4" y="20.4" width="61.2" height="30.2" rx="2.5" fill="#fff" stroke="#503795" stroke-width="0.8"/>
+        <path d="M0 31 V22.5 Q0 20 2.5 20 H59.5 Q62 20 62 22.5 V31 Z" fill="#503795"/>
+        <text x="31.0" y="28" text-anchor="middle" font-size="7.4" font-weight="700" fill="#fff">Customers</text>
+        <text x="4" y="38.0" font-size="5.2" font-weight="700" fill="#503795">PK</text>
+        <text x="15" y="38.5" font-size="7.2" fill="#333">CustomerID</text>
+        <text x="15" y="48.2" font-size="7.2" fill="#75727d">…</text>
+        <rect x="94.4" y="10.4" width="61.2" height="40.2" rx="2.5" fill="#fff" stroke="#503795" stroke-width="0.8"/>
+        <path d="M94 21 V12.5 Q94 10 96.5 10 H153.5 Q156 10 156 12.5 V21 Z" fill="#503795"/>
+        <text x="125.0" y="18" text-anchor="middle" font-size="7.4" font-weight="700" fill="#fff">Orders</text>
+        <text x="98" y="28.0" font-size="5.2" font-weight="700" fill="#503795">PK</text>
+        <text x="109" y="28.5" font-size="7.2" fill="#333">OrderID</text>
+        <text x="98" y="38.0" font-size="5.2" font-weight="700" fill="#c2185b">FK</text>
+        <text x="109" y="38.5" font-size="7.2" fill="#333">CustomerID</text>
+        <text x="109" y="48.2" font-size="7.2" fill="#75727d">…</text>
+        <rect x="188.4" y="0.4" width="73.2" height="50.2" rx="2.5" fill="#fff" stroke="#503795" stroke-width="0.8"/>
+        <path d="M188 11 V2.5 Q188 0 190.5 0 H259.5 Q262 0 262 2.5 V11 Z" fill="#503795"/>
+        <text x="225.0" y="8" text-anchor="middle" font-size="7.4" font-weight="700" fill="#fff">OrderDetails</text>
+        <text x="192" y="18.0" font-size="5.2" font-weight="700" fill="#503795">PK</text>
+        <text x="203" y="18.5" font-size="7.2" fill="#333">OrderDetailID</text>
+        <text x="192" y="28.0" font-size="5.2" font-weight="700" fill="#c2185b">FK</text>
+        <text x="203" y="28.5" font-size="7.2" fill="#333">OrderID</text>
+        <text x="192" y="38.0" font-size="5.2" font-weight="700" fill="#c2185b">FK</text>
+        <text x="203" y="38.5" font-size="7.2" fill="#333">ProductID</text>
+        <text x="203" y="48.2" font-size="7.2" fill="#75727d">…</text>
+        <rect x="290.4" y="20.4" width="61.2" height="30.2" rx="2.5" fill="#fff" stroke="#503795" stroke-width="0.8"/>
+        <path d="M290 31 V22.5 Q290 20 292.5 20 H349.5 Q352 20 352 22.5 V31 Z" fill="#503795"/>
+        <text x="321.0" y="28" text-anchor="middle" font-size="7.4" font-weight="700" fill="#fff">Products</text>
+        <text x="294" y="38.0" font-size="5.2" font-weight="700" fill="#503795">PK</text>
+        <text x="305" y="38.5" font-size="7.2" fill="#333">ProductID</text>
+        <text x="305" y="48.2" font-size="7.2" fill="#75727d">…</text>
+      </g>
+      <g fill="none" stroke="#4d4d4d" stroke-width="0.8">
+        <path d="M62 36 H94"/>
+        <line x1="65" y1="33" x2="65" y2="39"/>
+        <line x1="67" y1="33" x2="67" y2="39"/>
+        <line x1="88" y1="36" x2="94" y2="32.8"/>
+        <line x1="88" y1="36" x2="94" y2="36"/>
+        <line x1="88" y1="36" x2="94" y2="39.2"/>
+        <circle cx="85.4" cy="36" r="1.8" fill="#fff"/>
+        <path d="M156 26 H188"/>
+        <line x1="159" y1="23" x2="159" y2="29"/>
+        <line x1="161" y1="23" x2="161" y2="29"/>
+        <line x1="182" y1="26" x2="188" y2="22.8"/>
+        <line x1="182" y1="26" x2="188" y2="26"/>
+        <line x1="182" y1="26" x2="188" y2="29.2"/>
+        <circle cx="179.4" cy="26" r="1.8" fill="#fff"/>
+        <path d="M290 36 H262"/>
+        <line x1="287" y1="33" x2="287" y2="39"/>
+        <line x1="285" y1="33" x2="285" y2="39"/>
+        <line x1="268" y1="36" x2="262" y2="32.8"/>
+        <line x1="268" y1="36" x2="262" y2="36"/>
+        <line x1="268" y1="36" x2="262" y2="39.2"/>
+        <circle cx="270.6" cy="36" r="1.8" fill="#fff"/>
+      </g>
+    </svg>
+    <p><b style="color:#503795">PK</b> (Primärschlüssel) identifiziert eine Zeile eindeutig.<br><b style="color:#c2185b">FK</b> (Fremdschlüssel) verweist auf den PK einer anderen Tabelle.<br>Krähenfuß: ein Kunde hat beliebig viele Bestellungen.<br>Weitere Tabellen: Employees, Shippers, Suppliers, Categories.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">11</span>Typische Fehler</h2>
+    <table>
+      <tr><td><code>Country = Germany</code></td><td>Text in einfache Anführungszeichen: <code class="s">'Germany'</code></td></tr>
+      <tr><td><code>City, <span class="k">FROM</span></code></td><td>kein Komma nach der letzten Spalte</td></tr>
+      <tr><td><code>= <span class="s">'A'</span> <span class="k">OR</span> <span class="s">'B'</span></code></td><td>Spalte wiederholen: <code>= <span class="s">'A'</span> <span class="k">OR</span> Country = <span class="s">'B'</span></code> oder <code class="k">IN</code></td></tr>
+      <tr><td><code><span class="k">WHERE COUNT</span>(*) &gt; 5</code></td><td><code class="k">HAVING</code> nach <code class="k">GROUP BY</code></td></tr>
+      <tr><td>fehlendes <code class="k">ON</code></td><td>jede Zeile mit jeder kombiniert: Zeilenzahl explodiert</td></tr>
+    </table>
+    <div class="note warn"><b>SQLite (z.&nbsp;B. in Colab):</b> Tabellennamen klein (<code>order_details</code>), Groß-/Kleinschreibung bei Text zählt, nur <code class="k">LIMIT</code>, Verstöße gegen die GROUP-BY-Regel werden <b>nicht</b> gemeldet.</div>
+  </section>
+
+</div>
+</div>
+
+<footer><span>Ausführlich im Skriptum zu Teil 2 und im SQL-Editor (Menü „Beispiele“) auf der Kursseite</span><span>markusschanta.github.io/fhwien-dga-2026</span></footer>
+</body>
+</html>
